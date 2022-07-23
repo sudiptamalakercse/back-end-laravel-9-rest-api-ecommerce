@@ -1,81 +1,50 @@
 {
 	"info": {
-		"_postman_id": "1f9f92b9-b496-4212-96bd-ab80cc18ffe9",
+		"_postman_id": "5dd0f70b-aef2-4341-9044-ffb02d4d298a",
 		"name": "back-end-laravel-9-rest-api-ecommerce",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8903376"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Test",
+			"name": "Admin & User Operations",
 			"item": [
 				{
-					"name": "Get Users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|b8CKMdzEENi7XMieKYB33li5AfaaOhCpKhbBhWgh",
-									"type": "string"
+					"name": "Test",
+					"item": [
+						{
+							"name": "Get Users or Admins",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|b8CKMdzEENi7XMieKYB33li5AfaaOhCpKhbBhWgh",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/get-admins-or-users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"get-admins-or-users"
+									]
 								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/user/get-users",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"get-users"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Admins",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "3|jyn1DmI8QL6S75FVKvak5DFkaoc5qGGeiBwgAW5H",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{url}}/admin/get-admins",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"get-admins"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -159,49 +128,152 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "user2",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "user2@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "default"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "Admin & User Operations",
+			"name": "User Operations",
 			"item": [
 				{
-					"name": "Test",
-					"item": [
-						{
-							"name": "Get Users or Admins",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "1|b8CKMdzEENi7XMieKYB33li5AfaaOhCpKhbBhWgh",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/get-admins-or-users",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"get-admins-or-users"
-									]
+					"name": "Logout User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "16|gnOQuxaYCpKq7KuteWFul4zcR15DNV5iee7XsY0e",
+									"type": "string"
 								}
-							},
-							"response": []
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "post_ids[]",
+									"value": "12",
+									"type": "default"
+								},
+								{
+									"key": "post_ids[]",
+									"value": "13",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/user/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
 						}
-					]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Operations",
+			"item": [
+				{
+					"name": "Logout Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/admin/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
