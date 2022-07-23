@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OperationsForAdminAndUser
+class IsVerifyUserEmail
 {
     /**
      * Handle an incoming request.
@@ -17,18 +16,12 @@ class OperationsForAdminAndUser
      */
     public function handle(Request $request, Closure $next)
     {
-        $admin_logged_in = Auth::guard('admin')->check();
-
-        $user_logged_in = Auth::guard('user')->check();
-
-        if ($admin_logged_in || $user_logged_in) {
-
-            return $next($request);
-
-        } else {
+        if (!auth('user')->user()->is_email_verified) {
             return response([
-                'message' => 'Unauthenticated.',
+                'message' => 'Please Verify Your Email As User!!',
             ], 401);
         }
+
+        return $next($request);
     }
 }

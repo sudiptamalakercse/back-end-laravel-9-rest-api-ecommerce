@@ -7,46 +7,7 @@
 	"item": [
 		{
 			"name": "Admin & User Operations",
-			"item": [
-				{
-					"name": "Test",
-					"item": [
-						{
-							"name": "Get Users or Admins",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "1|b8CKMdzEENi7XMieKYB33li5AfaaOhCpKhbBhWgh",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{url}}/get-admins-or-users",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"get-admins-or-users"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
+			"item": []
 		},
 		{
 			"name": "Public Operations",
@@ -106,12 +67,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "chasity60@example.net",
+									"value": "malakersudipta@gmail.com",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "password",
+									"value": "12345678",
 									"type": "default"
 								}
 							]
@@ -145,12 +106,12 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "user2",
+									"value": "Sudipta  Malaker",
 									"type": "default"
 								},
 								{
 									"key": "email",
-									"value": "user2@gmail.com",
+									"value": "malakersudipta1@gmail.com",
 									"type": "default"
 								},
 								{
@@ -191,7 +152,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "16|gnOQuxaYCpKq7KuteWFul4zcR15DNV5iee7XsY0e",
+									"value": "6|0n3vojhgl0WQnVAKnH1TkNFxiL97jMMIQaMxdDFp",
 									"type": "string"
 								}
 							]

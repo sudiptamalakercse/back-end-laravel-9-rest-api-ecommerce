@@ -16,12 +16,12 @@ class AdminController extends Controller
             auth('admin')->user()->tokens()->delete();
             return response([
                 'message' => 'Successfully Logged Out as Admin!!',
-            ]);
+            ], 200);
 
         } else {
             return response([
                 'message' => 'Not Possible to Log Out as Admin!!',
-            ]);
+            ], 401);
         }
     }
 

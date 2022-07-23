@@ -23,7 +23,16 @@ Route::controller(UserController::class)->group(function () {
     });
 });
 
-// Protected Routes for user
+// Protected Routes for user with email verification
+// Route::middleware(['auth:user', 'is_verify_user_email'])->group(function () {
+//     Route::controller(UserController::class)->group(function () {
+//         Route::prefix('user')->group(function () {
+
+//         });
+//     });
+// });
+
+// Protected Routes for user without email verification
 Route::middleware(['auth:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::prefix('user')->group(function () {
