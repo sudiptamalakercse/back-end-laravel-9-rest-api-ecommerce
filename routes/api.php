@@ -36,6 +36,7 @@ Route::controller(UserController::class)->group(function () {
 Route::middleware(['auth:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::prefix('user')->group(function () {
+            Route::put('account/verify', 'verify_account');
             Route::post('logout', 'logout');
         });
     });

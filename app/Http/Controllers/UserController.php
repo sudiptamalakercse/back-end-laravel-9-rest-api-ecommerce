@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Custom_Services\Service1;
 use App\Mail\UserEmailVerification;
 use App\Models\User;
 use App\Models\UserVerify;
@@ -10,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
-use Str;
 
 class UserController extends Controller
 {
@@ -30,7 +28,7 @@ class UserController extends Controller
         ]);
 
         $last_id = $user->id;
-        $token = $last_id . hash('sha256', Str::random(120));
+        $token = $last_id . random_int(100000, 999999);
 
         UserVerify::create([
             'user_id' => $last_id,
@@ -38,12 +36,12 @@ class UserController extends Controller
         ]);
 
         //datas which will go with email
-        $email_activation_link = Service1::$front_end_domain . '/account/verify/' . $token;
+        $email_activation_code = $token;
         $email_receiver_name = $user->name;
         $user_type = 'User';
 
         $email_datas = [
-            'email_activation_link' => $email_activation_link,
+            'email_activation_code' => $email_activation_code,
             'email_receiver_name' => $email_receiver_name,
             'user_type' => $user_type,
         ];
@@ -97,5 +95,63 @@ class UserController extends Controller
             'user' => $user,
             'token' => $token,
         ], 200);
+    }
+
+    public function verify_account(Request $request)
+    {
+
+        $request->validate([
+            'verificaion_code' => 'required',
+        ]);
+
+        $verificaion_code = $request->verificaion_code;
+
+        $matched = false;
+
+        $verify_users = UserVerify::get();
+
+        foreach ($verify_users as $verify_user) {
+            if (Hash::check($verificaion_code, $verify_user->token)) {
+                $matched = true;
+                break;
+            }
+        }
+
+        $message = 'Sorry Your Email Verification Code is Incorrect or Old!';
+
+        if ($matched == true) {
+
+            $user = $verify_user->user;
+
+            if (!$user->is_email_verified) {
+
+                //Authorization Check
+                if ($user->id !== auth('user')->user()->id) {
+
+                    return response([
+                        'message' => 'Unauthorized.',
+                    ], 401);
+
+                }
+                //End Authorization Check
+
+                $user->is_email_verified = 1;
+                $user->save();
+                $message = "Your e-mail is verified.";
+
+                $verify_user->delete();
+
+                return response([
+                    'message' => $message,
+                ], 204);
+
+            }
+
+        }
+
+        return response([
+            'message' => $message,
+        ], 403);
+
     }
 }

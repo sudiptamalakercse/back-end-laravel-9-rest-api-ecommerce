@@ -31,7 +31,7 @@ class UserEmailVerification extends Mailable
     {
         return $this->view('user.email.user_email_verification')
             ->with([
-                'email_activation_link' => $this->email_datas['email_activation_link'],
+                'email_activation_code' => $this->email_datas['email_activation_code'],
                 'email_receiver_name' => $this->email_datas['email_receiver_name'],
                 'user_type' => $this->email_datas['user_type'],
             ]);
