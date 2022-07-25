@@ -154,7 +154,7 @@ class UserController extends Controller
 
                 $user->is_email_verified = 1;
                 $user->save();
-                $message = "Your e-mail is verified.";
+                $message = "Your E-mail is verified.";
 
                 $verify_user->delete();
 
@@ -162,6 +162,8 @@ class UserController extends Controller
                     'message' => $message,
                 ], 204);
 
+            } else {
+                $message = "Your E-mail is Already Verified.";
             }
 
         }
@@ -170,5 +172,50 @@ class UserController extends Controller
             'message' => $message,
         ], 403);
 
+    }
+
+    public function verify_account_email_resend(Request $request)
+    {
+        $user = $request->user('user');
+        $user_verify = $user->UserVerify;
+
+        if ($user_verify != null) {
+            $user_verify->delete();
+        }
+
+        if ($user->is_email_verified) {
+            return response([
+                'message' => 'Your E-mail is Already Verified.',
+            ], 403);
+        }
+
+        $user_id = $user->id;
+        $token = $user_id . random_int(100000, 999999);
+
+        UserVerify::create([
+            'user_id' => $user_id,
+            'token' => Hash::make($token),
+        ]);
+
+        //datas which will go with email
+        $email_activation_code = $token;
+        $email_receiver_name = $user->name;
+        $user_type = 'User';
+
+        $email_datas = [
+            'email_activation_code' => $email_activation_code,
+            'email_receiver_name' => $email_receiver_name,
+            'user_type' => $user_type,
+        ];
+        //end datas which will go with email
+
+        //send email
+        Mail::to($user->email)->send(new UserEmailVerification($email_datas));
+        //end send email
+
+        //end email verify related code
+        return response([
+            'message' => 'Email is Re Sent with New Email Verification Code.',
+        ], 200);
     }
 }

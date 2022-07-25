@@ -142,6 +142,49 @@
 			]
 		},
 		{
+			"name": "Admin Operations",
+			"item": [
+				{
+					"name": "Logout Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/admin/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User Operations",
 			"item": [
 				{
@@ -194,14 +237,57 @@
 					"response": []
 				},
 				{
-					"name": "Verify Email Account",
+					"name": "Resend Email with New Email Verification Code for User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|oCFN5pY6WS79RoXMkpijjvE8FKfWZGQmDUvv1FG6",
+									"value": "1|vIVTNai3uO9PIyuI35Yb1yl1XDMKCll7ll5rfN5x",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/user/account/email/resend",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"account",
+								"email",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email Account of User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|vIVTNai3uO9PIyuI35Yb1yl1XDMKCll7ll5rfN5x",
 									"type": "string"
 								}
 							]
@@ -219,8 +305,14 @@
 							"urlencoded": [
 								{
 									"key": "verificaion_code",
-									"value": "1646647",
+									"value": "1508412",
 									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
 								}
 							]
 						},
@@ -233,49 +325,6 @@
 								"user",
 								"account",
 								"verify"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Admin Operations",
-			"item": [
-				{
-					"name": "Logout Admin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{url}}/admin/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"logout"
 							]
 						}
 					},

@@ -36,7 +36,12 @@ Route::controller(UserController::class)->group(function () {
 Route::middleware(['auth:user'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::prefix('user')->group(function () {
+
+            //Custom Email Verification for User
             Route::put('account/verify', 'verify_account');
+            Route::get('account/email/resend', 'verify_account_email_resend');
+            //End of Custom Email Verification for User
+
             Route::post('logout', 'logout');
         });
     });
