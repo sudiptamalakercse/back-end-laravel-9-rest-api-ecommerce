@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\UserEmailVerification;
 use App\Models\User;
 use App\Models\UserVerify;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -112,7 +113,23 @@ class UserController extends Controller
 
         foreach ($verify_users as $verify_user) {
             if (Hash::check($verificaion_code, $verify_user->token)) {
-                $matched = true;
+
+                $time_difference_in_minutes = $verify_user->created_at->diffInMinutes(Carbon::now());
+
+                if ($time_difference_in_minutes < 5) {
+
+                    $matched = true;
+
+                } else {
+
+                    $verify_user->delete();
+
+                    return response([
+                        'message' => 'Your Email Verification Code is Expired!',
+                    ], 401);
+
+                }
+
                 break;
             }
         }
