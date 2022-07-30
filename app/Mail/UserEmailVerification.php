@@ -34,6 +34,7 @@ class UserEmailVerification extends Mailable
                 'email_activation_code' => $this->email_datas['email_activation_code'],
                 'email_receiver_name' => $this->email_datas['email_receiver_name'],
                 'user_type' => $this->email_datas['user_type'],
+                'email_verification_code_expiration_time' => $this->email_datas['email_verification_code_expiration_time'],
             ]);
     }
 }

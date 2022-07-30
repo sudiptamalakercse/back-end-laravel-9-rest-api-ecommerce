@@ -13,131 +13,141 @@
 			"name": "Public Operations",
 			"item": [
 				{
-					"name": "Login Admin",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "eudora.wilderman@example.com",
-									"type": "default"
+					"name": "For User",
+					"item": [
+						{
+							"name": "Login User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "password",
-									"type": "default"
+								"url": {
+									"raw": "{{url}}/user/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"login"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/admin/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"login"
-							]
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Sudipta  Malaker",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Login User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "malakersudipta@gmail.com",
-									"type": "default"
+					"name": "For Admin",
+					"item": [
+						{
+							"name": "Login Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "eudora.wilderman@example.com",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "default"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "12345678",
-									"type": "default"
+								"url": {
+									"raw": "{{url}}/admin/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
 								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/user/login",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"login"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Sudipta  Malaker",
-									"type": "default"
-								},
-								{
-									"key": "email",
-									"value": "malakersudipta@gmail.com",
-									"type": "default"
-								},
-								{
-									"key": "password",
-									"value": "12345678",
-									"type": "default"
-								},
-								{
-									"key": "password_confirmation",
-									"value": "12345678",
-									"type": "default"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/user/register",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"register"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -145,42 +155,51 @@
 			"name": "Admin Operations",
 			"item": [
 				{
-					"name": "Logout Admin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
-									"type": "string"
+					"name": "Routes Without Email Verification",
+					"item": [
+						{
+							"name": "Logout Admin",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{url}}/admin/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"logout"
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{url}}/admin/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"logout"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "Routes With Email Verification",
+					"item": []
 				}
 			]
 		},
@@ -188,147 +207,156 @@
 			"name": "User Operations",
 			"item": [
 				{
-					"name": "Logout User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6|0n3vojhgl0WQnVAKnH1TkNFxiL97jMMIQaMxdDFp",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "post_ids[]",
-									"value": "12",
-									"type": "default"
+					"name": "Routes Without Email Verification",
+					"item": [
+						{
+							"name": "Logout User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"type": "string"
+										}
+									]
 								},
-								{
-									"key": "post_ids[]",
-									"value": "13",
-									"type": "default"
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "post_ids[]",
+											"value": "12",
+											"type": "default"
+										},
+										{
+											"key": "post_ids[]",
+											"value": "13",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"logout"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/user/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"logout"
-							]
+						{
+							"name": "Resend Email with New Email Verification Code for User",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{url}}/user/account/email/resend",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"account",
+										"email",
+										"resend"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Email Account of User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "verificaion_code",
+											"value": "1904404",
+											"type": "default"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user/account/verify",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"account",
+										"verify"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Resend Email with New Email Verification Code for User",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|vIVTNai3uO9PIyuI35Yb1yl1XDMKCll7ll5rfN5x",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{url}}/user/account/email/resend",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"account",
-								"email",
-								"resend"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Verify Email Account of User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "1|vIVTNai3uO9PIyuI35Yb1yl1XDMKCll7ll5rfN5x",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "verificaion_code",
-									"value": "1508412",
-									"type": "default"
-								},
-								{
-									"key": "",
-									"value": "",
-									"type": "default",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/user/account/verify",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								"account",
-								"verify"
-							]
-						}
-					},
-					"response": []
+					"name": "Routes With Email Verification",
+					"item": []
 				}
 			]
 		}

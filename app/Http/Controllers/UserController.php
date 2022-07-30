@@ -13,6 +13,13 @@ use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    private $email_verification_code_expiration_time = 5;
+
+    public function get_email_verification_code_expiration_time()
+    {
+        return $this->email_verification_code_expiration_time;
+    }
+
     public function register(Request $request)
     {
 
@@ -34,6 +41,7 @@ class UserController extends Controller
         UserVerify::create([
             'user_id' => $last_id,
             'token' => Hash::make($token),
+            'email_verification_code_expiration_time' => $this->email_verification_code_expiration_time,
         ]);
 
         //datas which will go with email
@@ -45,6 +53,7 @@ class UserController extends Controller
             'email_activation_code' => $email_activation_code,
             'email_receiver_name' => $email_receiver_name,
             'user_type' => $user_type,
+            'email_verification_code_expiration_time' => $this->email_verification_code_expiration_time,
         ];
         //end datas which will go with email
 
@@ -116,7 +125,7 @@ class UserController extends Controller
 
                 $time_difference_in_minutes = $verify_user->created_at->diffInMinutes(Carbon::now());
 
-                if ($time_difference_in_minutes < 5) {
+                if ($time_difference_in_minutes < $this->email_verification_code_expiration_time) {
 
                     $matched = true;
 
@@ -206,6 +215,7 @@ class UserController extends Controller
             'email_activation_code' => $email_activation_code,
             'email_receiver_name' => $email_receiver_name,
             'user_type' => $user_type,
+            'email_verification_code_expiration_time' => $this->email_verification_code_expiration_time,
         ];
         //end datas which will go with email
 
