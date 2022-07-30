@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserEmailVerification;
+use App\Mail\UserPasswordReset;
+use App\Models\PasswordReset;
 use App\Models\User;
 use App\Models\UserVerify;
 use Carbon\Carbon;
@@ -14,10 +16,16 @@ use Illuminate\Validation\Rules\Password;
 class UserController extends Controller
 {
     private $email_verification_code_expiration_time = 5;
+    private $password_reset_code_expiration_time = 5;
 
     public function get_email_verification_code_expiration_time()
     {
         return $this->email_verification_code_expiration_time;
+    }
+
+    public function get_password_reset_code_expiration_time()
+    {
+        return $this->password_reset_code_expiration_time;
     }
 
     public function register(Request $request)
@@ -227,5 +235,62 @@ class UserController extends Controller
         return response([
             'message' => 'Email is Re Sent with New Email Verification Code.',
         ], 200);
+    }
+
+    public function forgot_password_handle(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        $email = $request->email;
+        $user = User::where('email', $email)->first();
+        $mess = '';
+        if ($user != null) {
+
+            $password_reset = PasswordReset::latest()->first();
+
+            if ($password_reset == null) {
+                $password_reset_last_id = 1;
+            } else {
+                $password_reset_last_id = $password_reset->id + 1;
+            }
+
+            $token = $password_reset_last_id . random_int(100000, 999999);
+
+            PasswordReset::create([
+                'email' => $email,
+                'token' => Hash::make($token),
+                'user_type' => 'User',
+            ]);
+
+            //datas which will go with email
+            $user_password_reset_code = $token;
+            $password_resetter_name = $user->name;
+            $user_type = 'User';
+
+            $email_datas = [
+                'user_password_reset_code' => $user_password_reset_code,
+                'password_resetter_name' => $password_resetter_name,
+                'user_type' => $user_type,
+                'password_reset_code_expiration_time' => $this->password_reset_code_expiration_time,
+            ];
+            //end datas which will go with email
+
+            //send email
+            Mail::to($email)->send(new UserPasswordReset($email_datas));
+            //end send email
+
+            //end email verify related code
+
+            return response([
+                'message' => 'We Sent You A Password Reset Code to Your Email!',
+            ], 200);
+
+        } else {
+
+            return response([
+                'message' => 'We Do Not Find This Email!',
+            ], 403);
+
+        }
+
     }
 }

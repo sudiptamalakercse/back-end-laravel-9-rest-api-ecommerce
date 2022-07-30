@@ -13,6 +13,50 @@
 			"name": "Public Operations",
 			"item": [
 				{
+					"name": "For Admin",
+					"item": [
+						{
+							"name": "Login Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "eudora.wilderman@example.com",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "For User",
 					"item": [
 						{
@@ -102,14 +146,9 @@
 								}
 							},
 							"response": []
-						}
-					]
-				},
-				{
-					"name": "For Admin",
-					"item": [
+						},
 						{
-							"name": "Login Admin",
+							"name": "Forgot Password User",
 							"request": {
 								"method": "POST",
 								"header": [
@@ -124,24 +163,20 @@
 									"urlencoded": [
 										{
 											"key": "email",
-											"value": "eudora.wilderman@example.com",
-											"type": "default"
-										},
-										{
-											"key": "password",
-											"value": "password",
+											"value": "malakersudipta@gmail.com",
 											"type": "default"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/admin/login",
+									"raw": "{{url}}/user/forgot/password",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"admin",
-										"login"
+										"user",
+										"forgot",
+										"password"
 									]
 								}
 							},
@@ -309,7 +344,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"value": "1|92jlGmeW98FZNqQA4E82RlKOLVIOQpvuAaWkAjxp",
 											"type": "string"
 										}
 									]

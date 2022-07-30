@@ -20,6 +20,7 @@ Route::controller(UserController::class)->group(function () {
     Route::prefix('user')->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
+        Route::post('forgot/password', 'forgot_password_handle');
     });
 });
 
