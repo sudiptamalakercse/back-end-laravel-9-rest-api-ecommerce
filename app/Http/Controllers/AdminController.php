@@ -15,11 +15,13 @@ class AdminController extends Controller
 
             auth('admin')->user()->tokens()->delete();
             return response([
+                'all_ok' => 'yes',
                 'message' => 'Successfully Logged Out as Admin!!',
             ], 200);
 
         } else {
             return response([
+                'all_ok' => 'no',
                 'message' => 'Not Possible to Log Out as Admin!!',
             ], 401);
         }
@@ -36,6 +38,7 @@ class AdminController extends Controller
 
         if (!$admin || !Hash::check($request->password, $admin->password)) {
             return response([
+                'all_ok' => 'no',
                 'message' => 'The provided credentials are incorrect as Admin.',
             ], 401);
         }
@@ -43,6 +46,7 @@ class AdminController extends Controller
         $token = $admin->createToken($request->email)->plainTextToken;
 
         return response([
+            'all_ok' => 'yes',
             'admin' => $admin,
             'token' => $token,
         ], 200);

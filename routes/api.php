@@ -21,6 +21,7 @@ Route::controller(UserController::class)->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login');
         Route::post('forgot/password', 'forgot_password_handle');
+        Route::post('token/check/for/reset/password', 'token_check_for_reset_password');
     });
 });
 

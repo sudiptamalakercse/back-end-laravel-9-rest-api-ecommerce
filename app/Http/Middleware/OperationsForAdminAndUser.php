@@ -27,6 +27,7 @@ class OperationsForAdminAndUser
 
         } else {
             return response([
+                'all_ok' => 'no',
                 'message' => 'Unauthenticated.',
             ], 401);
         }

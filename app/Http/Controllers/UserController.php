@@ -49,7 +49,6 @@ class UserController extends Controller
         UserVerify::create([
             'user_id' => $last_id,
             'token' => Hash::make($token),
-            'email_verification_code_expiration_time' => $this->email_verification_code_expiration_time,
         ]);
 
         //datas which will go with email
@@ -72,8 +71,11 @@ class UserController extends Controller
         $token = $user->createToken($request->email)->plainTextToken;
 
         return response([
+            'all_ok' => 'yes',
             'user' => $user,
             'token' => $token,
+            'verify_email_in_minutes' => $this->email_verification_code_expiration_time,
+
         ], 201);
     }
 
@@ -83,10 +85,12 @@ class UserController extends Controller
 
             auth('user')->user()->tokens()->delete();
             return response([
+                'all_ok' => 'yes',
                 'message' => 'Successfully Logged Out as User!!',
             ], 200);
         } else {
             return response([
+                'all_ok' => 'no',
                 'message' => 'Not Possible to Log Out as User!!',
             ], 401);
         }
@@ -103,6 +107,7 @@ class UserController extends Controller
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
+                'all_ok' => 'no',
                 'message' => 'The provided credentials are incorrect as User.',
             ], 401);
         }
@@ -110,6 +115,7 @@ class UserController extends Controller
         $token = $user->createToken($request->email)->plainTextToken;
 
         return response([
+            'all_ok' => 'yes',
             'user' => $user,
             'token' => $token,
         ], 200);
@@ -142,6 +148,7 @@ class UserController extends Controller
                     $verify_user->delete();
 
                     return response([
+                        'all_ok' => 'no',
                         'message' => 'Your Email Verification Code is Expired!',
                     ], 401);
 
@@ -163,6 +170,7 @@ class UserController extends Controller
                 if ($user->id !== auth('user')->user()->id) {
 
                     return response([
+                        'all_ok' => 'no',
                         'message' => 'Unauthorized.',
                     ], 401);
 
@@ -176,6 +184,7 @@ class UserController extends Controller
                 $verify_user->delete();
 
                 return response([
+                    'all_ok' => 'yes',
                     'message' => $message,
                 ], 204);
 
@@ -186,6 +195,7 @@ class UserController extends Controller
         }
 
         return response([
+            'all_ok' => 'no',
             'message' => $message,
         ], 403);
 
@@ -202,6 +212,7 @@ class UserController extends Controller
 
         if ($user->is_email_verified) {
             return response([
+                'all_ok' => 'no',
                 'message' => 'Your E-mail is Already Verified.',
             ], 403);
         }
@@ -233,7 +244,9 @@ class UserController extends Controller
 
         //end email verify related code
         return response([
+            'all_ok' => 'yes',
             'message' => 'Email is Re Sent with New Email Verification Code.',
+            'verify_email_in_minutes' => $this->email_verification_code_expiration_time,
         ], 200);
     }
 
@@ -281,13 +294,83 @@ class UserController extends Controller
             //end email verify related code
 
             return response([
+                'all_ok' => 'yes',
+                'user_type' => 'User',
                 'message' => 'We Sent You A Password Reset Code to Your Email!',
+                'change_password_in_minutes' => $this->password_reset_code_expiration_time,
             ], 200);
 
         } else {
 
             return response([
+                'all_ok' => 'no',
                 'message' => 'We Do Not Find This Email!',
+            ], 403);
+
+        }
+
+    }
+
+    public function token_check_for_reset_password(Request $request)
+    {
+        $request->validate(['password_reset_code' => 'required']);
+
+        $password_reset_code = $request->password_reset_code;
+
+        $password_reset_id = null;
+
+        $token_matched = false;
+
+        $PasswordResets = PasswordReset::get();
+
+        foreach ($PasswordResets as $PasswordReset) {
+
+            if (Hash::check($password_reset_code, $PasswordReset->token)) {
+                $token_matched = true;
+                $password_reset_id = $PasswordReset->id;
+                break;
+            }
+        }
+
+        if ($token_matched) {
+
+            if ($password_reset_id != null) {
+
+                $password_reset = PasswordReset::where('id', $password_reset_id)->latest()->first();
+
+                if ($password_reset) {
+
+                    $time_difference_in_minutes = $password_reset->created_at->diffInMinutes(Carbon::now());
+                    $password_reset_code_expiration_time = $this->get_password_reset_code_expiration_time();
+                    $password_reset_code_expiration_result = $password_reset_code_expiration_time - $time_difference_in_minutes;
+
+                    if ($password_reset_code_expiration_result <= 0) {
+                        return response([
+                            'all_ok' => 'no',
+                            'password_reset_code_expiration_result' => 'Password Reset Code is Expired.',
+                        ], 401);
+                    } else {
+
+                        $email = $password_reset->email;
+                        $user_type = $password_reset->user_type;
+
+                        return response([
+                            'all_ok' => 'yes',
+                            'password_reset_code_expiration_result' => 'Password Reset Code is Not Expired.',
+                            'user_type' => $user_type,
+                            'email' => $email,
+                            'password_reset_code' => $password_reset_code,
+                            'change_password_in_minutes' => $password_reset_code_expiration_result,
+                        ], 200);
+                    }
+                }
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Password Reset Code is Not Matched or Old!',
             ], 403);
 
         }

@@ -29,16 +29,18 @@ class IsVerifyUserEmail
 
             if ($user_verify) {
                 $time_difference_in_minutes = $user_verify->created_at->diffInMinutes(Carbon::now());
-                $use_controller = new UserController();
-                $email_verification_code_expiration_time = $use_controller->get_email_verification_code_expiration_time();
+                $user_controller = new UserController();
+                $email_verification_code_expiration_time = $user_controller->get_email_verification_code_expiration_time();
                 $email_verification_code_expiration_result = $email_verification_code_expiration_time - $time_difference_in_minutes;
                 if ($email_verification_code_expiration_result <= 0) {
                     return response([
+                        'all_ok' => 'no',
                         'message' => $message,
                         'email_verification_code_expiration_result' => 'Email Verification Code is Expired.',
                     ], 401);
                 } else {
                     return response([
+                        'all_ok' => 'no',
                         'message' => $message,
                         'email_verification_code_expiration_result' => 'Email Verification Code is Not Expired.',
                         'verify_email_in_minutes' => $email_verification_code_expiration_result,
@@ -47,6 +49,7 @@ class IsVerifyUserEmail
             }
 
             return response([
+                'all_ok' => 'no',
                 'message' => $message,
             ], 401);
 
