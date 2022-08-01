@@ -311,7 +311,7 @@ class UserController extends Controller
 
     }
 
-    public function token_check_for_reset_password(Request $request)
+    public function password_reset_code_check_for_reset_password(Request $request)
     {
         $request->validate(['password_reset_code' => 'required']);
 
@@ -375,5 +375,100 @@ class UserController extends Controller
 
         }
 
+    }
+
+    public function reset_password_handle(Request $request)
+    {
+        $request->validate([
+            'password_reset_code_' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $email = $request->email;
+        $password = $request->password;
+        $password_reset_code_ = $request->password_reset_code_;
+
+        $mess = '';
+        $token_matched = false;
+        $password_reset_id = null;
+        $all_ok = false;
+
+        $PasswordResets = PasswordReset::get();
+
+        foreach ($PasswordResets as $PasswordReset) {
+            if (Hash::check($password_reset_code_, $PasswordReset->token)) {
+
+                $time_difference_in_minutes = $PasswordReset->created_at->diffInMinutes(Carbon::now());
+
+                if ($time_difference_in_minutes < $this->password_reset_code_expiration_time) {
+
+                    $token_matched = true;
+
+                    $password_reset_id = $PasswordReset->id;
+
+                } else {
+
+                    $PasswordReset->delete();
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Your Password Reset Code Is Expired!',
+                    ], 401);
+
+                }
+
+                break;
+
+            }
+        }
+
+        if ($token_matched == true) {
+            $PasswordReset = PasswordReset::find($password_reset_id);
+            if ($PasswordReset->email == $email) {
+                if ($PasswordReset->user_type == 'User') {
+
+                    $all_ok = true;
+
+                } else {
+                    $mess = "User Type Is Not Matched!";
+                }
+
+            } else {
+                $mess = "Email Is Not Matched!";
+            }
+        } else {
+            $mess = "Password Reset Code Is Not Matched or Old!";
+        }
+
+        if ($all_ok == true) {
+
+            //Update Password
+            $user = User::where('email', $email)->first();
+            $user->password = Hash::make($password);
+            $user->save();
+
+            //delete reset_password_table record
+            PasswordReset::where('email', $email)
+                ->where('user_type', 'User')
+                ->delete();
+
+            //login
+            $token = $user->createToken($email)->plainTextToken;
+
+            return response([
+                'all_ok' => 'yes',
+                'user' => $user,
+                'token' => $token,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $mess,
+            ], 401);
+
+        }
     }
 }

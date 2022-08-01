@@ -80,7 +80,7 @@
 										},
 										{
 											"key": "password",
-											"value": "12345678",
+											"value": "11111111",
 											"type": "default"
 										}
 									]
@@ -183,9 +183,49 @@
 							"response": []
 						},
 						{
-							"name": "Token Check for Reset Password User",
+							"name": "Password Reset Code Check for Reset Password User",
 							"request": {
 								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password_reset_code",
+											"value": "1827588",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user/password/reset/code/check/for/reset/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"password",
+										"reset",
+										"code",
+										"check",
+										"for",
+										"reset",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Pssword User",
+							"request": {
+								"method": "PUT",
 								"header": [
 									{
 										"key": "Accept",
@@ -200,17 +240,32 @@
 											"key": "email",
 											"value": "malakersudipta@gmail.com",
 											"type": "default"
+										},
+										{
+											"key": "password_reset_code_",
+											"value": "1827588",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "11111111",
+											"type": "default"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "11111111",
+											"type": "default"
 										}
 									]
 								},
 								"url": {
-									"raw": "{{url}}/user/forgot/password",
+									"raw": "{{url}}/user/reset/password",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"user",
-										"forgot",
+										"reset",
 										"password"
 									]
 								}
@@ -287,7 +342,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"value": "2|hwQM0M4eu6So5oynsa7dNgYjg5YFlloI0KBmntiI",
 											"type": "string"
 										}
 									]
@@ -339,7 +394,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|LNgL0syXMvN7CT97qUBGWoesgtvBgVPTLDMekhuT",
+											"value": "3|BqaiuQ5WZ1FirJN3ldeNmuxZ3YKtjRdeAxj746U6",
 											"type": "string"
 										}
 									]
@@ -379,7 +434,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|92jlGmeW98FZNqQA4E82RlKOLVIOQpvuAaWkAjxp",
+											"value": "3|BqaiuQ5WZ1FirJN3ldeNmuxZ3YKtjRdeAxj746U6",
 											"type": "string"
 										}
 									]
@@ -397,7 +452,7 @@
 									"urlencoded": [
 										{
 											"key": "verificaion_code",
-											"value": "1904404",
+											"value": "1945631",
 											"type": "default"
 										},
 										{
