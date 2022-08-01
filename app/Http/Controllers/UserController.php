@@ -65,6 +65,7 @@ class UserController extends Controller
         //end datas which will go with email
 
         //send email
+
         Mail::to($user->email)->send(new UserEmailVerification($email_datas));
         //end send email
 

@@ -198,7 +198,7 @@
 									"urlencoded": [
 										{
 											"key": "password_reset_code",
-											"value": "1827588",
+											"value": "1933135",
 											"type": "default"
 										}
 									]
@@ -243,7 +243,7 @@
 										},
 										{
 											"key": "password_reset_code_",
-											"value": "1827588",
+											"value": "1933135",
 											"type": "default"
 										},
 										{
@@ -342,7 +342,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "2|hwQM0M4eu6So5oynsa7dNgYjg5YFlloI0KBmntiI",
+											"value": "4|Hg6ISlxu7LBMXVw9rZWDMLD1sqUtHnTnMWLgAh7V",
 											"type": "string"
 										}
 									]
@@ -394,7 +394,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "3|BqaiuQ5WZ1FirJN3ldeNmuxZ3YKtjRdeAxj746U6",
+											"value": "5|QyrklH5QiLLY5pe1MzezHE2iOTV0D0IsdPSDlgLx",
 											"type": "string"
 										}
 									]
@@ -434,7 +434,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "3|BqaiuQ5WZ1FirJN3ldeNmuxZ3YKtjRdeAxj746U6",
+											"value": "5|QyrklH5QiLLY5pe1MzezHE2iOTV0D0IsdPSDlgLx",
 											"type": "string"
 										}
 									]
@@ -452,7 +452,7 @@
 									"urlencoded": [
 										{
 											"key": "verificaion_code",
-											"value": "1945631",
+											"value": "1127584",
 											"type": "default"
 										},
 										{
