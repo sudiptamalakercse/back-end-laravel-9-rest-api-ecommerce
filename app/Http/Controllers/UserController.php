@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Custom_Services\AuthenticationService;
 use App\Mail\UserEmailVerification;
 use App\Mail\UserPasswordReset;
 use App\Models\PasswordReset;
@@ -30,176 +31,26 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $email_verification_code_expiration_time = $this->email_verification_code_expiration_time;
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $last_id = $user->id;
-        $token = $last_id . random_int(100000, 999999);
-
-        UserVerify::create([
-            'user_id' => $last_id,
-            'token' => Hash::make($token),
-        ]);
-
-        //datas which will go with email
-        $email_activation_code = $token;
-        $email_receiver_name = $user->name;
-        $user_type = 'User';
-
-        $email_datas = [
-            'email_activation_code' => $email_activation_code,
-            'email_receiver_name' => $email_receiver_name,
-            'user_type' => $user_type,
-            'email_verification_code_expiration_time' => $this->email_verification_code_expiration_time,
-        ];
-        //end datas which will go with email
-
-        //send email
-
-        Mail::to($user->email)->send(new UserEmailVerification($email_datas));
-        //end send email
-
-        $token = $user->createToken($request->email)->plainTextToken;
-
-        return response([
-            'all_ok' => 'yes',
-            'user' => $user,
-            'token' => $token,
-            'verify_email_in_minutes' => $this->email_verification_code_expiration_time,
-
-        ], 201);
+        return AuthenticationService::register(Password::class, User::class, Hash::class, UserVerify::class, Mail::class, UserEmailVerification::class, $request, 'user', $email_verification_code_expiration_time);
     }
 
     public function logout()
     {
-        if (auth('user')->user()) {
-
-            auth('user')->user()->tokens()->delete();
-            return response([
-                'all_ok' => 'yes',
-                'message' => 'Successfully Logged Out as User!!',
-            ], 200);
-        } else {
-            return response([
-                'all_ok' => 'no',
-                'message' => 'Not Possible to Log Out as User!!',
-            ], 401);
-        }
+        return AuthenticationService::logout('user');
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            return response([
-                'all_ok' => 'no',
-                'message' => 'The provided credentials are incorrect as User.',
-            ], 401);
-        }
-
-        $token = $user->createToken($request->email)->plainTextToken;
-
-        return response([
-            'all_ok' => 'yes',
-            'user' => $user,
-            'token' => $token,
-        ], 200);
+        return AuthenticationService::login(User::class, Hash::class, $request, 'user');
     }
 
     public function verify_account(Request $request)
     {
+        $email_verification_code_expiration_time = $this->email_verification_code_expiration_time;
 
-        $request->validate([
-            'verificaion_code' => 'required',
-        ]);
-
-        $verificaion_code = $request->verificaion_code;
-
-        $matched = false;
-
-        $verify_users = UserVerify::get();
-
-        foreach ($verify_users as $verify_user) {
-            if (Hash::check($verificaion_code, $verify_user->token)) {
-
-                $time_difference_in_minutes = $verify_user->created_at->diffInMinutes(Carbon::now());
-
-                if ($time_difference_in_minutes < $this->email_verification_code_expiration_time) {
-
-                    $matched = true;
-
-                } else {
-
-                    $verify_user->delete();
-
-                    return response([
-                        'all_ok' => 'no',
-                        'message' => 'Your Email Verification Code is Expired!',
-                    ], 401);
-
-                }
-
-                break;
-            }
-        }
-
-        $message = 'Sorry Your Email Verification Code is Incorrect or Old!';
-
-        if ($matched == true) {
-
-            $user = $verify_user->user;
-
-            if (!$user->is_email_verified) {
-
-                //Authorization Check
-                if ($user->id !== auth('user')->user()->id) {
-
-                    return response([
-                        'all_ok' => 'no',
-                        'message' => 'Unauthorized.',
-                    ], 401);
-
-                }
-                //End Authorization Check
-
-                $user->is_email_verified = 1;
-                $user->save();
-                $message = "Your E-mail is verified.";
-
-                $verify_user->delete();
-
-                return response([
-                    'all_ok' => 'yes',
-                    'message' => $message,
-                ], 204);
-
-            } else {
-                $message = "Your E-mail is Already Verified.";
-            }
-
-        }
-
-        return response([
-            'all_ok' => 'no',
-            'message' => $message,
-        ], 403);
-
+        return AuthenticationService::verify_account(UserVerify::class, Hash::class, Carbon::class, $request, $email_verification_code_expiration_time, 'user');
     }
 
     public function verify_account_email_resend(Request $request)
