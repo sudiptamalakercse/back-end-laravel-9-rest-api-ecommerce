@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserPasswordReset extends Mailable
+class EmailSend extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,12 +29,11 @@ class UserPasswordReset extends Mailable
      */
     public function build()
     {
-        return $this->view('user.email.user_password_reset')
+        return $this->subject($this->email_datas['subject_of_email'])
+            ->view('email.email_send')
             ->with([
-                'user_password_reset_code' => $this->email_datas['user_password_reset_code'],
-                'password_resetter_name' => $this->email_datas['password_resetter_name'],
-                'user_type' => $this->email_datas['user_type'],
-                'password_reset_code_expiration_time' => $this->email_datas['password_reset_code_expiration_time'],
+                'line1_text_of_email' => $this->email_datas['line1_text_of_email'],
+                'line2_text_of_email' => $this->email_datas['line2_text_of_email'],
             ]);
     }
 }

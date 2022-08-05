@@ -10,7 +10,7 @@ class AuthenticationService
         return $upper_user_type_;
     }
 
-    public static function register($password_class, $user_type_model_class, $hash_class, $user_type_verify_model_class, $mail_class, $user_type_email_verification_class, $request, $user_type_, $email_verification_code_expiration_time)
+    public static function register($password_class, $user_type_model_class, $hash_class, $user_type_verify_model_class, $mail_class, $email_send_class, $request, $user_type_, $email_verification_code_expiration_time)
     {
 
         $request->validate([
@@ -36,21 +36,21 @@ class AuthenticationService
         ]);
 
         //datas which will go with email
+        $subject_of_email = 'Verify Your Email Account';
         $email_activation_code = $token;
         $email_receiver_name = $user->name;
         $user_type = $upper_user_type_;
 
         $email_datas = [
-            'email_activation_code' => $email_activation_code,
-            'email_receiver_name' => $email_receiver_name,
-            'user_type' => $user_type,
-            'email_verification_code_expiration_time' => $email_verification_code_expiration_time,
+            'subject_of_email' => $subject_of_email,
+            'line1_text_of_email' => 'Hi, ' . $email_receiver_name . ' (' . $user_type . ') Verify Your Email Within ' . $email_verification_code_expiration_time . ' Minutes!',
+            'line2_text_of_email' => 'Your Email Verification Code is ' . $email_activation_code,
         ];
         //end datas which will go with email
 
         //send email
 
-        $mail_class::to($user->email)->send(new $user_type_email_verification_class($email_datas));
+        $mail_class::to($user->email)->send(new $email_send_class($email_datas));
         //end send email
 
         $token = $user->createToken($request->email)->plainTextToken;
@@ -191,5 +191,286 @@ class AuthenticationService
             'message' => $message,
         ], 403);
 
+    }
+
+    public static function verify_account_email_resend($user_type_verify_model_class, $hash_class, $mail_class, $email_send_class, $request, $user_type_, $email_verification_code_expiration_time)
+    {
+
+        $upper_user_type_ = self::get_upper_user_type_($user_type_);
+
+        $user = $request->user($user_type_);
+
+        $UserVerify = $upper_user_type_ . 'Verify';
+        $user_verify = $user->$UserVerify;
+
+        if ($user_verify != null) {
+            $user_verify->delete();
+        }
+
+        if ($user->is_email_verified) {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Your E-mail is Already Verified.',
+            ], 403);
+        }
+
+        $user_id = $user->id;
+        $token = $user_id . random_int(100000, 999999);
+
+        $user_type_verify_model_class::create([
+            $user_type_ . '_id' => $user_id,
+            'token' => $hash_class::make($token),
+        ]);
+
+        //datas which will go with email
+        $subject_of_email = 'Verify Your Email Account';
+        $email_activation_code = $token;
+        $email_receiver_name = $user->name;
+        $user_type = $upper_user_type_;
+
+        $email_datas = [
+            'subject_of_email' => $subject_of_email,
+            'line1_text_of_email' => 'Hi, ' . $email_receiver_name . ' (' . $user_type . ') Verify Your Email Within ' . $email_verification_code_expiration_time . ' Minutes!',
+            'line2_text_of_email' => 'Your Email Verification Code is ' . $email_activation_code,
+        ];
+        //end datas which will go with email
+
+        //send email
+        $mail_class::to($user->email)->send(new $email_send_class($email_datas));
+        //end send email
+
+        //end email verify related code
+        return response([
+            'all_ok' => 'yes',
+            'message' => 'Email is Re Sent with New Email Verification Code.',
+            'verify_email_in_minutes' => $email_verification_code_expiration_time,
+        ], 200);
+    }
+
+    public static function forgot_password_handle($user_type_model_class, $password_reset_model_class, $hash_class, $mail_class, $email_send_class, $request, $user_type_, $password_reset_code_expiration_time)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $upper_user_type_ = self::get_upper_user_type_($user_type_);
+
+        $email = $request->email;
+        $user = $user_type_model_class::where('email', $email)->first();
+        $mess = '';
+        if ($user != null) {
+
+            $password_reset = $password_reset_model_class::latest()->first();
+
+            if ($password_reset == null) {
+                $password_reset_last_id = 1;
+            } else {
+                $password_reset_last_id = $password_reset->id + 1;
+            }
+
+            $token = $password_reset_last_id . random_int(100000, 999999);
+
+            $password_reset_model_class::create([
+                'email' => $email,
+                'token' => $hash_class::make($token),
+                'user_type' => $upper_user_type_,
+            ]);
+
+            //datas which will go with email
+            $subject_of_email = 'Reset Your Password';
+            $user_password_reset_code = $token;
+            $password_resetter_name = $user->name;
+            $user_type = $upper_user_type_;
+
+            $email_datas = [
+                'subject_of_email' => $subject_of_email,
+                'line1_text_of_email' => 'Hi, ' . $password_resetter_name . ' (' . $user_type . ') Reset Your Password Within ' . $password_reset_code_expiration_time . ' Minutes!',
+                'line2_text_of_email' => 'Your Password Reset Code is ' . $user_password_reset_code,
+            ];
+            //end datas which will go with email
+
+            //send email
+            $mail_class::to($email)->send(new $email_send_class($email_datas));
+            //end send email
+
+            //end email verify related code
+
+            return response([
+                'all_ok' => 'yes',
+                'user_type' => 'User',
+                'message' => 'We Sent You A Password Reset Code to Your Email!',
+                'change_password_in_minutes' => $password_reset_code_expiration_time,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'We Do Not Find This Email!',
+            ], 403);
+
+        }
+
+    }
+
+    public static function password_reset_code_check_for_reset_password($password_reset_model_class, $hash_class, $carbon_class, $request, $password_reset_code_expiration_time)
+    {
+        $request->validate(['password_reset_code' => 'required']);
+
+        $password_reset_code = $request->password_reset_code;
+
+        $password_reset_id = null;
+
+        $token_matched = false;
+
+        $PasswordResets = $password_reset_model_class::get();
+
+        foreach ($PasswordResets as $PasswordReset) {
+
+            if ($hash_class::check($password_reset_code, $PasswordReset->token)) {
+                $token_matched = true;
+                $password_reset_id = $PasswordReset->id;
+                break;
+            }
+        }
+
+        if ($token_matched) {
+
+            if ($password_reset_id != null) {
+
+                $password_reset = $password_reset_model_class::where('id', $password_reset_id)->latest()->first();
+
+                if ($password_reset) {
+
+                    $time_difference_in_minutes = $password_reset->created_at->diffInMinutes($carbon_class::now());
+
+                    $password_reset_code_expiration_result = $password_reset_code_expiration_time - $time_difference_in_minutes;
+
+                    if ($password_reset_code_expiration_result <= 0) {
+                        return response([
+                            'all_ok' => 'no',
+                            'password_reset_code_expiration_result' => 'Password Reset Code is Expired.',
+                        ], 401);
+                    } else {
+
+                        $email = $password_reset->email;
+                        $user_type = $password_reset->user_type;
+
+                        return response([
+                            'all_ok' => 'yes',
+                            'password_reset_code_expiration_result' => 'Password Reset Code is Not Expired.',
+                            'user_type' => $user_type,
+                            'email' => $email,
+                            'password_reset_code' => $password_reset_code,
+                            'change_password_in_minutes' => $password_reset_code_expiration_result,
+                        ], 200);
+                    }
+                }
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Password Reset Code is Not Matched or Old!',
+            ], 403);
+
+        }
+
+    }
+
+    public static function reset_password_handle($password_reset_model_class, $hash_class, $carbon_class, $user_type_model_class, $request, $password_reset_code_expiration_time, $user_type_)
+    {
+        $request->validate([
+            'password_reset_code_' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $upper_user_type_ = self::get_upper_user_type_($user_type_);
+
+        $email = $request->email;
+        $password = $request->password;
+        $password_reset_code_ = $request->password_reset_code_;
+
+        $mess = '';
+        $token_matched = false;
+        $password_reset_id = null;
+        $all_ok = false;
+
+        $PasswordResets = $password_reset_model_class::get();
+
+        foreach ($PasswordResets as $PasswordReset) {
+            if ($hash_class::check($password_reset_code_, $PasswordReset->token)) {
+
+                $time_difference_in_minutes = $PasswordReset->created_at->diffInMinutes($carbon_class::now());
+
+                if ($time_difference_in_minutes < $password_reset_code_expiration_time) {
+
+                    $token_matched = true;
+
+                    $password_reset_id = $PasswordReset->id;
+
+                } else {
+
+                    $PasswordReset->delete();
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Your Password Reset Code Is Expired!',
+                    ], 401);
+
+                }
+
+                break;
+
+            }
+        }
+
+        if ($token_matched == true) {
+            $PasswordReset = $password_reset_model_class::find($password_reset_id);
+            if ($PasswordReset->email == $email) {
+                if ($PasswordReset->user_type == $upper_user_type_) {
+
+                    $all_ok = true;
+
+                } else {
+                    $mess = "User Type Is Not Matched!";
+                }
+
+            } else {
+                $mess = "Email Is Not Matched!";
+            }
+        } else {
+            $mess = "Password Reset Code Is Not Matched or Old!";
+        }
+
+        if ($all_ok == true) {
+
+            //Update Password
+            $user = $user_type_model_class::where('email', $email)->first();
+            $user->password = $hash_class::make($password);
+            $user->save();
+
+            //delete reset_password_table record
+            $password_reset_model_class::where('email', $email)
+                ->where('user_type', $upper_user_type_)
+                ->delete();
+
+            //login
+            $token = $user->createToken($email)->plainTextToken;
+
+            return response([
+                'all_ok' => 'yes',
+                'user' => $user,
+                'token' => $token,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $mess,
+            ], 401);
+
+        }
     }
 }
