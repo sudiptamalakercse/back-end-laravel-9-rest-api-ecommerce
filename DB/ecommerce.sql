@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2022 at 09:06 AM
+-- Generation Time: Aug 06, 2022 at 04:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -37,6 +37,13 @@ CREATE TABLE `admins` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'malakersudipta@gmail.com', NULL, '$2y$10$FW/82CLBk0ySdj2ng/F9YuXLvvID4HdEK3Xiv7qOjh3Ryw9ppdAZO', NULL, NULL, '2022-08-06 07:53:28');
 
 -- --------------------------------------------------------
 
@@ -117,7 +124,11 @@ CREATE TABLE `personal_access_tokens` (
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
 (2, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', '2860eacbe838a068e8be17a9c1634991b6794d55da85988b87fef1d2301a4960', '[\"*\"]', '2022-08-06 00:44:00', '2022-08-06 00:30:07', '2022-08-06 00:44:00'),
-(3, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', '11eb1993a23b313e2b41b9325222d8762d813230b1aa18b708b58650f76ca02d', '[\"*\"]', NULL, '2022-08-06 01:00:23', '2022-08-06 01:00:23');
+(3, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', '11eb1993a23b313e2b41b9325222d8762d813230b1aa18b708b58650f76ca02d', '[\"*\"]', NULL, '2022-08-06 01:00:23', '2022-08-06 01:00:23'),
+(4, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', '3c24791fa5d3916a50b596f12d19e78e5adcd5d2f53aa35a1ad0ee0adc00c735', '[\"*\"]', NULL, '2022-08-06 06:05:24', '2022-08-06 06:05:24'),
+(8, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', 'e5f80ec50a5276c5c5b0c70feab0be5905f737f13ff4572645de3dcc514e5e91', '[\"*\"]', NULL, '2022-08-06 07:15:30', '2022-08-06 07:15:30'),
+(13, 'App\\Models\\User', 2, 'sudiptarakib@gmail.com', 'c451e593dddba5c06d7bafe20dfa026fb8a566aebe21548e39ec60adb5ab1fa3', '[\"*\"]', NULL, '2022-08-06 07:42:04', '2022-08-06 07:42:04'),
+(16, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', 'cb8457999011a4673f27ac71668fd61bb04a0b6319334a0a8b5206fcbc17fba9', '[\"*\"]', NULL, '2022-08-06 07:54:52', '2022-08-06 07:54:52');
 
 -- --------------------------------------------------------
 
@@ -142,7 +153,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_email_verified`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Sudipta  Malaker', 'malakersudipta@gmail.com', NULL, 0, '$2y$10$gPbM6r/tUIrkya3B5l5VueSA9MIx0aOVOnBFwtDbJNOcpXcbytp22', NULL, '2022-08-06 00:22:02', '2022-08-06 01:00:22');
+(1, 'Sudipta  Malaker', 'malakersudipta@gmail.com', NULL, 0, '$2y$10$sEK6WmAyy1xcM0LxSyZnb./CMMLmP83AkpMlIBjtBMWzIxp984dgG', NULL, '2022-08-06 00:22:02', '2022-08-06 06:05:22'),
+(2, 'Sudipta  Malaker', 'sudiptarakib@gmail.com', NULL, 0, '$2y$10$LsK/Yp5fyMaseWyZ.fI4Z.11p1p0wMkelrn0TJlcI99rFyPtMhnoS', NULL, '2022-08-06 07:41:57', '2022-08-06 07:41:57');
 
 -- --------------------------------------------------------
 
@@ -163,7 +175,8 @@ CREATE TABLE `user_verifies` (
 --
 
 INSERT INTO `user_verifies` (`id`, `user_id`, `token`, `created_at`, `updated_at`) VALUES
-(3, 1, '$2y$10$jp1fJKMMVkO946oQXyMda.OZ7bVcASK5Yl8zUbEfVDFON1G06XoIS', '2022-08-06 00:44:00', '2022-08-06 00:44:00');
+(3, 1, '$2y$10$jp1fJKMMVkO946oQXyMda.OZ7bVcASK5Yl8zUbEfVDFON1G06XoIS', '2022-08-06 00:44:00', '2022-08-06 00:44:00'),
+(4, 2, '$2y$10$KAp4V/BGvhUQy.UvFMz13uWl8T07tonORrZ1JhI3/9y4W.JtkEO.C', '2022-08-06 07:41:58', '2022-08-06 07:41:58');
 
 --
 -- Indexes for dumped tables
@@ -225,7 +238,7 @@ ALTER TABLE `user_verifies`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -243,25 +256,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_verifies`
 --
 ALTER TABLE `user_verifies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

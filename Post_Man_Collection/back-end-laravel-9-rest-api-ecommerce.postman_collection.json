@@ -31,12 +31,12 @@
 									"urlencoded": [
 										{
 											"key": "email",
-											"value": "eudora.wilderman@example.com",
+											"value": "malakersudipta@gmail.com",
 											"type": "default"
 										},
 										{
 											"key": "password",
-											"value": "password",
+											"value": "12345678",
 											"type": "default"
 										}
 									]
@@ -49,6 +49,131 @@
 									"path": [
 										"admin",
 										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Forgot Password Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/forgot/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"forgot",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Password Reset Code Check for Reset Password Admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password_reset_code",
+											"value": "1335800",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/password/reset/code/check/for/reset/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"password",
+										"reset",
+										"code",
+										"check",
+										"for",
+										"reset",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Pssword Admin",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "password_reset_code_",
+											"value": "1335800",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/reset/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"reset",
+										"password"
 									]
 								}
 							},
@@ -198,7 +323,7 @@
 									"urlencoded": [
 										{
 											"key": "password_reset_code",
-											"value": "2646532",
+											"value": "1878514",
 											"type": "default"
 										}
 									]
@@ -243,7 +368,7 @@
 										},
 										{
 											"key": "password_reset_code_",
-											"value": "2573930",
+											"value": "1878514",
 											"type": "default"
 										},
 										{
@@ -280,51 +405,42 @@
 			"name": "Admin Operations",
 			"item": [
 				{
-					"name": "Routes Without Email Verification",
-					"item": [
-						{
-							"name": "Logout Admin",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "15|jC2ArbCP270YDn3qNQNXmxCKTFYQtWQviOWSfYWa",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": []
-								},
-								"url": {
-									"raw": "{{url}}/admin/logout",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"logout"
-									]
+					"name": "Logout Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "15|0UgoXNjomBd9xBL9ytYfs8nAeLTK3A8ZEfp3It11",
+									"type": "string"
 								}
-							},
-							"response": []
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/admin/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"logout"
+							]
 						}
-					]
-				},
-				{
-					"name": "Routes With Email Verification",
-					"item": []
+					},
+					"response": []
 				}
 			]
 		},

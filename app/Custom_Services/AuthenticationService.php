@@ -57,7 +57,7 @@ class AuthenticationService
 
         return response([
             'all_ok' => 'yes',
-            'user' => $user,
+            $user_type_ => $user,
             'token' => $token,
             'verify_email_in_minutes' => $email_verification_code_expiration_time,
         ], 201);
@@ -107,7 +107,7 @@ class AuthenticationService
 
         return response([
             'all_ok' => 'yes',
-            'user' => $user,
+            $user_type_ => $user,
             'token' => $token,
         ], 200);
     }
@@ -295,7 +295,7 @@ class AuthenticationService
 
             return response([
                 'all_ok' => 'yes',
-                'user_type' => 'User',
+                'user_type' => $upper_user_type_,
                 'message' => 'We Sent You A Password Reset Code to Your Email!',
                 'change_password_in_minutes' => $password_reset_code_expiration_time,
             ], 200);
@@ -460,7 +460,7 @@ class AuthenticationService
 
             return response([
                 'all_ok' => 'yes',
-                'user' => $user,
+                $user_type_ => $user,
                 'token' => $token,
             ], 200);
 

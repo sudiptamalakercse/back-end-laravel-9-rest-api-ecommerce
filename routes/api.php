@@ -54,6 +54,9 @@ Route::middleware(['auth:user'])->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::prefix('admin')->group(function () {
         Route::post('login', 'login');
+        Route::post('forgot/password', 'forgot_password_handle');
+        Route::post('password/reset/code/check/for/reset/password', 'password_reset_code_check_for_reset_password');
+        Route::put('reset/password', 'reset_password_handle');
     });
 });
 
