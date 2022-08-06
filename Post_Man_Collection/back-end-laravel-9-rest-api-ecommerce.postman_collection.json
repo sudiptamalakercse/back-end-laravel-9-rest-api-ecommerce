@@ -80,7 +80,7 @@
 										},
 										{
 											"key": "password",
-											"value": "11111111",
+											"value": "12345678",
 											"type": "default"
 										}
 									]
@@ -198,7 +198,7 @@
 									"urlencoded": [
 										{
 											"key": "password_reset_code",
-											"value": "1933135",
+											"value": "2646532",
 											"type": "default"
 										}
 									]
@@ -243,17 +243,17 @@
 										},
 										{
 											"key": "password_reset_code_",
-											"value": "1933135",
+											"value": "2573930",
 											"type": "default"
 										},
 										{
 											"key": "password",
-											"value": "11111111",
+											"value": "12345678",
 											"type": "default"
 										},
 										{
 											"key": "password_confirmation",
-											"value": "11111111",
+											"value": "12345678",
 											"type": "default"
 										}
 									]
@@ -342,7 +342,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "4|Hg6ISlxu7LBMXVw9rZWDMLD1sqUtHnTnMWLgAh7V",
+											"value": "1|EREVSr2yYhfSvl6kxSvPnV79A3M6hNAuHuxeVadZ",
 											"type": "string"
 										}
 									]
@@ -394,7 +394,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "5|QyrklH5QiLLY5pe1MzezHE2iOTV0D0IsdPSDlgLx",
+											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
 											"type": "string"
 										}
 									]
@@ -409,7 +409,13 @@
 								],
 								"body": {
 									"mode": "urlencoded",
-									"urlencoded": []
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										}
+									]
 								},
 								"url": {
 									"raw": "{{url}}/user/account/email/resend",
@@ -434,7 +440,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "5|QyrklH5QiLLY5pe1MzezHE2iOTV0D0IsdPSDlgLx",
+											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
 											"type": "string"
 										}
 									]
@@ -452,7 +458,7 @@
 									"urlencoded": [
 										{
 											"key": "verificaion_code",
-											"value": "1127584",
+											"value": "1503660",
 											"type": "default"
 										},
 										{

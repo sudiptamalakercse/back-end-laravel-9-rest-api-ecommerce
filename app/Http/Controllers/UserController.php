@@ -32,51 +32,51 @@ class UserController extends Controller
     {
         $email_verification_code_expiration_time = $this->email_verification_code_expiration_time;
 
-        return AuthenticationService::register(Password::class, User::class, Hash::class, UserVerify::class, Mail::class, EmailSend::class, $request, 'user', $email_verification_code_expiration_time);
+        return AuthenticationService::register(password_class:Password::class, user_type_model_class:User::class, hash_class:Hash::class, user_type_verify_model_class:UserVerify::class, mail_class:Mail::class, email_send_class:EmailSend::class, request:$request, user_type_:'user', email_verification_code_expiration_time:$email_verification_code_expiration_time);
     }
 
     public function logout()
     {
-        return AuthenticationService::logout('user');
+        return AuthenticationService::logout(user_type_:'user');
     }
 
     public function login(Request $request)
     {
-        return AuthenticationService::login(User::class, Hash::class, $request, 'user');
+        return AuthenticationService::login(user_type_model_class:User::class, hash_class:Hash::class, request:$request, user_type_:'user');
     }
 
     public function verify_account(Request $request)
     {
         $email_verification_code_expiration_time = $this->email_verification_code_expiration_time;
 
-        return AuthenticationService::verify_account(UserVerify::class, Hash::class, Carbon::class, $request, $email_verification_code_expiration_time, 'user');
+        return AuthenticationService::verify_account(user_type_verify_model_class:UserVerify::class, hash_class:Hash::class, carbon_class:Carbon::class, request:$request, email_verification_code_expiration_time:$email_verification_code_expiration_time, user_type_:'user');
     }
 
     public function verify_account_email_resend(Request $request)
     {
         $email_verification_code_expiration_time = $this->email_verification_code_expiration_time;
 
-        return AuthenticationService::verify_account_email_resend(UserVerify::class, Hash::class, Mail::class, EmailSend::class, $request, 'user', $email_verification_code_expiration_time);
+        return AuthenticationService::verify_account_email_resend(user_type_verify_model_class:UserVerify::class, hash_class:Hash::class, mail_class:Mail::class, email_send_class:EmailSend::class, request:$request, user_type_:'user', email_verification_code_expiration_time:$email_verification_code_expiration_time);
     }
 
     public function forgot_password_handle(Request $request)
     {
         $password_reset_code_expiration_time = $this->password_reset_code_expiration_time;
 
-        return AuthenticationService::forgot_password_handle(User::class, PasswordReset::class, Hash::class, Mail::class, EmailSend::class, $request, 'user', $password_reset_code_expiration_time);
+        return AuthenticationService::forgot_password_handle(user_type_model_class:User::class, password_reset_model_class:PasswordReset::class, hash_class:Hash::class, mail_class:Mail::class, email_send_class:EmailSend::class, request:$request, user_type_:'user', password_reset_code_expiration_time:$password_reset_code_expiration_time);
     }
 
     public function password_reset_code_check_for_reset_password(Request $request)
     {
         $password_reset_code_expiration_time = $this->password_reset_code_expiration_time;
 
-        return AuthenticationService::password_reset_code_check_for_reset_password(PasswordReset::class, Hash::class, Carbon::class, $request, $password_reset_code_expiration_time);
+        return AuthenticationService::password_reset_code_check_for_reset_password(password_reset_model_class:PasswordReset::class, hash_class:Hash::class, carbon_class:Carbon::class, request:$request, password_reset_code_expiration_time:$password_reset_code_expiration_time);
     }
 
     public function reset_password_handle(Request $request)
     {
         $password_reset_code_expiration_time = $this->password_reset_code_expiration_time;
 
-        return AuthenticationService::reset_password_handle(PasswordReset::class, Hash::class, Carbon::class, User::class, $request, $password_reset_code_expiration_time, 'user');
+        return AuthenticationService::reset_password_handle(password_reset_model_class:PasswordReset::class, hash_class:Hash::class, carbon_class:Carbon::class, user_type_model_class:User::class, request:$request, password_reset_code_expiration_time:$password_reset_code_expiration_time, user_type_:'user');
     }
 }
