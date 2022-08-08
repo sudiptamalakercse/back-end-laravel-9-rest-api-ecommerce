@@ -1,0 +1,100 @@
+
+Tables:
+
+admins
+
+users
+
+products
+
+stoke_out_product_requests_by_user_to_admin <- products
+
+product_orders_by_admin_to_company <- products
+
+product_imgs <- products
+
+categories -> products
+
+shippings -> products
+
+reviews <- products, users
+
+units -> products
+
+newsletters
+
+messages 
+
+contact_us
+
+product_sizes -> products
+
+product_colors -> products
+
+discounts
+
+billing_details <- users
+
+product_orders <- billing_details 
+
+====================================================================================================================================================================================================================
+
+admins = id,timestamps
+
+users = id, timestamps
+
+shippings = id, shipping_day, timestamps
+
+units = id, type, timestamps
+
+categories = id, name, img, is_size_available, is_color_available, timestamps
+
+products = id, name, detail, information, minimum_quantity, unit_id, minimum_quantity_price, discount, stock, is_shipping_free, shipping_id, category_id, product_size_id, product_color_id, admin_id, timestamps
+
+stoke_out_product_requests_by_user_to_admin = id, quentity, product_id, timestamps 
+
+product_orders_by_admin_to_company = id, quantity, is_received, product_id, timestamps
+
+product_imgs = id, img, product_id, timestamps
+
+reviews = id, review, star, product_id, user_id, timestamps
+
+newsletters = id, email, timestamps
+
+messages = id, name, email, message, is_marked_as_read, timestamps  
+
+contact_us = id, address, phone, email, open_time, img, timestamps 
+
+product_sizes = id, name, timestamps
+
+product_colors = id, name, img, timestamps
+
+discounts = id, code, amount_in_percent, timestamps
+
+billing_details = id, country, address, city, postcode_or_zip, phone, order_note, user_id, timestamps
+
+product_orders = id, order_detail, billing_detail_id, payment_type, payment_status, transaction_id, product_coming, product_receiving, product_received, admin_id, is_canceled, timestamps 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
