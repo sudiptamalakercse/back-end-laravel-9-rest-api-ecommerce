@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->boolean('is_received')->default(0);
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
