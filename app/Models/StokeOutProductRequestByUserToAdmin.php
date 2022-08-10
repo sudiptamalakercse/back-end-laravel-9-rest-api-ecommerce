@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StokeOutProductRequestByUserToAdmin extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'quantity',
+        'product_id',
+    ];
 }

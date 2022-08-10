@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Shipping extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'shipping_day',
+    ];
 }
