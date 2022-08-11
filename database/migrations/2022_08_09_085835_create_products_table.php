@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->mediumText('detail');
-            $table->longText('information');
+            $table->unsignedBigInteger('product_information_id');
+            $table->foreign('product_information_id')->references('id')->on('product_information');
             $table->integer('minimum_quantity');
-            $table->float('minimum_quantity_price', 8, 2);
+            $table->float('minimum_quantity_buying_price', 8, 2);
+            $table->float('minimum_quantity_selling_price', 8, 2);
             $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->integer('discount_in_percent')->default(0);
@@ -27,8 +27,6 @@ return new class extends Migration
             $table->boolean('is_shipping_free')->default(0);
             $table->unsignedBigInteger('shipping_id');
             $table->foreign('shipping_id')->references('id')->on('shippings');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('product_size_id');
             $table->foreign('product_size_id')->references('id')->on('product_sizes');
             $table->unsignedBigInteger('product_color_id');

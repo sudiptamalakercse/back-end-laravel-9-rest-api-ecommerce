@@ -12,4 +12,9 @@ class Shipping extends Model
     protected $fillable = [
         'shipping_day',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

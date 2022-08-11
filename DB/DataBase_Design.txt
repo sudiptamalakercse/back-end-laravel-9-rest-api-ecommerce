@@ -4,41 +4,47 @@ php artisan make:model Category -mf
 ======================================================================================================================================================================================================================
 Tables:
 
-admins = ok  
+admins  
 
-users = ok  
+users  
 
-products <- units, shippings, categories, product_sizes, product_colors, admins = ok       
+=========
 
-stoke_out_product_requests_by_user_to_admin <- products = ok  
+product_informations <- categories
 
-product_orders_by_admin_to_company <- products = ok   
+products <- product_informations, units, shippings, product_sizes, product_colors, admins  
 
-product_imgs <- products = ok
+=========     
 
-categories -> products = ok
+stoke_out_product_requests_by_user_to_admin <- products  
 
-shippings -> products = ok
+product_orders_by_admin_to_company <- products 
 
-reviews <- products, users = ok 
+product_imgs <- products 
 
-units -> products = ok 
+categories -> product_informations ========
 
-newsletters = ok
+shippings -> products
 
-messages = ok
+reviews <- products, users 
 
-contact_us = ok
+units -> products
 
-product_sizes -> products = ok
+newsletters 
 
-product_colors -> products = ok  
+messages 
 
-discounts = ok
+contact_us 
 
-billing_details <- users = ok
+product_sizes -> products
 
-product_orders <- billing_details = ok  
+product_colors -> products
+
+discounts 
+
+billing_details <- users 
+
+product_orders <- billing_details 
 
 ====================================================================================================================================================================================================================
 
@@ -52,7 +58,13 @@ units = id, type, timestamps
 
 categories = id, name, img, is_size_available, is_color_available, timestamps
 
-products = id, name, detail, information, minimum_quantity, unit_id, minimum_quantity_price, discount_in_percent, stock, is_shipping_free, shipping_id, category_id, product_size_id, product_color_id, admin_id, timestamps
+=========
+
+product_informations = id, name, detail, information, category_id, timestamps
+
+products = id, product_information_id, minimum_quantity, unit_id, minimum_quantity_buying_price, minimum_quantity_selling_price, discount_in_percent, stock, is_shipping_free, shipping_id, product_size_id, product_color_id, admin_id, timestamps
+
+=========
 
 stoke_out_product_requests_by_user_to_admin = id, quantity, product_id, timestamps 
 

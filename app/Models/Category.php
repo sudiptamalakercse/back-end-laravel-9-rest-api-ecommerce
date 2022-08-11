@@ -17,4 +17,5 @@ class Category extends Model
         'is_size_available',
         'is_color_available',
     ];
+
 }
