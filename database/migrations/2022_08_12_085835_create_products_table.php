@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_information_id');
-            $table->foreign('product_information_id')->references('id')->on('product_information');
+            $table->foreign('product_information_id')->references('id')->on('product_informations');
             $table->integer('minimum_quantity');
             $table->float('minimum_quantity_buying_price', 8, 2);
             $table->float('minimum_quantity_selling_price', 8, 2);

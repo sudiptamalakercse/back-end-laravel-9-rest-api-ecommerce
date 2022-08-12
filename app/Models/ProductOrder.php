@@ -21,4 +21,14 @@ class ProductOrder extends Model
         'admin_id',
         'is_canceled',
     ];
+
+    public function billingDetail()
+    {
+        return $this->belongsTo(BillingDetail::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

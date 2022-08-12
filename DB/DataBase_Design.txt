@@ -4,29 +4,25 @@ php artisan make:model Category -mf
 ======================================================================================================================================================================================================================
 Tables:
 
-admins  
+admins 
 
-users  
+users   
 
-=========
+product_informations <- categories 
 
-product_informations <- categories
-
-products <- product_informations, units, shippings, product_sizes, product_colors, admins  
-
-=========     
-
-stoke_out_product_requests_by_user_to_admin <- products  
+products <- product_informations, units, shippings, product_sizes, product_colors, admins 
+   
+stoke_out_product_requests_by_user_to_admin <- products 
 
 product_orders_by_admin_to_company <- products 
 
 product_imgs <- products 
 
-categories -> product_informations ========
+categories -> product_informations 
 
 shippings -> products
 
-reviews <- products, users 
+reviews <- products, users
 
 units -> products
 
@@ -42,9 +38,9 @@ product_colors -> products
 
 discounts 
 
-billing_details <- users 
+billing_details <- users
 
-product_orders <- billing_details 
+product_orders <- billing_details, admins
 
 ====================================================================================================================================================================================================================
 
@@ -58,13 +54,9 @@ units = id, type, timestamps
 
 categories = id, name, img, is_size_available, is_color_available, timestamps
 
-=========
-
-product_informations = id, name, detail, information, category_id, timestamps
+product_informations = id, name, detail, information, category_id, timestamps 
 
 products = id, product_information_id, minimum_quantity, unit_id, minimum_quantity_buying_price, minimum_quantity_selling_price, discount_in_percent, stock, is_shipping_free, shipping_id, product_size_id, product_color_id, admin_id, timestamps
-
-=========
 
 stoke_out_product_requests_by_user_to_admin = id, quantity, product_id, timestamps 
 

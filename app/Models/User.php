@@ -47,4 +47,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserVerify::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function billingDetails()
+    {
+        return $this->hasMany(BillingDetail::class);
+    }
+
 }

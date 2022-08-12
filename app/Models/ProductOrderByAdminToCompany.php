@@ -14,4 +14,9 @@ class ProductOrderByAdminToCompany extends Model
         'is_received',
         'product_id',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

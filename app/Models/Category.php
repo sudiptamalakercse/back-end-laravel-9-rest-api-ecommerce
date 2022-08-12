@@ -18,4 +18,8 @@ class Category extends Model
         'is_color_available',
     ];
 
+    public function productInformations()
+    {
+        return $this->hasMany(ProductInformation::class);
+    }
 }

@@ -9,7 +9,7 @@ class ProductInformation extends Model
 {
     use HasFactory;
 
-    protected $table = 'product_information';
+    protected $table = 'product_informations';
 
     protected $fillable = [
         'name',
@@ -18,4 +18,13 @@ class ProductInformation extends Model
         'category_id',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

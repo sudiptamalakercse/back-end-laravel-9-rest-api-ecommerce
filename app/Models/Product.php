@@ -24,6 +24,11 @@ class Product extends Model
         'admin_id',
     ];
 
+    public function productInformation()
+    {
+        return $this->belongsTo(ProductInformation::class);
+    }
+
     public function unit()
     {
         return $this->belongsTo(Unit::class);
@@ -44,4 +49,28 @@ class Product extends Model
         return $this->belongsTo(ProductColor::class);
     }
 
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
+
+    public function stokeOutProductRequestByUserToAdmin()
+    {
+        return $this->hasOne(StokeOutProductRequestByUserToAdmin::class);
+    }
+
+    public function productOrderByAdminToCompany()
+    {
+        return $this->hasOne(ProductOrderByAdminToCompany::class);
+    }
+
+    public function productImgs()
+    {
+        return $this->hasMany(ProductImg::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

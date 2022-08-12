@@ -18,4 +18,14 @@ class BillingDetail extends Model
         'order_note',
         'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function productOrder()
+    {
+        return $this->hasOne(ProductOrder::class);
+    }
 }
