@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class BillingDetailFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'country' => fake()->country(),
+            'address' => fake()->address(),
+            'city' => fake()->city(),
+            'postcode_or_zip' => fake()->postcode(),
+            'phone' => fake()->e164PhoneNumber(),
+            'order_note' => fake()->text(100),
+            'user_id' => User::inRandomOrder()->first()->id,
         ];
     }
 }

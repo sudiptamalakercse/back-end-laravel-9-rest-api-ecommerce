@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('country');
             $table->mediumText('address');
             $table->string('city');
-            $table->integer('postcode_or_zip');
-            $table->integer('phone');
+            $table->string('postcode_or_zip');
+            $table->string('phone');
             $table->mediumText('order_note');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

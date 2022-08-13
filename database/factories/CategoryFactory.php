@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CategoryFactory extends Factory
 {
+
     /**
      * Define the model's default state.
      *
@@ -16,8 +17,17 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+
+        $category = 'Category ' . fake()->unique()->numberBetween(1, 50);
+
+        $img = "Img of " . $category;
+
         return [
-            //
+            'name' => $category,
+            'img' => $img,
+            'is_size_available' => fake()->boolean(),
+            'is_color_available' => fake()->boolean(),
         ];
+
     }
 }

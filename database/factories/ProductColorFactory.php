@@ -16,8 +16,13 @@ class ProductColorFactory extends Factory
      */
     public function definition()
     {
+        $color = 'Color ' . fake()->unique()->numberBetween(1, 50);
+
+        $img = "Img of " . $color;
+
         return [
-            //
+            'name' => $color,
+            'img' => $img,
         ];
     }
 }

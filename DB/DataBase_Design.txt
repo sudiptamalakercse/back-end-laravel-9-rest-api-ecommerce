@@ -4,9 +4,9 @@ php artisan make:model Category -mf
 ======================================================================================================================================================================================================================
 Tables:
 
-admins 
+admins = ok
 
-users   
+users = ok  
 
 product_informations <- categories 
 
@@ -18,13 +18,13 @@ product_orders_by_admin_to_company <- products
 
 product_imgs <- products 
 
-categories -> product_informations 
+categories -> product_informations = ok
 
-shippings -> products
+shippings -> products = ok
 
 reviews <- products, users
 
-units -> products
+units -> products = ok
 
 newsletters 
 
@@ -32,13 +32,13 @@ messages
 
 contact_us 
 
-product_sizes -> products
+product_sizes -> products = ok
 
-product_colors -> products
+product_colors -> products = ok
 
 discounts 
 
-billing_details <- users
+billing_details <- users = ok
 
 product_orders <- billing_details, admins
 
