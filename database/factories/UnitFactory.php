@@ -17,7 +17,7 @@ class UnitFactory extends Factory
     public function definition()
     {
 
-        $type = 'Unit ' . fake()->unique()->numberBetween(1, 50);
+        $type = 'Unit ' . fake()->unique()->numberBetween(1, 200);
 
         return [
             'type' => $type,

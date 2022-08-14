@@ -17,7 +17,7 @@ class ShippingFactory extends Factory
     public function definition()
     {
         return [
-            'shipping_day' => fake()->unique()->numberBetween(1, 50),
+            'shipping_day' => fake()->unique()->numberBetween(1, 200),
         ];
     }
 }

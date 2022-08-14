@@ -16,8 +16,13 @@ class DiscountFactory extends Factory
      */
     public function definition()
     {
+        $random = substr(md5(mt_rand()), 0, 3);
+        $code = $random . fake()->unique()->numberBetween(1, 200);
+        $amount_in_percent = fake()->unique()->numberBetween(1, 200);
+
         return [
-            //
+            'code' => $code,
+            'amount_in_percent' => $amount_in_percent,
         ];
     }
 }

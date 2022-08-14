@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class StokeOutProductRequestByUserToAdminFactory extends Factory
      */
     public function definition()
     {
+        $quantity = fake()->numberBetween(1, 200);
+
         return [
-            //
+            'quantity' => $quantity,
+            'product_id' => Product::inRandomOrder()->first()->id,
         ];
     }
 }

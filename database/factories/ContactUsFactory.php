@@ -16,8 +16,17 @@ class ContactUsFactory extends Factory
      */
     public function definition()
     {
+
+        $img = "Img " . fake()->unique()->numberBetween(1, 200);
+
+        $open_time = '10.00 AM to 8.00 PM. Friday is Off Day';
+
         return [
-            //
+            'address' => fake()->address(),
+            'phone' => fake()->e164PhoneNumber(),
+            'email' => fake()->safeEmail(),
+            'open_time' => $open_time,
+            'img' => $img,
         ];
     }
 }

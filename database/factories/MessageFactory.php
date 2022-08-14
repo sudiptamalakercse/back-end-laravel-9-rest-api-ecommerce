@@ -17,7 +17,10 @@ class MessageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->safeEmail(),
+            'message' => fake()->text(100),
+            'is_marked_as_read' => fake()->boolean(),
         ];
     }
 }

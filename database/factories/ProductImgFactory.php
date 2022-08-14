@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class ProductImgFactory extends Factory
      */
     public function definition()
     {
+        $img = 'Product Img ' . fake()->unique()->numberBetween(1, 200);
+
         return [
-            //
+            'img' => $img,
+            'product_id' => Product::inRandomOrder()->first()->id,
         ];
     }
 }

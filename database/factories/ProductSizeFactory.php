@@ -16,7 +16,7 @@ class ProductSizeFactory extends Factory
      */
     public function definition()
     {
-        $size = 'Size ' . fake()->unique()->numberBetween(1, 50);
+        $size = 'Size ' . fake()->unique()->numberBetween(1, 200);
 
         return [
             'name' => $size,

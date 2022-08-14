@@ -17,7 +17,7 @@ class NewsLetterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'email' => fake()->safeEmail(),
         ];
     }
 }

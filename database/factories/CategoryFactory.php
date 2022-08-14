@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
 
-        $category = 'Category ' . fake()->unique()->numberBetween(1, 50);
+        $category = 'Category ' . fake()->unique()->numberBetween(1, 200);
 
         $img = "Img of " . $category;
 
