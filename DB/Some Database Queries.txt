@@ -1,0 +1,145 @@
+
+
+Get Reviews with Product Id 1 & Star with 5:
+
+Product::find(1)
+->reviews()
+->where('star',5)
+->get();
+
+
+
+
+Get Category Name with Product Id 1:
+
+Product::find(1)
+->productInformation
+->category
+->name;
+
+
+
+
+Get Related Products by Product Name or Unit Type:
+
+Product::whereRelation('productInformation', 'name','like','%something%')
+->orWhereRelation('unit', 'type','like','%10%')
+->get();
+
+
+
+
+Get Related Products by Star:
+
+Product::whereRelation('reviews', 'star','like','%4%')
+->get();
+
+Product::whereRelation('reviews', 'star','>',3)
+->get();
+
+
+
+
+Get Related Products by Category:
+
+Product::whereRelation('productInformation', function ($query) {
+    $query->whereRelation('category', 'name','Category 38');
+})
+->get();
+
+
+
+
+Get Related Products by Category & Product Size:
+
+Product::whereRelation('productInformation', function ($query) {
+    $query->whereRelation('category', 'name','Category 38');
+})
+->whereRelation('productSize', 'name','Size 69')
+->get();
+
+
+
+
+Get Related Products by Category & Product Name:
+
+Product::whereRelation('productInformation', function ($query) {
+    $query->whereRelation('category', 'name','Category 38');
+})
+->whereRelation('productInformation', 'name','like','%127%')
+->get();
+
+
+
+
+Get Related Products by Category & Product Size or Product Name:
+
+Product::whereRelation('productInformation', function ($query) {
+    $query->whereRelation('category', 'name','Category 38');
+})
+->where(function ($query) {
+    return $query->whereRelation('productSize', 'name','Size 69')
+                   ->orWhereRelation('productInformation', 'name','like','%127%');
+})
+->get();
+
+
+
+=====================================================================================================================================
+
+//Same Codes are Below//
+
+Get Reviews with Product Id 1 & Star with 5:
+
+Product::find(1)->reviews()->where('star',5)->get();
+
+
+
+
+Get Category Name with Product Id 1:
+
+Product::find(1)->productInformation->category->name;
+
+
+
+
+Get Related Products by Product Name or Unit Type:
+
+Product::whereRelation('productInformation', 'name','like','%something%')->orWhereRelation('unit', 'type','like','%10%')->get();
+
+
+
+
+Get Related Products by Star:
+
+Product::whereRelation('reviews', 'star','like','%4%')->get();
+
+Product::whereRelation('reviews', 'star','>',3)->get();
+
+
+
+
+Get Related Products by Category:
+
+Product::whereRelation('productInformation', function ($query) {$query->whereRelation('category', 'name','Category 38');})->get();
+
+
+
+
+Get Related Products by Category & Product Size:
+
+Product::whereRelation('productInformation', function ($query) {$query->whereRelation('category', 'name','Category 38');})->whereRelation('productSize', 'name','Size 69')->get();
+
+
+
+
+Get Related Products by Category & Product Name:
+
+Product::whereRelation('productInformation', function ($query) {$query->whereRelation('category', 'name','Category 38');})->whereRelation('productInformation', 'name','like','%127%')->get();
+
+
+
+
+Get Related Products by Category & Product Size or Product Name:
+
+Product::whereRelation('productInformation', function ($query) {$query->whereRelation('category', 'name','Category 38');})->where(function ($query) { return $query->whereRelation('productSize', 'name','Size 69')->orWhereRelation('productInformation', 'name','like','%127%');})->get();
