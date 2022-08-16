@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BothController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
  */
+
+//Public Routes for Both
+Route::controller(BothController::class)->group(function () {
+    Route::prefix('both')->group(function () {
+        Route::get('contact/us', 'contact_us');
+    });
+});
 
 //Public Routes for User
 Route::controller(UserController::class)->group(function () {

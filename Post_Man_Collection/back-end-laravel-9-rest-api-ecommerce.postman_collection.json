@@ -398,6 +398,59 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "For Both",
+					"item": [
+						{
+							"name": "Get Single Record of Contact Us Table for Both",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "malakersudipta@gmail.com",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/both/contact/us",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"both",
+										"contact",
+										"us"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
