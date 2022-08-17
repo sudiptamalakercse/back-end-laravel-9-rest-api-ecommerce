@@ -16,168 +16,173 @@
 					"name": "For Admin",
 					"item": [
 						{
-							"name": "Login Admin",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
+							"name": "Athetication",
+							"item": [
+								{
+									"name": "Login Admin",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "password",
-											"value": "12345678",
-											"type": "default"
+										"url": {
+											"raw": "{{url}}/admin/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"login"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/admin/login",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Forgot Password Admin",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/admin/forgot/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"forgot",
-										"password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Password Reset Code Check for Reset Password Admin",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "password_reset_code",
-											"value": "1335800",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/admin/password/reset/code/check/for/reset/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"password",
-										"reset",
-										"code",
-										"check",
-										"for",
-										"reset",
-										"password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Reset Pssword Admin",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
+								{
+									"name": "Forgot Password Admin",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "password_reset_code_",
-											"value": "1335800",
-											"type": "default"
-										},
-										{
-											"key": "password",
-											"value": "12345678",
-											"type": "default"
-										},
-										{
-											"key": "password_confirmation",
-											"value": "12345678",
-											"type": "default"
+										"url": {
+											"raw": "{{url}}/admin/forgot/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"forgot",
+												"password"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/admin/reset/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"reset",
-										"password"
-									]
+								{
+									"name": "Password Reset Code Check for Reset Password Admin",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "password_reset_code",
+													"value": "1335800",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/password/reset/code/check/for/reset/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"password",
+												"reset",
+												"code",
+												"check",
+												"for",
+												"reset",
+												"password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Reset Pssword Admin",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												},
+												{
+													"key": "password_reset_code_",
+													"value": "1335800",
+													"type": "default"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "default"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/reset/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"reset",
+												"password"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				},
@@ -185,217 +190,222 @@
 					"name": "For User",
 					"item": [
 						{
-							"name": "Login User",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
+							"name": "Athetication",
+							"item": [
+								{
+									"name": "Login User",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "password",
-											"value": "12345678",
-											"type": "default"
+										"url": {
+											"raw": "{{url}}/user/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"login"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/user/login",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"login"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Register User",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "Sudipta  Malaker",
-											"type": "default"
+								{
+									"name": "Register User",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "name",
+													"value": "Sudipta  Malaker",
+													"type": "default"
+												},
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "default"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
-										},
-										{
-											"key": "password",
-											"value": "12345678",
-											"type": "default"
-										},
-										{
-											"key": "password_confirmation",
-											"value": "12345678",
-											"type": "default"
+										"url": {
+											"raw": "{{url}}/user/register",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"register"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/user/register",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Forgot Password User",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/user/forgot/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"forgot",
-										"password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Password Reset Code Check for Reset Password User",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "password_reset_code",
-											"value": "1878514",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/user/password/reset/code/check/for/reset/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"password",
-										"reset",
-										"code",
-										"check",
-										"for",
-										"reset",
-										"password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Reset Pssword User",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
+								{
+									"name": "Forgot Password User",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "password_reset_code_",
-											"value": "1878514",
-											"type": "default"
-										},
-										{
-											"key": "password",
-											"value": "12345678",
-											"type": "default"
-										},
-										{
-											"key": "password_confirmation",
-											"value": "12345678",
-											"type": "default"
+										"url": {
+											"raw": "{{url}}/user/forgot/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"forgot",
+												"password"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/user/reset/password",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"reset",
-										"password"
-									]
+								{
+									"name": "Password Reset Code Check for Reset Password User",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "password_reset_code",
+													"value": "1878514",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/user/password/reset/code/check/for/reset/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"password",
+												"reset",
+												"code",
+												"check",
+												"for",
+												"reset",
+												"password"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Reset Pssword User",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												},
+												{
+													"key": "password_reset_code_",
+													"value": "1878514",
+													"type": "default"
+												},
+												{
+													"key": "password",
+													"value": "12345678",
+													"type": "default"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/user/reset/password",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"reset",
+												"password"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				},
@@ -403,52 +413,57 @@
 					"name": "For Both",
 					"item": [
 						{
-							"name": "Get Single Record of Contact Us Table for Both",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-											"type": "string"
+							"name": "Contact Us Table",
+							"item": [
+								{
+									"name": "Get Single Record of Contact Us Table for Both",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/both/contact/us",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"both",
+												"contact",
+												"us"
+											]
 										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/both/contact/us",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"both",
-										"contact",
-										"us"
-									]
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				}
@@ -458,42 +473,47 @@
 			"name": "Admin Operations",
 			"item": [
 				{
-					"name": "Logout Admin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "15|0UgoXNjomBd9xBL9ytYfs8nAeLTK3A8ZEfp3It11",
-									"type": "string"
+					"name": "Athetication",
+					"item": [
+						{
+							"name": "Logout Admin",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "15|0UgoXNjomBd9xBL9ytYfs8nAeLTK3A8ZEfp3It11",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{url}}/admin/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"logout"
+									]
 								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{url}}/admin/logout",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"admin",
-								"logout"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -504,153 +524,158 @@
 					"name": "Routes Without Email Verification",
 					"item": [
 						{
-							"name": "Logout User",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "1|EREVSr2yYhfSvl6kxSvPnV79A3M6hNAuHuxeVadZ",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "post_ids[]",
-											"value": "12",
-											"type": "default"
+							"name": "Athetication",
+							"item": [
+								{
+									"name": "Logout User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "1|EREVSr2yYhfSvl6kxSvPnV79A3M6hNAuHuxeVadZ",
+													"type": "string"
+												}
+											]
 										},
-										{
-											"key": "post_ids[]",
-											"value": "13",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/user/logout",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"logout"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Resend Email with New Email Verification Code for User",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "email",
-											"value": "malakersudipta@gmail.com",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/user/account/email/resend",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"account",
-										"email",
-										"resend"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Verify Email Account of User",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "verificaion_code",
-											"value": "1503660",
-											"type": "default"
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "post_ids[]",
+													"value": "12",
+													"type": "default"
+												},
+												{
+													"key": "post_ids[]",
+													"value": "13",
+													"type": "default"
+												}
+											]
 										},
-										{
-											"key": "",
-											"value": "",
-											"type": "default",
-											"disabled": true
+										"url": {
+											"raw": "{{url}}/user/logout",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"logout"
+											]
 										}
-									]
+									},
+									"response": []
 								},
-								"url": {
-									"raw": "{{url}}/user/account/verify",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"account",
-										"verify"
-									]
+								{
+									"name": "Resend Email with New Email Verification Code for User",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "email",
+													"value": "malakersudipta@gmail.com",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/user/account/email/resend",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"account",
+												"email",
+												"resend"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Verify Email Account of User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "verificaion_code",
+													"value": "1503660",
+													"type": "default"
+												},
+												{
+													"key": "",
+													"value": "",
+													"type": "default",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/user/account/verify",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"account",
+												"verify"
+											]
+										}
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				},
