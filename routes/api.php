@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 //Public Routes for Both
 Route::controller(BothController::class)->group(function () {
     Route::prefix('both')->group(function () {
-        Route::get('contact/us', 'contact_us');
+        Route::get('contact/us', 'get_contact_us_single_record');
+        Route::get('categories', 'get_categories_records');
     });
 });
 

@@ -10,4 +10,23 @@ class Service1
     {
         return self::$front_end_domain;
     }
+
+    public static function yes_or_no($boolean_value)
+    {
+        if ($boolean_value == 1) {
+            return 'Yes';
+        } elseif ($boolean_value == 0) {
+            return 'No';
+        }
+    }
+
+    public static function remove_property_from_json_response_if_value_is_null_otherwise_return_img_url($value, $call_back_function_when_not_null)
+    {
+        if ($value == null) {
+            //remove property from json response if value is null
+            return $call_back_function_when_not_null($value);
+        } else {
+            return url('') . $value;
+        }
+    }
 }

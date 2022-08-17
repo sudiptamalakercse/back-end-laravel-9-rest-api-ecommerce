@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2022 at 07:42 PM
+-- Generation Time: Aug 17, 2022 at 12:43 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -101,10 +101,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `img`, `is_size_available`, `is_color_available`, `created_at`, `updated_at`) VALUES
-(1, 'Category 16', 'Img of Category 16', 0, 1, '2022-08-16 10:17:46', '2022-08-16 10:17:46'),
-(2, 'Category 120', 'Img of Category 120', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
-(3, 'Category 123', 'Img of Category 123', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
-(4, 'Category 36', 'Img of Category 36', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
+(1, 'Category 16', '/images/categories/i1.png', 0, 1, '2022-08-16 10:17:46', '2022-08-16 10:17:46'),
+(2, 'Category 120', '/images/categories/i2.png', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
+(3, 'Category 123', '/images/categories/i3.png', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
+(4, 'Category 36', NULL, 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (5, 'Category 103', 'Img of Category 103', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (6, 'Category 161', 'Img of Category 161', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (7, 'Category 7', 'Img of Category 7', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
@@ -316,6 +316,13 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\User', 1, 'malakersudipta@gmail.com', '655ab0186834b9cf6674807f5f9f509a865146200d0df20fce665e7b2359af0f', '[\"*\"]', NULL, '2022-08-17 01:24:41', '2022-08-17 01:24:41');
 
 -- --------------------------------------------------------
 
@@ -672,7 +679,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_email_verified`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dr. Tania Anderson II', 'marilyne.hansen@example.com', '2022-08-16 10:17:44', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'j9vOCt9cRJ', '2022-08-16 10:17:44', '2022-08-16 10:17:44'),
+(1, 'Dr. Tania Anderson II', 'malakersudipta@gmail.com', '2022-08-16 10:17:44', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'j9vOCt9cRJ', '2022-08-16 10:17:44', '2022-08-16 10:17:44'),
 (2, 'Dominic Hand III', 'antonetta.mcglynn@example.com', '2022-08-16 10:17:44', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'jjDjRR6PmW', '2022-08-16 10:17:44', '2022-08-16 10:17:44'),
 (3, 'Mr. Dusty Lueilwitz', 'jamison.lang@example.net', '2022-08-16 10:17:44', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'DugnBzH7f9', '2022-08-16 10:17:44', '2022-08-16 10:17:44'),
 (4, 'Stacy Beier', 'chester.wintheiser@example.org', '2022-08-16 10:17:44', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'd4OCXf7Zzj', '2022-08-16 10:17:44', '2022-08-16 10:17:44'),
@@ -898,7 +905,7 @@ ALTER TABLE `billing_details`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `contact_us`
@@ -946,7 +953,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
