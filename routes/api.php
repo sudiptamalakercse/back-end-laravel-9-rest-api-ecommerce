@@ -16,14 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-//Public Routes for Both
-Route::controller(BothController::class)->group(function () {
-    Route::prefix('both')->group(function () {
-        Route::get('contact/us', 'get_contact_us_single_record');
-        Route::get('categories', 'get_categories_records');
-    });
-});
-
 //Public Routes for User
 Route::controller(UserController::class)->group(function () {
     Route::prefix('user')->group(function () {
@@ -56,6 +48,21 @@ Route::middleware(['auth:user'])->group(function () {
 
             Route::post('logout', 'logout');
         });
+    });
+});
+
+//Public and Protected Routes with and without Email Verification for Both
+Route::controller(BothController::class)->group(function () {
+    Route::prefix('both')->group(function () {
+        Route::get('contact/us', 'get_contact_us_single_record');
+        Route::get('categories', 'get_categories_records');
+    });
+});
+
+//Public and Protected Routes with and without Email Verification for User
+Route::controller(UserController::class)->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::get('category/with/maximum/discount', 'get_category_in_which_has_maximum_discount_for_product');
     });
 });
 

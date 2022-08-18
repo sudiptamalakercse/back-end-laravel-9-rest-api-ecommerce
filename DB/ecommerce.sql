@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2022 at 12:43 PM
+-- Generation Time: Aug 18, 2022 at 12:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -103,12 +103,12 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`, `img`, `is_size_available`, `is_color_available`, `created_at`, `updated_at`) VALUES
 (1, 'Category 16', '/images/categories/i1.png', 0, 1, '2022-08-16 10:17:46', '2022-08-16 10:17:46'),
 (2, 'Category 120', '/images/categories/i2.png', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
-(3, 'Category 123', '/images/categories/i3.png', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
+(3, 'Category 123', 'Img of Category 123', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (4, 'Category 36', NULL, 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (5, 'Category 103', 'Img of Category 103', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (6, 'Category 161', 'Img of Category 161', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (7, 'Category 7', 'Img of Category 7', 0, 0, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
-(8, 'Category 90', 'Img of Category 90', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
+(8, 'Category 90', '/images/categories/i3.png', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (9, 'Category 106', 'Img of Category 106', 1, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47'),
 (10, 'Category 17', 'Img of Category 17', 0, 1, '2022-08-16 10:17:47', '2022-08-16 10:17:47');
 

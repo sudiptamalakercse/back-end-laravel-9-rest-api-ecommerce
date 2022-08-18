@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Custom_Services\AuthenticationService;
+use App\Http\Resources\Both\CategoryResource;
 use App\Mail\EmailSend;
 use App\Models\PasswordReset;
+use App\Models\Product;
 use App\Models\User;
 use App\Models\UserVerify;
 use Carbon\Carbon;
@@ -78,5 +80,34 @@ class UserController extends Controller
         $password_reset_code_expiration_time = $this->password_reset_code_expiration_time;
 
         return AuthenticationService::reset_password_handle(password_reset_model_class:PasswordReset::class, hash_class:Hash::class, carbon_class:Carbon::class, user_type_model_class:User::class, request:$request, password_reset_code_expiration_time:$password_reset_code_expiration_time, user_type_:'user');
+    }
+
+    public function get_category_in_which_has_maximum_discount_for_product()
+    {
+        $product = Product::orderBy('discount_in_percent', 'desc')->first();
+
+        $category = null;
+
+        if ($product) {
+            $category = $product->productInformation->category;
+        }
+
+        if ($category) {
+
+            $category = new CategoryResource($category);
+            $maximum_discount_in_percent = $product->discount_in_percent;
+
+            return response([
+                'all_ok' => 'yes',
+                'category' => $category,
+                'maximum_discount_in_percent' => $maximum_discount_in_percent,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Record!',
+            ], 404);
+        }
     }
 }

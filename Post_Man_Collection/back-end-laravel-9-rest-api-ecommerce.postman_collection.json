@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Admin & User Operations",
+			"name": "Admin & User Protected Operations",
 			"item": []
 		},
 		{
@@ -408,121 +408,11 @@
 							]
 						}
 					]
-				},
-				{
-					"name": "For Both",
-					"item": [
-						{
-							"name": "Contact Us Table",
-							"item": [
-								{
-									"name": "Get Single Record of Contact Us Table for Both",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "default"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "email",
-													"value": "malakersudipta@gmail.com",
-													"type": "default"
-												}
-											]
-										},
-										"url": {
-											"raw": "{{url}}/both/contact/us",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"both",
-												"contact",
-												"us"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Categories Table",
-							"item": [
-								{
-									"name": "Get Records of Categories Table for Both",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-													"type": "string"
-												}
-											]
-										},
-										"method": "GET",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json",
-												"type": "default"
-											}
-										],
-										"body": {
-											"mode": "urlencoded",
-											"urlencoded": [
-												{
-													"key": "email",
-													"value": "malakersudipta@gmail.com",
-													"type": "default"
-												}
-											]
-										},
-										"url": {
-											"raw": "{{url}}/both/categories",
-											"host": [
-												"{{url}}"
-											],
-											"path": [
-												"both",
-												"categories"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						}
-					]
 				}
 			]
 		},
 		{
-			"name": "Admin Operations",
+			"name": "Admin Protected Operations",
 			"item": [
 				{
 					"name": "Athetication",
@@ -570,7 +460,7 @@
 			]
 		},
 		{
-			"name": "User Operations",
+			"name": "User Protected Operations",
 			"item": [
 				{
 					"name": "Routes Without Email Verification",
@@ -734,6 +624,191 @@
 				{
 					"name": "Routes With Email Verification",
 					"item": []
+				}
+			]
+		},
+		{
+			"name": "Public & Protected Operations",
+			"item": [
+				{
+					"name": "For Both",
+					"item": [
+						{
+							"name": "Routes With & Without Email Verification",
+							"item": [
+								{
+									"name": "Contact Us Table",
+									"item": [
+										{
+											"name": "Get Single Record of Contact Us Table for Both",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/both/contact/us",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"both",
+														"contact",
+														"us"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Categories Table",
+									"item": [
+										{
+											"name": "Get Records of Categories Table for Both",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/both/categories",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"both",
+														"categories"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "For User",
+					"item": [
+						{
+							"name": "Routes With & Without Email Verification",
+							"item": [
+								{
+									"name": "Banner",
+									"item": [
+										{
+											"name": "Get Category in Which Has Maximum Discount for Product for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/category/with/maximum/discount",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"category",
+														"with",
+														"maximum",
+														"discount"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
 				}
 			]
 		}
