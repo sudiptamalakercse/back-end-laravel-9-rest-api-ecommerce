@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2022 at 12:27 PM
+-- Generation Time: Aug 20, 2022 at 06:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -572,8 +572,8 @@ INSERT INTO `reviews` (`id`, `review`, `star`, `product_id`, `user_id`, `created
 (4, 'Molestiae rerum est illo amet ad suscipit vel. Quia recusandae ratione non sit.', 1, 1, 7, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
 (5, 'Ducimus aut quia deserunt est. Quaerat vel sunt qui. Et aut quo magni earum omnis illum dolor sed.', 2, 2, 5, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
 (6, 'Nulla sit voluptate qui quae. Recusandae fugit vel voluptatum sit nemo quis maxime.', 3, 7, 6, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
-(7, 'Fugiat quo est sed optio. Vel assumenda et qui ut ut. A est fuga sequi eum.', 3, 10, 5, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
-(8, 'Id sapiente enim qui ullam odit optio. Aut impedit repellat occaecati nulla tempora.', 4, 10, 2, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
+(7, 'Fugiat quo est sed optio. Vel assumenda et qui ut ut. A est fuga sequi eum.', 3, 2, 5, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
+(8, 'Id sapiente enim qui ullam odit optio. Aut impedit repellat occaecati nulla tempora.', 4, 2, 2, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
 (9, 'Quaerat et est assumenda rerum. Ex iste voluptates enim dolorum cumque consectetur.', 2, 10, 8, '2022-08-16 10:18:03', '2022-08-16 10:18:03'),
 (10, 'Possimus libero sed dolorem dolores aut. Adipisci similique libero voluptate voluptatibus odit.', 2, 9, 5, '2022-08-16 10:18:03', '2022-08-16 10:18:03');
 

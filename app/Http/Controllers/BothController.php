@@ -35,7 +35,7 @@ class BothController extends Controller
     public static function get_categories_records()
     {
 
-        $categories = Category::get();
+        $categories = Category::orderBy('name')->get();
 
         if (count($categories) > 0) {
 

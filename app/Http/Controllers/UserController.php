@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Custom_Services\AuthenticationService;
 use App\Http\Resources\Both\CategoryResource;
 use App\Mail\EmailSend;
+use App\Models\Category;
 use App\Models\PasswordReset;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\UserVerify;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
@@ -107,6 +109,48 @@ class UserController extends Controller
             return response([
                 'all_ok' => 'no',
                 'message' => 'No Record!',
+            ], 404);
+        }
+    }
+
+    public function get_catagories_of_popular_products()
+    {
+        $reviews = DB::table('reviews')
+            ->select(DB::raw('product_id, count(product_id) as occurrences'))
+            ->groupBy('product_id')
+            ->orderBy('occurrences', 'DESC')
+            ->get();
+
+        if (count($reviews) > 0) {
+
+            //this array may contain duplicate category ids
+            $categories_ids = [];
+
+            foreach ($reviews as $review) {
+                $category = Product::find($review->product_id)->productInformation->category;
+                array_push($categories_ids, $category->id);
+            }
+
+            //convert categories ids array in string with coma
+            $categories_ids_in_string_with_coma = implode(',', $categories_ids);
+
+            //find unique 4 or less categories from categories ids array
+            $categories = Category::whereIn('id', $categories_ids)
+                ->orderByRaw(DB::raw("FIELD(id, $categories_ids_in_string_with_coma)")) // order by given array of categories ids
+                ->limit(4)
+                ->get();
+
+            $categories = CategoryResource::collection($categories);
+
+            return response([
+                'all_ok' => 'yes',
+                'categories' => $categories,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Category Record!',
             ], 404);
         }
     }

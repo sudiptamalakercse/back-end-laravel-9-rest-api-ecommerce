@@ -63,6 +63,7 @@ Route::controller(BothController::class)->group(function () {
 Route::controller(UserController::class)->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('category/with/maximum/discount', 'get_category_in_which_has_maximum_discount_for_product');
+        Route::get('catagories/of/popular/products ', 'get_catagories_of_popular_products');
     });
 });
 
