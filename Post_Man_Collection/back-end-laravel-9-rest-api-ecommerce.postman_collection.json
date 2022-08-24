@@ -858,6 +858,34 @@
 												}
 											},
 											"response": []
+										},
+										{
+											"name": "Get Popular Products of All Categories for User",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/user/popular/products/of/all/categories",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"popular",
+														"products",
+														"of",
+														"all",
+														"categories"
+													]
+												}
+											},
+											"response": []
 										}
 									]
 								}

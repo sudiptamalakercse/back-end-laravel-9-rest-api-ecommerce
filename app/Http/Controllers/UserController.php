@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Custom_Services\AuthenticationService;
+use App\Custom_Services\UserControllerService;
 use App\Http\Resources\Both\CategoryResource;
+use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
 use App\Models\PasswordReset;
@@ -113,30 +115,33 @@ class UserController extends Controller
         }
     }
 
-    public function get_catagories_of_popular_products()
+    public function get_catagories_of_popular_products($get_popular_unique_catagories_ids_array = false)
     {
-        $reviews = DB::table('reviews')
-            ->select(DB::raw('product_id, count(product_id) as occurrences'))
-            ->groupBy('product_id')
-            ->orderBy('occurrences', 'DESC')
-            ->get();
+        $unique_product_ids_and_occurrences = UserControllerService::get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table();
 
-        if (count($reviews) > 0) {
+        if (count($unique_product_ids_and_occurrences) > 0) {
 
             //this array may contain duplicate category ids
             $categories_ids = [];
 
-            foreach ($reviews as $review) {
-                $category = Product::find($review->product_id)->productInformation->category;
+            foreach ($unique_product_ids_and_occurrences as $unique_product_id_and_occurrence) {
+                $category = Product::find($unique_product_id_and_occurrence->product_id)->productInformation->category;
                 array_push($categories_ids, $category->id);
             }
 
-            //convert categories ids array in string with coma
-            $categories_ids_in_string_with_coma = implode(',', $categories_ids);
+            //this array will contain single category ids
+            $unique_categories_ids = array_unique($categories_ids);
 
-            //find unique 4 or less categories from categories ids array
-            $categories = Category::whereIn('id', $categories_ids)
-                ->orderByRaw(DB::raw("FIELD(id, $categories_ids_in_string_with_coma)")) // order by given array of categories ids
+            if ($get_popular_unique_catagories_ids_array == true) {
+                return $unique_categories_ids;
+            }
+
+            //convert categories ids array in string with coma
+            $unique_categories_ids_in_string_with_coma = implode(',', $unique_categories_ids);
+
+            //find unique 4 or less categories from unique categories ids array
+            $categories = Category::whereIn('id', $unique_categories_ids)
+                ->orderByRaw(DB::raw("FIELD(id, $unique_categories_ids_in_string_with_coma)")) // order by given array of unique categories ids
                 ->limit(4)
                 ->get();
 
@@ -148,10 +153,84 @@ class UserController extends Controller
             ], 200);
 
         } else {
+
+            if ($get_popular_unique_catagories_ids_array == true) {
+                return null;
+            }
+
             return response([
                 'all_ok' => 'no',
                 'message' => 'No Category Record!',
             ], 404);
         }
     }
+
+    public function get_popular_products_of_all_categories()
+    {
+
+        $unique_popular_categories_ids_array = $this->get_catagories_of_popular_products(get_popular_unique_catagories_ids_array:true);
+
+        $unique_product_ids_and_occurrences = UserControllerService::get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table();
+
+        if (count($unique_product_ids_and_occurrences) > 0) {
+
+            $maximum_popular_products_show_in_all_category_section = 8;
+
+            $product_shows_per_category = floor($maximum_popular_products_show_in_all_category_section / count($unique_popular_categories_ids_array));
+
+            //this array may contain duplicate categories ids
+            $categories_ids = [];
+
+            //this array will contain unique products ids
+            $unique_products_ids = [];
+
+            foreach ($unique_product_ids_and_occurrences as $unique_product_id_and_occurrence) {
+
+                $number_of_occurrence_in_categories_ids_array = null;
+
+                $product_id = $unique_product_id_and_occurrence->product_id;
+
+                $category_id = Product::find($product_id)->productInformation->category->id;
+
+                if (in_array($category_id, $unique_popular_categories_ids_array)) {
+
+                    $array_count_values = array_count_values($categories_ids);
+
+                    if (array_key_exists($category_id, $array_count_values)) {
+                        $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
+                    }
+
+                    if ($number_of_occurrence_in_categories_ids_array == null) {
+                        $number_of_occurrence_in_categories_ids_array = 0;
+                    }
+
+                    if ($number_of_occurrence_in_categories_ids_array < $product_shows_per_category) {
+                        array_push($categories_ids, $category_id);
+                        array_push($unique_products_ids, $product_id);
+                    }
+                }
+            }
+
+            //convert unique products ids array in string with coma
+            $unique_products_ids_in_string_with_coma = implode(',', $unique_products_ids);
+
+            $products = Product::whereIn('id', $unique_products_ids)
+                ->orderByRaw(DB::raw("FIELD(id, $unique_products_ids_in_string_with_coma)")) // order by given array of unique products ids
+                ->get();
+
+            $products = ProductResource::collection($products);
+
+            return response([
+                'all_ok' => 'yes',
+                'products' => $products,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Record!',
+            ], 404);
+        }
+    }
+
 }

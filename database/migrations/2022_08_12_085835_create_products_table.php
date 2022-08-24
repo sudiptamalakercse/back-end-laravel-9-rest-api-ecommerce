@@ -27,9 +27,9 @@ return new class extends Migration
             $table->boolean('is_shipping_free')->default(0);
             $table->unsignedBigInteger('shipping_id');
             $table->foreign('shipping_id')->references('id')->on('shippings');
-            $table->unsignedBigInteger('product_size_id');
+            $table->unsignedBigInteger('product_size_id')->nullable();
             $table->foreign('product_size_id')->references('id')->on('product_sizes');
-            $table->unsignedBigInteger('product_color_id');
+            $table->unsignedBigInteger('product_color_id')->nullable();
             $table->foreign('product_color_id')->references('id')->on('product_colors');
             $table->unsignedBigInteger('admin_id');
             $table->foreign('admin_id')->references('id')->on('admins');
