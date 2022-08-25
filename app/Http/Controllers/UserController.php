@@ -174,4 +174,62 @@ class UserController extends Controller
         return UserControllerService::get_popular_products_of_all_categories_or_specific_category(category_name:$category_name);
     }
 
+    public function get_random_category()
+    {
+        $product = Product::inRandomOrder()->first();
+
+        $category = null;
+
+        if ($product) {
+            $category = $product->productInformation->category;
+        }
+
+        if ($category) {
+
+            $category = new CategoryResource($category);
+
+            return response([
+                'all_ok' => 'yes',
+                'category' => $category,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Category!',
+            ], 404);
+        }
+    }
+
+    public function get_category_in_which_has_second_maximum_discount_for_product()
+    {
+        $product = Product::orderBy('discount_in_percent', 'desc')
+            ->offset(1)
+            ->first();
+
+        $category = null;
+
+        if ($product) {
+            $category = $product->productInformation->category;
+        }
+
+        if ($category) {
+
+            $category = new CategoryResource($category);
+            $second_maximum_discount_in_percent = $product->discount_in_percent;
+
+            return response([
+                'all_ok' => 'yes',
+                'category' => $category,
+                'second_maximum_discount_in_percent' => $second_maximum_discount_in_percent,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Record!',
+            ], 404);
+        }
+    }
+
 }

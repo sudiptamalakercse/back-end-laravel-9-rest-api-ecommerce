@@ -917,6 +917,110 @@
 											"response": []
 										}
 									]
+								},
+								{
+									"name": "Two Categories Section",
+									"item": [
+										{
+											"name": "Get Random Category for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/random/category",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"random",
+														"category"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get Category in Which Has Second Maximum Discount for Product for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/category/with/second/maximum/discount",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"category",
+														"with",
+														"second",
+														"maximum",
+														"discount"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								}
 							]
 						}

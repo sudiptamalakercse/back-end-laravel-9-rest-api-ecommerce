@@ -66,6 +66,8 @@ Route::controller(UserController::class)->group(function () {
         Route::get('catagories/of/popular/products ', 'get_catagories_of_popular_products');
         Route::get('popular/products/of/all/categories', 'get_popular_products_of_all_categories');
         Route::get('popular/products/of/specific/category/{category_name}', 'get_popular_products_of_specific_category');
+        Route::get('random/category', 'get_random_category');
+        Route::get('category/with/second/maximum/discount', 'get_category_in_which_has_second_maximum_discount_for_product');
     });
 });
 
