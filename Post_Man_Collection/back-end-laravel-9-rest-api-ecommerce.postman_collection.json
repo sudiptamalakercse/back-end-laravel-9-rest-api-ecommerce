@@ -886,6 +886,35 @@
 												}
 											},
 											"response": []
+										},
+										{
+											"name": "Get Popular Products of Specific Category for User",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"url": {
+													"raw": "{{url}}/user/popular/products/of/specific/category/Category 92",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"popular",
+														"products",
+														"of",
+														"specific",
+														"category",
+														"Category 92"
+													]
+												}
+											},
+											"response": []
 										}
 									]
 								}
