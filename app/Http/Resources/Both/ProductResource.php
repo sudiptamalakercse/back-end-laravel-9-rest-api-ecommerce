@@ -86,7 +86,11 @@ class ProductResource extends JsonResource
     {
         $total_stars = $reviews->sum('star');
         $total_records = $reviews->count();
-        return $average_stars = ceil($total_stars / $total_records);
+        if ($total_records > 0) {
+            return $average_stars = ceil($total_stars / $total_records);
+        } else {
+            return $average_stars = 0;
+        }
     }
 
     public function toArray($request)

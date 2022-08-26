@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Custom_Services\AuthenticationService;
 use App\Custom_Services\UserControllerService;
 use App\Http\Resources\Both\CategoryResource;
+use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
 use App\Models\PasswordReset;
@@ -228,6 +229,126 @@ class UserController extends Controller
             return response([
                 'all_ok' => 'no',
                 'message' => 'No Record!',
+            ], 404);
+        }
+    }
+
+    public function get_latest_products()
+    {
+
+        $products_show_per_category_in_latest_and_top_rated_and_review_products_section = 2;
+        $categories_ids = [];
+        $products_ids = [];
+
+        $products = Product::orderBy('id', 'desc')
+            ->get();
+
+        if ($products->count() > 0) {
+
+            foreach ($products as $product) {
+
+                $number_of_occurrence_in_categories_ids_array = null;
+
+                $category_id = $product->productInformation->category->id;
+
+                $array_count_values = array_count_values($categories_ids);
+
+                if (array_key_exists($category_id, $array_count_values)) {
+                    $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
+                }
+
+                if ($number_of_occurrence_in_categories_ids_array == null) {
+                    $number_of_occurrence_in_categories_ids_array = 0;
+                }
+
+                if ($number_of_occurrence_in_categories_ids_array < $products_show_per_category_in_latest_and_top_rated_and_review_products_section) {
+                    array_push($categories_ids, $category_id);
+                    array_push($products_ids, $product->id);
+                }
+
+            }
+
+            $products_ids_in_string_with_coma = implode(',', $products_ids);
+
+            $products = Product::whereIn('id', $products_ids)
+                ->orderByRaw(DB::raw("FIELD(id, $products_ids_in_string_with_coma)")) // order by given array of unique products ids
+                ->limit(6)
+                ->get();
+
+            $products = ProductResource::collection($products);
+
+            return response([
+                'all_ok' => 'yes',
+                'products' => $products,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Record!',
+            ], 404);
+        }
+    }
+
+    public function get_top_rated_products()
+    {
+        $products_show_per_category_in_latest_and_top_rated_and_review_products_section = 2;
+        $categories_ids = [];
+        $products_ids = [];
+
+        $unique_product_ids_and_product_average_stars_by_maximum_product_average_stars_ordering_from_reviews_table = DB::table('reviews')
+            ->select(DB::raw('product_id, ceil(AVG(star)) as product_average_stars'))
+            ->groupBy('product_id')
+            ->orderBy('product_average_stars', 'DESC')
+            ->get();
+
+        if ($unique_product_ids_and_product_average_stars_by_maximum_product_average_stars_ordering_from_reviews_table->count() > 0) {
+
+            foreach ($unique_product_ids_and_product_average_stars_by_maximum_product_average_stars_ordering_from_reviews_table as $unique_product_id_and_product_average_star) {
+
+                $number_of_occurrence_in_categories_ids_array = null;
+
+                $product_id = $unique_product_id_and_product_average_star->product_id;
+
+                $product = Product::find($product_id);
+
+                $category_id = $product->productInformation->category->id;
+
+                $array_count_values = array_count_values($categories_ids);
+
+                if (array_key_exists($category_id, $array_count_values)) {
+                    $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
+                }
+
+                if ($number_of_occurrence_in_categories_ids_array == null) {
+                    $number_of_occurrence_in_categories_ids_array = 0;
+                }
+
+                if ($number_of_occurrence_in_categories_ids_array < $products_show_per_category_in_latest_and_top_rated_and_review_products_section) {
+                    array_push($categories_ids, $category_id);
+                    array_push($products_ids, $product->id);
+                }
+
+            }
+
+            $products_ids_in_string_with_coma = implode(',', $products_ids);
+
+            $products = Product::whereIn('id', $products_ids)
+                ->orderByRaw(DB::raw("FIELD(id, $products_ids_in_string_with_coma)")) // order by given array of unique products ids
+                ->limit(6)
+                ->get();
+
+            $products = ProductResource::collection($products);
+
+            return response([
+                'all_ok' => 'yes',
+                'products' => $products,
+            ], 200);
+
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Record!',
             ], 404);
         }
     }

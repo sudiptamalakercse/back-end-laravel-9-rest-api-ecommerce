@@ -1021,6 +1021,108 @@
 											"response": []
 										}
 									]
+								},
+								{
+									"name": "Latest and Top Rated and Review Products Section",
+									"item": [
+										{
+											"name": "Get Latest Products for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/latest/products",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"latest",
+														"products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get Top Rated Products for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/top/rated/products",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"top",
+														"rated",
+														"products"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								}
 							]
 						}
