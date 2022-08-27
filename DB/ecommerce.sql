@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2022 at 05:32 PM
+-- Generation Time: Aug 27, 2022 at 10:57 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,7 +43,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Cortez Lemke', 'mathias83@example.net', '2022-08-25 02:32:53', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OhorGKiZ1A', '2022-08-25 02:32:53', '2022-08-25 02:32:53');
+(1, 'Isobel Bartoletti', 'deffertz@example.org', '2022-08-27 02:54:55', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CQRErCfCE5', '2022-08-27 02:54:55', '2022-08-27 02:54:55');
 
 -- --------------------------------------------------------
 
@@ -69,16 +69,16 @@ CREATE TABLE `billing_details` (
 --
 
 INSERT INTO `billing_details` (`id`, `country`, `address`, `city`, `postcode_or_zip`, `phone`, `order_note`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Reunion', '150 Christian Plain Suite 518\nWest Jarredborough, NE 97165-2716', 'New Shyannbury', '12089-9730', '+16103852076', 'Similique adipisci perferendis minus ab tempore. Itaque aspernatur sit magni.', 9, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(2, 'British Virgin Islands', '27823 Cruickshank Islands Suite 195\nHesterhaven, DC 55603-2837', 'North Elwinberg', '50390-1718', '+13528834481', 'Facere aut omnis id. Veritatis eum officia distinctio in delectus non distinctio.', 9, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(3, 'Netherlands Antilles', '43897 Charley View\nLeannaville, NV 59226-1976', 'Chelseatown', '94625', '+16282267254', 'Laboriosam minima velit non porro repudiandae quidem in. Neque velit dolore sunt ipsa.', 3, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(4, 'Saint Vincent and the Grenadines', '228 Camden Creek Apt. 121\nSoledadchester, MI 90157', 'Lake Polly', '81160', '+18507727088', 'Dolores et rerum quam. Omnis totam voluptatum voluptates ipsa. Porro et fuga voluptatem.', 5, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(5, 'Falkland Islands (Malvinas)', '431 Lysanne Stream\nCorineton, CO 07701', 'Crookston', '79004', '+17259707293', 'Vel mollitia nihil sed et. Voluptatem eaque eum occaecati. Voluptatem accusamus ut nihil sunt.', 2, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(6, 'Honduras', '3360 Beer Valley Suite 896\nWest Rhianna, WA 26605', 'East Iliana', '43344', '+19159363557', 'Sint facilis ea aliquid tempora. Assumenda porro ullam ut beatae. Id soluta ea esse eum distinctio.', 10, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(7, 'Togo', '506 Kshlerin Land\nNorth Briafort, SD 90852', 'Gislasonshire', '70433', '+13367200003', 'Eum quia quisquam a et. Quos dolores earum et nisi. In magni autem dolorum ut ipsa neque.', 9, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(8, 'Christmas Island', '5609 Marion Locks Apt. 050\nNorth Alyshaside, ID 37776-7914', 'Elmerberg', '73025-8341', '+13514278898', 'Pariatur ut velit dicta. Adipisci sint iure unde totam. Laborum et optio tempore et.', 5, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(9, 'Bhutan', '6179 Janice Road Suite 480\nEast Maudieville, NY 21635-3347', 'East Cameronland', '59417-7135', '+17277300035', 'Commodi corporis et ducimus ea. Excepturi suscipit reprehenderit modi.', 1, '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(10, 'Guernsey', '91829 Hill Drive\nWest Yazminberg, NY 41062-9564', 'West Myronberg', '62952-0278', '+12404359571', 'Eos quidem eveniet assumenda eaque placeat quia nesciunt dolore. Nesciunt sit ut cumque.', 9, '2022-08-25 02:32:58', '2022-08-25 02:32:58');
+(1, 'Mali', '71147 Bauch Spring\nArmstrongstad, NE 60757-8944', 'West Eusebiobury', '41622', '+16237475117', 'Sint vel et aut quos aperiam eius et. Maxime nemo velit laboriosam accusantium explicabo fugiat.', 1, '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(2, 'Kenya', '964 Nitzsche Overpass Apt. 371\nEast Olga, KS 02819-7990', 'West Lukas', '72258-0845', '+17746803124', 'Quia molestias temporibus culpa est. Est est dolorum magni. Aut aut eos ut.', 10, '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(3, 'Faroe Islands', '4203 Meagan Drives\nMetaside, HI 59241-3157', 'North Kathleenchester', '99466', '+14129027316', 'Facilis ut aut aperiam eaque. Aut voluptatem sit non assumenda.', 10, '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(4, 'Palau', '206 Padberg Skyway Suite 539\nKovacekchester, KY 07331-4051', 'North Zechariahbury', '61534', '+13213655344', 'Dolor quia itaque dolore perspiciatis et voluptatibus maiores. Omnis maxime sed minima.', 3, '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(5, 'American Samoa', '5450 Germaine Alley Suite 985\nEast Edwardtown, NE 78643-9131', 'Lake Kennedyfort', '04979-7097', '+13136579504', 'Doloribus ut doloremque eaque non dolorum voluptatem perspiciatis. Non eos qui illo non rem.', 7, '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(6, 'Mauritius', '947 Beahan Mall\nNew Clarissaport, ID 11686', 'North Chandler', '63975-4859', '+15855094436', 'Alias enim officia incidunt accusamus. Fugiat est doloribus aut veniam error tempora nostrum.', 4, '2022-08-27 02:55:02', '2022-08-27 02:55:02'),
+(7, 'Azerbaijan', '603 Treutel Valley Suite 748\nBrannonmouth, IN 59520', 'Nehashire', '49112-7873', '+16206061898', 'Fuga qui voluptatem sunt sunt. Totam dolore laborum ducimus eos. Quia nam labore sit voluptatum.', 4, '2022-08-27 02:55:02', '2022-08-27 02:55:02'),
+(8, 'Portugal', '3074 Simeon Lock\nKadenview, CT 59534', 'Alfonzohaven', '28731', '+19074579389', 'Ipsa rerum in iste nam voluptate. Omnis provident ipsa facilis totam et voluptatem nam.', 6, '2022-08-27 02:55:02', '2022-08-27 02:55:02'),
+(9, 'Niger', '984 Juliana Bridge\nCarrollton, TX 20874', 'Port Caroleshire', '04026', '+17203485577', 'Ut optio rerum dolorem laboriosam. Cum repellat commodi id est et quo totam.', 9, '2022-08-27 02:55:02', '2022-08-27 02:55:02'),
+(10, 'Paraguay', '748 Christophe Park Suite 107\nUptonborough, MA 07202', 'New Jenaton', '44950', '+15024283778', 'Saepe ut porro dolore delectus dolor rerum. Ipsam sint sit sed totam id aut dolor.', 8, '2022-08-27 02:55:02', '2022-08-27 02:55:02');
 
 -- --------------------------------------------------------
 
@@ -101,16 +101,16 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `img`, `is_size_available`, `is_color_available`, `created_at`, `updated_at`) VALUES
-(1, 'Category 19', 'Img of Category 19', 0, 0, '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(2, 'Category 92', 'Img of Category 92', 0, 0, '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(3, 'Category 143', 'Img of Category 143', 1, 1, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(4, 'Category 31', 'Img of Category 31', 0, 1, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(5, 'Category 118', 'Img of Category 118', 1, 0, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(6, 'Category 171', 'Img of Category 171', 1, 0, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(7, 'Category 167', 'Img of Category 167', 0, 1, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(8, 'Category 140', 'Img of Category 140', 1, 0, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(9, 'Category 61', 'Img of Category 61', 1, 0, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(10, 'Category 88', 'Img of Category 88', 0, 1, '2022-08-25 02:32:54', '2022-08-25 02:32:54');
+(1, 'Category 180', 'Img of Category 180', 1, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(2, 'Category 89', 'Img of Category 89', 0, 1, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(3, 'Category 99', 'Img of Category 99', 1, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(4, 'Category 107', 'Img of Category 107', 0, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(5, 'Category 173', 'Img of Category 173', 0, 1, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(6, 'Category 139', 'Img of Category 139', 0, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(7, 'Category 78', 'Img of Category 78', 0, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(8, 'Category 177', 'Img of Category 177', 0, 1, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(9, 'Category 170', 'Img of Category 170', 1, 1, '2022-08-27 02:54:56', '2022-08-27 02:54:56'),
+(10, 'Category 55', 'Img of Category 55', 0, 0, '2022-08-27 02:54:56', '2022-08-27 02:54:56');
 
 -- --------------------------------------------------------
 
@@ -134,7 +134,7 @@ CREATE TABLE `contact_us` (
 --
 
 INSERT INTO `contact_us` (`id`, `address`, `phone`, `email`, `open_time`, `img`, `created_at`, `updated_at`) VALUES
-(1, '4762 Deckow Gateway Apt. 478\nEast Caitlyn, AK 74354-9028', '+17549337810', 'aliyah.kling@example.org', '10.00 AM to 8.00 PM. Friday is Off Day', 'Img 127', '2022-08-25 02:33:02', '2022-08-25 02:33:02');
+(1, '7522 Ebert Extensions\nWest Kavonmouth, MO 35200', '+17867333995', 'vlueilwitz@example.org', '10.00 AM to 8.00 PM. Friday is Off Day', 'Img 176', '2022-08-27 02:55:07', '2022-08-27 02:55:07');
 
 -- --------------------------------------------------------
 
@@ -155,16 +155,16 @@ CREATE TABLE `discounts` (
 --
 
 INSERT INTO `discounts` (`id`, `code`, `amount_in_percent`, `created_at`, `updated_at`) VALUES
-(1, 'b9784', 98, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(2, 'c2565', 60, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(3, '47194', 116, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(4, 'c1c41', 10, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(5, '0ca45', 25, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(6, '9d02', 39, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(7, 'd55157', 104, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(8, '76e147', 27, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(9, '2f536', 135, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(10, 'a47136', 150, '2022-08-25 02:33:01', '2022-08-25 02:33:01');
+(1, 'cb142', 19, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(2, '01a183', 153, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(3, '522168', 80, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(4, '3c4155', 126, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(5, 'b9d81', 188, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(6, '71a135', 146, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(7, '015119', 182, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(8, 'e2664', 169, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(9, 'ec186', 199, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
+(10, 'd23179', 75, '2022-08-27 02:55:05', '2022-08-27 02:55:05');
 
 -- --------------------------------------------------------
 
@@ -203,16 +203,16 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `name`, `email`, `message`, `is_marked_as_read`, `created_at`, `updated_at`) VALUES
-(1, 'Mr. Carmelo Hirthe Jr.', 'riley.howell@example.org', 'Non modi saepe laborum earum et ipsa nam qui. Maiores doloribus aut totam suscipit natus.', 0, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(2, 'Guy Runte', 'forest.halvorson@example.com', 'Perspiciatis ex amet fugit quos. Tenetur unde natus cum id quia. Aut ut aliquam modi delectus.', 1, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(3, 'Dr. Freddy Boehm', 'kovacek.cassandra@example.com', 'Aliquam iusto eius est ex. Asperiores placeat corrupti commodi voluptas illum repellendus velit.', 1, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(4, 'Nigel Skiles', 'zrunolfsdottir@example.com', 'Omnis ipsum odit reiciendis consequatur quia aperiam. Fugit sit autem beatae praesentium et.', 0, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(5, 'Prof. Hiram Hayes', 'idella56@example.com', 'Praesentium id quibusdam suscipit ut qui dolorum. Fugiat sunt ab dolorem suscipit ipsum sit rerum.', 0, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(6, 'Marilyne Gottlieb', 'bartoletti.jerrod@example.org', 'Eum dolorem eos aut nemo distinctio dolorem. Occaecati cum velit expedita.', 0, '2022-08-25 02:33:01', '2022-08-25 02:33:01'),
-(7, 'Miss Anne Boehm V', 'kaylah.fahey@example.net', 'Nulla perferendis cum dicta minima. Dignissimos adipisci vitae deleniti.', 1, '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(8, 'Alejandrin Vandervort', 'lamar54@example.org', 'Enim corporis provident sint esse ipsum. Et ratione cupiditate doloribus blanditiis omnis.', 1, '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(9, 'Miss Kasey Lubowitz', 'gthiel@example.net', 'Molestiae dolor nobis voluptatem tempore corporis. Autem odio ea ducimus sint.', 1, '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(10, 'Brady Wisoky', 'donald.hahn@example.com', 'Itaque facere ut cumque non perspiciatis. Enim officia voluptates odio facere laborum.', 1, '2022-08-25 02:33:02', '2022-08-25 02:33:02');
+(1, 'Mr. Alek Tromp III', 'angelita.grant@example.com', 'Minima qui nisi quia totam maxime. Voluptas architecto reiciendis reprehenderit vero.', 1, '2022-08-27 02:55:06', '2022-08-27 02:55:06'),
+(2, 'Norberto Wilderman', 'goldner.claudia@example.com', 'Fugiat ut hic minima ipsum. Atque error corrupti quos suscipit recusandae qui.', 0, '2022-08-27 02:55:06', '2022-08-27 02:55:06'),
+(3, 'Bernard Ritchie', 'whodkiewicz@example.net', 'Quidem repellendus in mollitia voluptatum. Odio voluptatum in eligendi eum numquam et.', 0, '2022-08-27 02:55:06', '2022-08-27 02:55:06'),
+(4, 'Elmo Heller II', 'ohilpert@example.org', 'Ut labore adipisci placeat accusamus voluptas praesentium. Esse non velit aspernatur nostrum.', 0, '2022-08-27 02:55:06', '2022-08-27 02:55:06'),
+(5, 'Kayli Jast', 'fadel.cecilia@example.org', 'Et voluptas veritatis corporis quisquam tenetur. Voluptatum quo ex corrupti et cumque.', 0, '2022-08-27 02:55:06', '2022-08-27 02:55:06'),
+(6, 'Miss Claudie Moen', 'dicki.myra@example.com', 'Enim aut magnam molestiae illum. Sed dolor ullam vel inventore sapiente. Eos aut qui deleniti sed.', 1, '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(7, 'Ryley Johnson', 'kailyn49@example.org', 'Debitis officia iste numquam officia. Et et ea qui aut.', 1, '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(8, 'Micaela Russel', 'mcclure.lucy@example.org', 'Dolorum sit et et. Sapiente voluptatem aperiam tempore et sequi sint error voluptatem.', 1, '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(9, 'Mr. Jasper Grady V', 'eudora.kohler@example.net', 'Quaerat eos qui ipsa voluptatibus. Quis neque quidem voluptate.', 0, '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(10, 'Fausto Halvorson', 'hgoyette@example.com', 'Et quae et placeat quo quas ex beatae rem. Rerum ab delectus et est repellat.', 1, '2022-08-27 02:55:07', '2022-08-27 02:55:07');
 
 -- --------------------------------------------------------
 
@@ -273,16 +273,16 @@ CREATE TABLE `news_letters` (
 --
 
 INSERT INTO `news_letters` (`id`, `email`, `created_at`, `updated_at`) VALUES
-(1, 'mbotsford@example.org', '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(2, 'lafayette41@example.net', '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(3, 'deangelo.schumm@example.org', '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(4, 'breitenberg.margarita@example.com', '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(5, 'udietrich@example.net', '2022-08-25 02:33:02', '2022-08-25 02:33:02'),
-(6, 'mayra.kris@example.org', '2022-08-25 02:33:03', '2022-08-25 02:33:03'),
-(7, 'taya10@example.net', '2022-08-25 02:33:03', '2022-08-25 02:33:03'),
-(8, 'bhoeger@example.org', '2022-08-25 02:33:03', '2022-08-25 02:33:03'),
-(9, 'swaniawski.rosemary@example.com', '2022-08-25 02:33:03', '2022-08-25 02:33:03'),
-(10, 'giovanna.murazik@example.net', '2022-08-25 02:33:03', '2022-08-25 02:33:03');
+(1, 'colleen.little@example.org', '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(2, 'craig08@example.net', '2022-08-27 02:55:07', '2022-08-27 02:55:07'),
+(3, 'annalise.yundt@example.org', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(4, 'abshire.rowan@example.org', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(5, 'will.watsica@example.com', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(6, 'streutel@example.org', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(7, 'hmante@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(8, 'raynor.rosendo@example.org', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(9, 'tre.conn@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(10, 'lynch.thora@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08');
 
 -- --------------------------------------------------------
 
@@ -346,16 +346,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_information_id`, `minimum_quantity`, `minimum_quantity_buying_price`, `minimum_quantity_selling_price`, `unit_id`, `discount_in_percent`, `stock`, `is_shipping_free`, `shipping_id`, `product_size_id`, `product_color_id`, `admin_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 740, 981.00, 1181.00, 6, 5, 154, 0, 1, 1, 4, 1, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(2, 2, 83, 797.00, 997.00, 6, 44, 326, 1, 4, 3, 2, 1, '2022-08-25 02:33:05', '2022-08-25 02:33:05'),
-(3, 4, 550, 19.00, 219.00, 3, 41, 86, 0, 4, 2, 4, 1, '2022-08-25 02:33:05', '2022-08-25 02:33:05'),
-(4, 4, 959, 198.00, 398.00, 8, 45, 398, 0, 10, 7, 10, 1, '2022-08-25 02:33:05', '2022-08-25 02:33:05'),
-(5, 7, 550, 327.00, 527.00, 10, 26, 120, 0, 4, 1, 2, 1, '2022-08-25 02:33:06', '2022-08-25 02:33:06'),
-(6, 1, 338, 86.00, 286.00, 5, 22, 38, 1, 6, 6, 7, 1, '2022-08-25 02:33:06', '2022-08-25 02:33:06'),
-(7, 3, 222, 680.00, 880.00, 8, 25, 410, 0, 9, 5, 9, 1, '2022-08-25 02:33:06', '2022-08-25 02:33:06'),
-(8, 10, 378, 286.00, 486.00, 4, 31, 27, 1, 7, 3, 1, 1, '2022-08-25 02:33:07', '2022-08-25 02:33:07'),
-(9, 6, 935, 905.00, 1105.00, 8, 17, 96, 1, 1, 9, 8, 1, '2022-08-25 02:33:07', '2022-08-25 02:33:07'),
-(10, 2, 110, 644.00, 844.00, 10, 2, 259, 0, 8, 7, 5, 1, '2022-08-25 02:33:07', '2022-08-25 02:33:07');
+(1, 9, 921, 35.00, 235.00, 3, 11, 99, 0, 6, 8, 7, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(2, 6, 977, 325.00, 525.00, 7, 37, 117, 1, 1, 3, 2, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(3, 9, 814, 334.00, 534.00, 1, 4, 404, 0, 9, 1, 9, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(4, 7, 138, 577.00, 777.00, 10, 17, 101, 0, 3, 4, 2, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(5, 8, 372, 825.00, 1025.00, 3, 32, 405, 1, 7, 7, 1, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(6, 10, 431, 232.00, 432.00, 4, 35, 371, 1, 8, 10, 8, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(7, 7, 771, 222.00, 422.00, 9, 20, 51, 0, 7, 9, 9, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(8, 1, 687, 435.00, 635.00, 1, 28, 10, 0, 10, 5, 9, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(9, 7, 870, 990.00, 1190.00, 7, 47, 191, 1, 9, 1, 2, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(10, 1, 370, 510.00, 710.00, 3, 44, 379, 1, 7, 3, 7, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11');
 
 -- --------------------------------------------------------
 
@@ -376,16 +376,16 @@ CREATE TABLE `product_colors` (
 --
 
 INSERT INTO `product_colors` (`id`, `name`, `img`, `created_at`, `updated_at`) VALUES
-(1, 'Color 53', 'Img of Color 53', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(2, 'Color 106', 'Img of Color 106', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(3, 'Color 56', 'Img of Color 56', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(4, 'Color 109', 'Img of Color 109', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(5, 'Color 50', 'Img of Color 50', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(6, 'Color 1', 'Img of Color 1', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(7, 'Color 33', 'Img of Color 33', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(8, 'Color 82', 'Img of Color 82', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(9, 'Color 14', 'Img of Color 14', '2022-08-25 02:32:58', '2022-08-25 02:32:58'),
-(10, 'Color 55', 'Img of Color 55', '2022-08-25 02:32:58', '2022-08-25 02:32:58');
+(1, 'Color 194', 'Img of Color 194', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(2, 'Color 82', 'Img of Color 82', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(3, 'Color 25', 'Img of Color 25', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(4, 'Color 130', 'Img of Color 130', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(5, 'Color 11', 'Img of Color 11', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(6, 'Color 95', 'Img of Color 95', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(7, 'Color 143', 'Img of Color 143', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(8, 'Color 195', 'Img of Color 195', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(9, 'Color 190', 'Img of Color 190', '2022-08-27 02:55:01', '2022-08-27 02:55:01'),
+(10, 'Color 162', 'Img of Color 162', '2022-08-27 02:55:01', '2022-08-27 02:55:01');
 
 -- --------------------------------------------------------
 
@@ -406,16 +406,16 @@ CREATE TABLE `product_imgs` (
 --
 
 INSERT INTO `product_imgs` (`id`, `img`, `product_id`, `created_at`, `updated_at`) VALUES
-(1, 'Product Img 76', 5, '2022-08-25 02:33:08', '2022-08-25 02:33:08'),
-(2, 'Product Img 123', 7, '2022-08-25 02:33:08', '2022-08-25 02:33:08'),
-(3, 'Product Img 99', 9, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(4, 'Product Img 112', 3, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(5, 'Product Img 188', 3, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(6, 'Product Img 40', 4, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(7, 'Product Img 181', 9, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(8, 'Product Img 28', 5, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(9, 'Product Img 13', 10, '2022-08-25 02:33:09', '2022-08-25 02:33:09'),
-(10, 'Product Img 166', 4, '2022-08-25 02:33:10', '2022-08-25 02:33:10');
+(1, 'Product Img 94', 6, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(2, 'Product Img 185', 9, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(3, 'Product Img 71', 5, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(4, 'Product Img 47', 5, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(5, 'Product Img 189', 5, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(6, 'Product Img 87', 7, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(7, 'Product Img 51', 3, '2022-08-27 02:55:12', '2022-08-27 02:55:12'),
+(8, 'Product Img 192', 5, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(9, 'Product Img 9', 8, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(10, 'Product Img 184', 3, '2022-08-27 02:55:13', '2022-08-27 02:55:13');
 
 -- --------------------------------------------------------
 
@@ -438,16 +438,16 @@ CREATE TABLE `product_informations` (
 --
 
 INSERT INTO `product_informations` (`id`, `name`, `detail`, `information`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'Product 49', 'Ut repellat quos tenetur. Ut magni et earum.', 'Eligendi similique ab assumenda deserunt. Delectus similique culpa magni iure rem eos sed.', 7, '2022-08-25 02:33:03', '2022-08-25 02:33:03'),
-(2, 'Product 67', 'Rem omnis veniam et reiciendis ratione sit. Magni voluptates eligendi aut.', 'Ratione suscipit harum sit non. Deleniti sed officia quo consequatur quia perferendis et.', 6, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(3, 'Product 70', 'Quod aut fuga a a. Nemo dolorem molestiae ut quos sint assumenda ut.', 'Nihil sunt dolore aut. Eveniet cupiditate et eaque ex aperiam.', 6, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(4, 'Product 161', 'Sit et voluptas distinctio rerum inventore deserunt itaque. Odio possimus et possimus.', 'Voluptas vero rerum et. Dolor nobis et tempora voluptate magnam dolor aut consequatur.', 2, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(5, 'Product 152', 'Sint omnis et sint dolorem ipsum. Qui quaerat et cum nulla sequi natus.', 'Adipisci ut dolorem et numquam. Accusamus eligendi porro vel repudiandae eum fuga expedita.', 4, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(6, 'Product 72', 'Sunt architecto nobis est maxime delectus nam qui. Qui aut eos consequuntur alias aut.', 'Aut molestiae eum et enim debitis ut. Aut suscipit iure quibusdam quo eveniet nihil ut.', 2, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(7, 'Product 124', 'Architecto nesciunt officia tempora occaecati et ut aut. Ducimus nobis itaque eum explicabo.', 'Nostrum perspiciatis quaerat perspiciatis. Porro ipsum officiis dolores.', 5, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(8, 'Product 23', 'Perferendis excepturi consequatur ut ut tempore tempore. Nemo quo sed quos enim maiores.', 'Quae omnis possimus laboriosam. Sunt quas repudiandae assumenda nesciunt iusto doloremque.', 6, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(9, 'Product 145', 'Sit quia mollitia consectetur dolor. Consequuntur ab cum earum quos vel ut.', 'Perferendis distinctio aut cumque et. Vel aut qui quaerat cumque totam quia.', 5, '2022-08-25 02:33:04', '2022-08-25 02:33:04'),
-(10, 'Product 43', 'Perspiciatis nihil voluptatem commodi. Ut odio mollitia alias delectus ut.', 'Mollitia expedita reiciendis sunt. Molestiae dolores suscipit ut voluptas.', 3, '2022-08-25 02:33:04', '2022-08-25 02:33:04');
+(1, 'Product 134', 'Accusantium sint esse enim facilis pariatur fugiat modi. Itaque deserunt hic iusto et quo quia eum.', 'Non distinctio error aperiam autem non. Minus ut iste sequi nemo doloribus aut omnis.', 2, '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(2, 'Product 8', 'Eaque consequatur voluptatem ut quidem ea ullam ut. Consequatur sunt qui rem voluptates ipsum.', 'Veniam dolor nam aliquam. Ea provident nulla culpa laborum. Repellat eius vero aut ullam repellat.', 4, '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(3, 'Product 18', 'Nobis eaque placeat ut veniam repellendus. Velit eveniet esse praesentium aspernatur.', 'Dolor est molestiae aut sunt repudiandae veritatis. Magni aut itaque est expedita soluta.', 8, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(4, 'Product 88', 'Sint pariatur itaque assumenda et maiores in quo excepturi. Soluta quo temporibus veritatis ut in.', 'Et minus mollitia consectetur inventore. Rerum aliquid quo dolorem maiores voluptatem et corporis.', 1, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(5, 'Product 5', 'Nihil quis tenetur fuga vel ut. Ipsa quaerat necessitatibus culpa libero sed.', 'Ea minus et numquam voluptatem rerum perspiciatis. Qui omnis ipsum aut odio beatae eum molestiae.', 2, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(6, 'Product 74', 'Minima dolorum facere optio. Aut excepturi assumenda est aut maiores.', 'Quo praesentium fugit rerum quia occaecati reprehenderit. Distinctio nihil vitae sed consequatur.', 7, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(7, 'Product 30', 'Fuga fuga aut in dolorum. Quos culpa suscipit et et voluptatem. Facere est quo doloremque quia et.', 'Et qui eligendi mollitia autem adipisci ratione. Pariatur nisi quibusdam itaque.', 1, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(8, 'Product 50', 'Sint autem hic placeat alias repellat odit. Eligendi asperiores voluptas quia enim autem.', 'Officia illum et doloribus ducimus architecto fuga molestiae. Doloremque suscipit et error ullam.', 7, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(9, 'Product 2', 'Consequuntur et unde porro quisquam. Corrupti ipsa omnis incidunt.', 'Eum aut sit aut. Tempore velit aut velit. Optio corporis est sit.', 3, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(10, 'Product 114', 'Eius culpa ut dolores. Et velit quae aut.', 'Quae nobis sunt voluptatem. Earum corporis id nesciunt.', 9, '2022-08-27 02:55:09', '2022-08-27 02:55:09');
 
 -- --------------------------------------------------------
 
@@ -476,16 +476,16 @@ CREATE TABLE `product_orders` (
 --
 
 INSERT INTO `product_orders` (`id`, `order_detail`, `billing_detail_id`, `payment_type`, `payment_status`, `transaction_id`, `product_coming`, `product_receiving`, `product_received`, `is_canceled`, `admin_id`, `created_at`, `updated_at`) VALUES
-(1, 'Autem rerum qui odio quae sed. Ut voluptatem doloribus laborum dignissimos earum.', 5, 'Card', 1, '0d4f0154f26bd2eb2906e593164956f4', 0, 0, 0, 0, NULL, '2022-08-25 02:32:59', '2022-08-25 02:32:59'),
-(2, 'Aut facilis est doloremque explicabo et est repellendus. Molestiae repellat nobis velit ut.', 4, 'Cash', 0, '', 1, 1, 1, 0, 1, '2022-08-25 02:32:59', '2022-08-25 02:32:59'),
-(3, 'Sint fugiat enim ut odio itaque et deserunt aut. Incidunt deleniti et iure perspiciatis.', 7, 'Card', 1, '9d6956d07d7f7ca60a3fb5e82a986832', 0, 0, 0, 0, NULL, '2022-08-25 02:32:59', '2022-08-25 02:32:59'),
-(4, 'Accusamus quis quibusdam rerum modi. Eius voluptatem voluptatum fuga ad repellat quis ea.', 7, 'Card', 1, '3b5b9b190ec78228c37518567c3153ae', 0, 0, 0, 1, NULL, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(5, 'Voluptas sit animi et. Laborum similique quibusdam et et.', 2, 'Card', 1, '93682ffe130df78e468842b1b8f0dfbe', 1, 1, 1, 0, 1, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(6, 'Aspernatur ut nihil nemo temporibus. Pariatur nam assumenda modi laboriosam facilis consectetur.', 8, 'Card', 1, '5e978d315a381a15bf94b74dfb6fcde4', 0, 0, 0, 1, NULL, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(7, 'Incidunt aspernatur autem atque id. Quia id dolor voluptates sint. Magnam mollitia sit est.', 7, 'Card', 1, '94319087571b41a4d53d458d8d592755', 1, 1, 1, 0, 1, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(8, 'Suscipit asperiores quis quia. Tempora et consequatur amet a.', 5, 'Card', 1, '299900ac84538ddf54a3b8fe9531335a', 1, 1, 1, 0, 1, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(9, 'Dolorum voluptas illo in harum quaerat. Autem rerum fugit natus nihil quasi.', 7, 'Card', 1, '90c58be5b89a8f13741c16ec4505784e', 1, 1, 1, 0, 1, '2022-08-25 02:33:00', '2022-08-25 02:33:00'),
-(10, 'Aut nihil maxime aut facere quo non. Voluptates nihil aut autem a. Quam quam id culpa ratione.', 10, 'Cash', 0, '', 1, 1, 1, 0, 1, '2022-08-25 02:33:00', '2022-08-25 02:33:00');
+(1, 'Est maiores laborum tempore. Cum ut repellat quasi esse enim. Quo quasi quae unde voluptatem.', 4, 'Cash', 0, '', 0, 0, 0, 0, NULL, '2022-08-27 02:55:03', '2022-08-27 02:55:03'),
+(2, 'Ad id itaque at. Harum impedit voluptates harum vero culpa omnis nostrum. Quia tempora ut hic.', 7, 'Card', 1, '66d5ccbc412c2f58b17be128fe692c25', 0, 0, 0, 1, NULL, '2022-08-27 02:55:03', '2022-08-27 02:55:03'),
+(3, 'Dignissimos quis laborum id accusamus. Qui unde quo mollitia et dolor sed.', 10, 'Cash', 0, '', 0, 0, 0, 0, NULL, '2022-08-27 02:55:03', '2022-08-27 02:55:03'),
+(4, 'Consequatur consequatur vitae voluptates. Dolores autem illum velit minima.', 10, 'Cash', 0, '', 0, 0, 0, 0, NULL, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(5, 'Placeat vero ab aliquid fuga libero asperiores laborum. Et sed fugit non possimus.', 1, 'Cash', 0, '', 0, 0, 0, 1, NULL, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(6, 'Velit est non mollitia reiciendis. Eum dolor soluta in iste. Aut consequatur quia voluptas et.', 10, 'Card', 1, '347f6e34d95aa3dd4f0508a45278ff3b', 1, 1, 1, 0, 1, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(7, 'Iure id autem aut id nemo magnam et itaque. Autem rerum voluptas laudantium.', 10, 'Card', 1, '5accbd025fba41ff8865064bee4e2d26', 1, 1, 1, 0, 1, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(8, 'Nemo perspiciatis consectetur voluptatibus. Repellendus at et nihil.', 4, 'Cash', 0, '', 0, 0, 0, 0, NULL, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(9, 'Porro sit magni enim. Et eligendi et iure reprehenderit voluptatum ut iusto facere.', 2, 'Cash', 0, '', 1, 1, 1, 0, 1, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(10, 'Impedit quam veniam distinctio facilis eaque consequuntur vitae. Doloremque quibusdam in et sequi.', 10, 'Cash', 0, '', 0, 0, 0, 0, NULL, '2022-08-27 02:55:04', '2022-08-27 02:55:04');
 
 -- --------------------------------------------------------
 
@@ -507,7 +507,7 @@ CREATE TABLE `product_order_by_admin_to_companies` (
 --
 
 INSERT INTO `product_order_by_admin_to_companies` (`id`, `quantity`, `is_received`, `product_id`, `created_at`, `updated_at`) VALUES
-(1, 87, 0, 3, '2022-08-25 02:33:08', '2022-08-25 02:33:08');
+(1, 184, 0, 2, '2022-08-27 02:55:12', '2022-08-27 02:55:12');
 
 -- --------------------------------------------------------
 
@@ -527,16 +527,16 @@ CREATE TABLE `product_sizes` (
 --
 
 INSERT INTO `product_sizes` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Size 46', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(2, 'Size 108', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(3, 'Size 9', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(4, 'Size 66', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(5, 'Size 174', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(6, 'Size 191', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(7, 'Size 170', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(8, 'Size 120', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(9, 'Size 162', '2022-08-25 02:32:57', '2022-08-25 02:32:57'),
-(10, 'Size 192', '2022-08-25 02:32:57', '2022-08-25 02:32:57');
+(1, 'Size 54', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(2, 'Size 24', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(3, 'Size 175', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(4, 'Size 45', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(5, 'Size 33', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(6, 'Size 129', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(7, 'Size 52', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(8, 'Size 131', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(9, 'Size 198', '2022-08-27 02:55:00', '2022-08-27 02:55:00'),
+(10, 'Size 120', '2022-08-27 02:55:00', '2022-08-27 02:55:00');
 
 -- --------------------------------------------------------
 
@@ -559,16 +559,16 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `review`, `star`, `product_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 'Et quis ipsam autem illo error et at facilis. Qui illo est quo omnis quasi reprehenderit.', 5, 3, 7, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(2, 'Quis sint omnis est reiciendis quisquam. Porro impedit quasi quia magnam excepturi.', 1, 9, 10, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(3, 'Natus itaque quaerat qui dolorem aut voluptatem. Aliquid aliquid tempora totam.', 2, 8, 5, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(4, 'Quo error quo et culpa doloremque atque. Ut odio ducimus maiores et.', 5, 5, 8, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(5, 'Et quis aut perferendis saepe. Commodi incidunt illo explicabo soluta.', 1, 5, 6, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(6, 'Quo a est sequi qui. Ratione omnis nobis aut est explicabo deserunt. Et sed sed non eius tenetur.', 4, 3, 7, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(7, 'Dolorem nemo aspernatur modi. Aut tempore aliquam ab asperiores. Culpa sit eum ipsam.', 4, 5, 5, '2022-08-25 02:33:10', '2022-08-25 02:33:10'),
-(8, 'Placeat rerum alias non velit omnis non sint et. Eveniet veritatis nemo molestiae aut.', 1, 3, 4, '2022-08-25 02:33:11', '2022-08-25 02:33:11'),
-(9, 'Hic dolores suscipit earum. Et et ab sed voluptatem.', 2, 9, 10, '2022-08-25 02:33:11', '2022-08-25 02:33:11'),
-(10, 'Distinctio et assumenda est eveniet voluptatem. Quia voluptatem autem inventore vitae.', 5, 4, 6, '2022-08-25 02:33:11', '2022-08-25 02:33:11');
+(1, 'Cum quisquam dolor sit ut error placeat. Ipsam beatae est quam et.', 3, 2, 8, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(2, 'Sit maxime assumenda praesentium numquam. Culpa quis ea voluptatem illum commodi.', 1, 4, 8, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(3, 'Sequi nemo est ut libero. Alias reprehenderit laborum facere deleniti hic distinctio sequi qui.', 4, 8, 3, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(4, 'Id quo nam quis. Mollitia amet quaerat corrupti sit ut perspiciatis qui.', 2, 1, 5, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(5, 'Harum et saepe voluptas cum. Eos iure quo assumenda placeat recusandae architecto iste fugit.', 4, 4, 6, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(6, 'Quia facilis facilis et officia repellendus. Nesciunt nihil officiis quae nam ipsam.', 2, 2, 2, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(7, 'Aut ut consequatur optio iure incidunt eveniet. Eligendi doloribus vitae nemo rem rem.', 3, 6, 5, '2022-08-27 02:55:13', '2022-08-27 02:55:13'),
+(8, 'Esse qui placeat necessitatibus. Consectetur sit quo hic id quo. Dignissimos et iste iusto.', 1, 6, 4, '2022-08-27 02:55:14', '2022-08-27 02:55:14'),
+(9, 'Numquam qui quisquam eum. Magnam praesentium assumenda ipsa. Et ea rem asperiores tempora.', 5, 2, 5, '2022-08-27 02:55:14', '2022-08-27 02:55:14'),
+(10, 'Quo reiciendis at eius non doloremque nemo non aut. Hic sit voluptatem dolorum.', 3, 3, 10, '2022-08-27 02:55:14', '2022-08-27 02:55:14');
 
 -- --------------------------------------------------------
 
@@ -588,16 +588,16 @@ CREATE TABLE `shippings` (
 --
 
 INSERT INTO `shippings` (`id`, `shipping_day`, `created_at`, `updated_at`) VALUES
-(1, 81, '2022-08-25 02:32:54', '2022-08-25 02:32:54'),
-(2, 169, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(3, 125, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(4, 37, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(5, 95, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(6, 144, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(7, 18, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(8, 179, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(9, 146, '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(10, 52, '2022-08-25 02:32:55', '2022-08-25 02:32:55');
+(1, 31, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(2, 191, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(3, 21, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(4, 69, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(5, 164, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(6, 149, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(7, 96, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(8, 49, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(9, 104, '2022-08-27 02:54:57', '2022-08-27 02:54:57'),
+(10, 133, '2022-08-27 02:54:57', '2022-08-27 02:54:57');
 
 -- --------------------------------------------------------
 
@@ -618,7 +618,7 @@ CREATE TABLE `stoke_out_product_request_by_user_to_admins` (
 --
 
 INSERT INTO `stoke_out_product_request_by_user_to_admins` (`id`, `quantity`, `product_id`, `created_at`, `updated_at`) VALUES
-(1, 60, 10, '2022-08-25 02:33:07', '2022-08-25 02:33:07');
+(1, 76, 4, '2022-08-27 02:55:11', '2022-08-27 02:55:11');
 
 -- --------------------------------------------------------
 
@@ -638,16 +638,16 @@ CREATE TABLE `units` (
 --
 
 INSERT INTO `units` (`id`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'Unit 177', '2022-08-25 02:32:55', '2022-08-25 02:32:55'),
-(2, 'Unit 74', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(3, 'Unit 85', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(4, 'Unit 58', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(5, 'Unit 187', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(6, 'Unit 115', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(7, 'Unit 133', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(8, 'Unit 168', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(9, 'Unit 83', '2022-08-25 02:32:56', '2022-08-25 02:32:56'),
-(10, 'Unit 121', '2022-08-25 02:32:56', '2022-08-25 02:32:56');
+(1, 'Unit 105', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(2, 'Unit 123', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(3, 'Unit 103', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(4, 'Unit 72', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(5, 'Unit 108', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(6, 'Unit 171', '2022-08-27 02:54:58', '2022-08-27 02:54:58'),
+(7, 'Unit 187', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(8, 'Unit 122', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(9, 'Unit 121', '2022-08-27 02:54:59', '2022-08-27 02:54:59'),
+(10, 'Unit 200', '2022-08-27 02:54:59', '2022-08-27 02:54:59');
 
 -- --------------------------------------------------------
 
@@ -672,16 +672,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_email_verified`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Dr. Jayme Fritsch', 'libby.quitzon@example.com', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'S6Y91JVHli', '2022-08-25 02:32:52', '2022-08-25 02:32:52'),
-(2, 'Jonatan Schuppe', 'akessler@example.org', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'qmxGatqJtV', '2022-08-25 02:32:52', '2022-08-25 02:32:52'),
-(3, 'Ned Schmitt', 'dwaelchi@example.net', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'CBBaf5zdLW', '2022-08-25 02:32:52', '2022-08-25 02:32:52'),
-(4, 'Jammie Hackett', 'beth.osinski@example.net', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '8VAnXdifYY', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(5, 'Roslyn Ritchie Sr.', 'adolphus18@example.org', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'NewC68Rkon', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(6, 'Julien McClure DDS', 'jberge@example.org', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '4vKITnbPJy', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(7, 'Miss Leonie Kutch II', 'janae92@example.net', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'L0MK2nu1Pv', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(8, 'Aidan Emmerich', 'heaney.madaline@example.org', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '5vdkhXNGVu', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(9, 'Emerald Hilpert', 'joesph.stanton@example.com', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ie6OPWO0mh', '2022-08-25 02:32:53', '2022-08-25 02:32:53'),
-(10, 'John Schumm', 'mina24@example.com', '2022-08-25 02:32:52', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Go1fGEtZPJ', '2022-08-25 02:32:53', '2022-08-25 02:32:53');
+(1, 'Curtis Bosco DDS', 'emelia.yost@example.org', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'NnI0fqhZ0z', '2022-08-27 02:54:54', '2022-08-27 02:54:54'),
+(2, 'Julianne Kutch', 'xveum@example.com', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'jlFsYmG9VZ', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(3, 'Nannie Johns', 'zbahringer@example.net', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'k2t9sSf1xU', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(4, 'Daron Schowalter', 'candice36@example.org', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'OzVAq0ZFb5', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(5, 'Ms. Mandy Dooley', 'abbott.dax@example.net', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'wMOR6cFu9F', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(6, 'Skyla Orn V', 'glen90@example.org', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Wx7N3C0dRf', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(7, 'Jazlyn Spinka', 'cmoore@example.net', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'z4S7OIN2kf', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(8, 'Arvilla Paucek', 'frederik.wintheiser@example.net', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'XQqE4l9H5U', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(9, 'Mrs. Mae Wehner', 'santos.hamill@example.net', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'MMHASpKkP8', '2022-08-27 02:54:55', '2022-08-27 02:54:55'),
+(10, 'Mae Legros', 'mabelle.hirthe@example.org', '2022-08-27 02:54:54', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'PkYQMADd9a', '2022-08-27 02:54:55', '2022-08-27 02:54:55');
 
 -- --------------------------------------------------------
 

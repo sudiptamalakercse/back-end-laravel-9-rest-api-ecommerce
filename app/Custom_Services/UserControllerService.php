@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class UserControllerService
 {
-    public static function get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table()
+    public static function get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table($review_colum_null_check = false)
     {
 
         $unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table = DB::table('reviews')
-            ->select(DB::raw('product_id, count(product_id) as occurrences'))
-            ->groupBy('product_id')
+            ->select(DB::raw('product_id, count(product_id) as occurrences'));
+
+        if ($review_colum_null_check == true) {
+            $unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table
+                ->where('review', '!=', null);
+        }
+
+        $unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table = $unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table->groupBy('product_id')
             ->orderBy('occurrences', 'DESC')
             ->get();
 
@@ -30,7 +36,7 @@ class UserControllerService
 
         $unique_popular_categories_ids_array = $user_controller->get_catagories_of_popular_products(get_popular_unique_catagories_ids_array:true);
 
-        $unique_product_ids_and_occurrences = UserControllerService::get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table();
+        $unique_product_ids_and_occurrences = self::get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table();
 
         if (count($unique_product_ids_and_occurrences) > 0) {
 
@@ -109,6 +115,39 @@ class UserControllerService
             ], 200);
         }
 
+    }
+
+    public static function codes_1_get_number_of_occurrence_in_categories_ids_array_and_category_id($product, $categories_ids)
+    {
+        $category_id = $product->productInformation->category->id;
+
+        $number_of_occurrence_in_categories_ids_array = null;
+
+        $array_count_values = array_count_values($categories_ids);
+
+        if (array_key_exists($category_id, $array_count_values)) {
+            $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
+        }
+
+        if ($number_of_occurrence_in_categories_ids_array == null) {
+            $number_of_occurrence_in_categories_ids_array = 0;
+        }
+        return [
+            'number_of_occurrence_in_categories_ids_array' => $number_of_occurrence_in_categories_ids_array,
+            'category_id' => $category_id,
+        ];
+    }
+
+    public static function codes_2_get_product_resource_collection($products_ids)
+    {
+        $products_ids_in_string_with_coma = implode(',', $products_ids);
+
+        $products = Product::whereIn('id', $products_ids)
+            ->orderByRaw(DB::raw("FIELD(id, $products_ids_in_string_with_coma)")) // order by given array of unique products ids
+            ->limit(6)
+            ->get();
+
+        return $products = ProductResource::collection($products);
     }
 
 }

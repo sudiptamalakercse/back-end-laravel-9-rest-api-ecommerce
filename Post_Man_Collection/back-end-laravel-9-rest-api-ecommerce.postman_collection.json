@@ -899,7 +899,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{url}}/user/popular/products/of/specific/category/Category 92",
+													"raw": "{{url}}/user/popular/products/of/specific/category/Category 80",
 													"host": [
 														"{{url}}"
 													],
@@ -910,7 +910,7 @@
 														"of",
 														"specific",
 														"category",
-														"Category 92"
+														"Category 80"
 													]
 												}
 											},
@@ -1116,6 +1116,54 @@
 														"user",
 														"top",
 														"rated",
+														"products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Get Review Products for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/review/products",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"review",
 														"products"
 													]
 												}

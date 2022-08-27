@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Custom_Services\AuthenticationService;
 use App\Custom_Services\UserControllerService;
 use App\Http\Resources\Both\CategoryResource;
-use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
 use App\Models\PasswordReset;
@@ -247,19 +246,10 @@ class UserController extends Controller
 
             foreach ($products as $product) {
 
-                $number_of_occurrence_in_categories_ids_array = null;
+                $result_in_array = UserControllerService::codes_1_get_number_of_occurrence_in_categories_ids_array_and_category_id(product:$product, categories_ids:$categories_ids);
 
-                $category_id = $product->productInformation->category->id;
-
-                $array_count_values = array_count_values($categories_ids);
-
-                if (array_key_exists($category_id, $array_count_values)) {
-                    $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
-                }
-
-                if ($number_of_occurrence_in_categories_ids_array == null) {
-                    $number_of_occurrence_in_categories_ids_array = 0;
-                }
+                $number_of_occurrence_in_categories_ids_array = $result_in_array['number_of_occurrence_in_categories_ids_array'];
+                $category_id = $result_in_array['category_id'];
 
                 if ($number_of_occurrence_in_categories_ids_array < $products_show_per_category_in_latest_and_top_rated_and_review_products_section) {
                     array_push($categories_ids, $category_id);
@@ -268,14 +258,7 @@ class UserController extends Controller
 
             }
 
-            $products_ids_in_string_with_coma = implode(',', $products_ids);
-
-            $products = Product::whereIn('id', $products_ids)
-                ->orderByRaw(DB::raw("FIELD(id, $products_ids_in_string_with_coma)")) // order by given array of unique products ids
-                ->limit(6)
-                ->get();
-
-            $products = ProductResource::collection($products);
+            $products = UserControllerService::codes_2_get_product_resource_collection(products_ids:$products_ids);
 
             return response([
                 'all_ok' => 'yes',
@@ -306,23 +289,14 @@ class UserController extends Controller
 
             foreach ($unique_product_ids_and_product_average_stars_by_maximum_product_average_stars_ordering_from_reviews_table as $unique_product_id_and_product_average_star) {
 
-                $number_of_occurrence_in_categories_ids_array = null;
-
                 $product_id = $unique_product_id_and_product_average_star->product_id;
 
                 $product = Product::find($product_id);
 
-                $category_id = $product->productInformation->category->id;
+                $result_in_array = UserControllerService::codes_1_get_number_of_occurrence_in_categories_ids_array_and_category_id(product:$product, categories_ids:$categories_ids);
 
-                $array_count_values = array_count_values($categories_ids);
-
-                if (array_key_exists($category_id, $array_count_values)) {
-                    $number_of_occurrence_in_categories_ids_array = $array_count_values[$category_id];
-                }
-
-                if ($number_of_occurrence_in_categories_ids_array == null) {
-                    $number_of_occurrence_in_categories_ids_array = 0;
-                }
+                $number_of_occurrence_in_categories_ids_array = $result_in_array['number_of_occurrence_in_categories_ids_array'];
+                $category_id = $result_in_array['category_id'];
 
                 if ($number_of_occurrence_in_categories_ids_array < $products_show_per_category_in_latest_and_top_rated_and_review_products_section) {
                     array_push($categories_ids, $category_id);
@@ -331,14 +305,50 @@ class UserController extends Controller
 
             }
 
-            $products_ids_in_string_with_coma = implode(',', $products_ids);
+            $products = UserControllerService::codes_2_get_product_resource_collection(products_ids:$products_ids);
 
-            $products = Product::whereIn('id', $products_ids)
-                ->orderByRaw(DB::raw("FIELD(id, $products_ids_in_string_with_coma)")) // order by given array of unique products ids
-                ->limit(6)
-                ->get();
+            return response([
+                'all_ok' => 'yes',
+                'products' => $products,
+            ], 200);
 
-            $products = ProductResource::collection($products);
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Record!',
+            ], 404);
+        }
+    }
+
+    public function get_review_products()
+    {
+        $products_show_per_category_in_latest_and_top_rated_and_review_products_section = 2;
+        $categories_ids = [];
+        $products_ids = [];
+
+        $unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_where_review_not_equal_to_null_from_reviews_table = UserControllerService::get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table(review_colum_null_check:true);
+
+        if ($unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_where_review_not_equal_to_null_from_reviews_table->count() > 0) {
+
+            foreach ($unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_where_review_not_equal_to_null_from_reviews_table as $unique_product_id_and_occurrence) {
+
+                $product_id = $unique_product_id_and_occurrence->product_id;
+
+                $product = Product::find($product_id);
+
+                $result_in_array = UserControllerService::codes_1_get_number_of_occurrence_in_categories_ids_array_and_category_id(product:$product, categories_ids:$categories_ids);
+
+                $number_of_occurrence_in_categories_ids_array = $result_in_array['number_of_occurrence_in_categories_ids_array'];
+                $category_id = $result_in_array['category_id'];
+
+                if ($number_of_occurrence_in_categories_ids_array < $products_show_per_category_in_latest_and_top_rated_and_review_products_section) {
+                    array_push($categories_ids, $category_id);
+                    array_push($products_ids, $product->id);
+                }
+
+            }
+
+            $products = UserControllerService::codes_2_get_product_resource_collection(products_ids:$products_ids);
 
             return response([
                 'all_ok' => 'yes',

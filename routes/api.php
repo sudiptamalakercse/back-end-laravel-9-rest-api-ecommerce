@@ -70,6 +70,7 @@ Route::controller(UserController::class)->group(function () {
         Route::get('category/with/second/maximum/discount', 'get_category_in_which_has_second_maximum_discount_for_product');
         Route::get('latest/products', 'get_latest_products');
         Route::get('top/rated/products', 'get_top_rated_products');
+        Route::get('review/products', 'get_review_products');
     });
 });
 
