@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Custom_Services\AuthenticationService;
 use App\Mail\EmailSend;
 use App\Models\Admin;
+use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,6 +45,36 @@ class AdminController extends Controller
         $password_reset_code_expiration_time = $this->password_reset_code_expiration_time;
 
         return AuthenticationService::reset_password_handle(password_reset_model_class:PasswordReset::class, hash_class:Hash::class, carbon_class:Carbon::class, user_type_model_class:Admin::class, request:$request, password_reset_code_expiration_time:$password_reset_code_expiration_time, user_type_:'admin');
+    }
+
+    public function send_newsletter_to_users(Request $request)
+    {
+
+        $request->validate([
+            'subject_of_email' => ['required', 'string', 'max:255'],
+            'attention_grabbing_text' => ['required', 'string', 'max:255'],
+            'main_text' => ['required', 'string'],
+        ]);
+
+        //datas which will go with email
+        $email_datas = [
+            'subject_of_email' => $request->subject_of_email,
+            'line1_text_of_email' => $request->attention_grabbing_text,
+            'line2_text_of_email' => $request->main_text,
+        ];
+        //end datas which will go with email
+
+        $recipients_of_the_email = NewsLetter::get();
+
+        //send email
+        Mail::to($recipients_of_the_email)->send(new EmailSend($email_datas));
+        //end send email
+
+        return response([
+            'all_ok' => 'yes',
+            'messes' => 'NewsLetter is Successfully Sent!',
+        ], 200);
+
     }
 
 }

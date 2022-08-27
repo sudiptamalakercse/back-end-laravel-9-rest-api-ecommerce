@@ -7,6 +7,7 @@ use App\Custom_Services\UserControllerService;
 use App\Http\Resources\Both\CategoryResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
+use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
 use App\Models\User;
@@ -361,6 +362,34 @@ class UserController extends Controller
                 'message' => 'No Product Record!',
             ], 404);
         }
+    }
+
+    public function collect_email_for_newsletter(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email', 'max:255', 'unique:news_letters'],
+        ]);
+
+        $news_letter = NewsLetter::create([
+            'email' => $request->email,
+        ]);
+
+        if ($news_letter) {
+
+            return response([
+                'all_ok' => 'yes',
+                'messes' => 'Your Subscription is Done!',
+            ], 201);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Not Possible to Subscribe!',
+            ], 403);
+
+        }
+
     }
 
 }

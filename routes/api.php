@@ -71,6 +71,7 @@ Route::controller(UserController::class)->group(function () {
         Route::get('latest/products', 'get_latest_products');
         Route::get('top/rated/products', 'get_top_rated_products');
         Route::get('review/products', 'get_review_products');
+        Route::post('collect/email/for/newsletter', 'collect_email_for_newsletter');
     });
 });
 
@@ -89,6 +90,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::prefix('admin')->group(function () {
             Route::post('logout', 'logout');
+            Route::post('send/newsletter/to/users', 'send_newsletter_to_users');
         });
     });
 });

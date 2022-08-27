@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2022 at 10:57 AM
+-- Generation Time: Aug 27, 2022 at 07:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -282,7 +282,9 @@ INSERT INTO `news_letters` (`id`, `email`, `created_at`, `updated_at`) VALUES
 (7, 'hmante@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
 (8, 'raynor.rosendo@example.org', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
 (9, 'tre.conn@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
-(10, 'lynch.thora@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08');
+(10, 'lynch.thora@example.net', '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(12, 'malakersudipta@gmail.com', '2022-08-27 09:38:53', '2022-08-27 09:38:53'),
+(13, 'sudiptarakib@gmail.com', '2022-08-27 11:38:00', '2022-08-27 11:38:00');
 
 -- --------------------------------------------------------
 
@@ -316,6 +318,13 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\Admin', 1, 'deffertz@example.org', '0921789ad1b74dfe4779e1d03884a5a4a908f0dfc1bf5d554040f6f6fc6d42fb', '[\"*\"]', '2022-08-27 11:49:54', '2022-08-27 11:35:59', '2022-08-27 11:49:54');
 
 -- --------------------------------------------------------
 
@@ -934,7 +943,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `news_letters`
 --
 ALTER TABLE `news_letters`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `password_resets`
@@ -946,7 +955,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`

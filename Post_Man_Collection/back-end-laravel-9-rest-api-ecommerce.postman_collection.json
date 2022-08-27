@@ -34,12 +34,12 @@
 											"urlencoded": [
 												{
 													"key": "email",
-													"value": "malakersudipta@gmail.com",
+													"value": "deffertz@example.org",
 													"type": "default"
 												},
 												{
 													"key": "password",
-													"value": "12345678",
+													"value": "password",
 													"type": "default"
 												}
 											]
@@ -425,7 +425,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "15|0UgoXNjomBd9xBL9ytYfs8nAeLTK3A8ZEfp3It11",
+											"value": "1|QmL3ePbzSvpwIJQEdVmwZL8qkXfktAad246eaQ8O",
 											"type": "string"
 										}
 									]
@@ -450,6 +450,68 @@
 									"path": [
 										"admin",
 										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Newsletter",
+					"item": [
+						{
+							"name": "Send Newsletter to Users for  Admin",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|QmL3ePbzSvpwIJQEdVmwZL8qkXfktAad246eaQ8O",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "subject_of_email",
+											"value": "News Letter",
+											"type": "default"
+										},
+										{
+											"key": "attention_grabbing_text",
+											"value": "Hi, Good Night",
+											"type": "default"
+										},
+										{
+											"key": "main_text",
+											"value": "Our All Products are Now With 50 % Discount. Please Check Our Ecommerce App. \n\nThank You!",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/send/newsletter/to/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"send",
+										"newsletter",
+										"to",
+										"users"
 									]
 								}
 							},
@@ -1165,6 +1227,48 @@
 														"user",
 														"review",
 														"products"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Newsletter",
+									"item": [
+										{
+											"name": "Collect Email for Newsletter for User",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "sudiptarakib@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/collect/email/for/newsletter",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"collect",
+														"email",
+														"for",
+														"newsletter"
 													]
 												}
 											},
