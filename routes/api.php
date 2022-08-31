@@ -72,6 +72,8 @@ Route::controller(UserController::class)->group(function () {
         Route::get('top/rated/products', 'get_top_rated_products');
         Route::get('review/products', 'get_review_products');
         Route::post('collect/email/for/newsletter', 'collect_email_for_newsletter');
+        Route::get('sale/off/products/{product_name}/{product_category}/{product_price}/{product_color}/{product_size}', 'get_sale_off_products')->name('user.sale.off.products');
+        Route::get('products/{product_name}/{product_category}/{product_price}/{product_color}/{product_size}/{sort_type}', 'get_products')->name('user.products');
     });
 });
 

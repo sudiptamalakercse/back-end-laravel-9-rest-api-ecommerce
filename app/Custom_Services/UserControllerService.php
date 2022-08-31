@@ -6,9 +6,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Resources\Both\ProductResource;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class UserControllerService
 {
+
     public static function get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table($review_colum_null_check = false)
     {
 
@@ -148,6 +150,170 @@ class UserControllerService
             ->get();
 
         return $products = ProductResource::collection($products);
+    }
+
+    //This may contain duplicate values
+    public static function get_unique_categories_ids_for_highlighting_categories($categories_ids)
+    {
+        $current_route_name = Route::currentRouteName();
+
+        $categories_ids_from_sale_off_products_session = session()->get('categories_ids_from_sale_off_products');
+        $categories_ids_from_products_session = session()->get('categories_ids_from_products');
+        $categories_ids_from_latest_products_session = session()->get('categories_ids_from_latest_products');
+
+        if ($categories_ids_from_sale_off_products_session == null) {
+            session()->put('categories_ids_from_sale_off_products', []);
+        }
+
+        if ($categories_ids_from_products_session == null) {
+            session()->put('categories_ids_from_products', []);
+        }
+
+        if ($categories_ids_from_latest_products_session == null) {
+            session()->put('categories_ids_from_latest_products', []);
+        }
+
+        if ($current_route_name == 'user.sale.off.products') {
+
+            session()->put('categories_ids_from_sale_off_products', $categories_ids);
+
+        } elseif ($current_route_name == 'user.products') {
+
+            session()->put('categories_ids_from_products', $categories_ids);
+
+        } elseif ($current_route_name == 'user.latest.products') {
+
+            session()->put('categories_ids_from_latest_products', $categories_ids);
+
+        }
+
+        $categories_ids_from_sale_off_products_session = session()->get('categories_ids_from_sale_off_products');
+        $categories_ids_from_products_session = session()->get('categories_ids_from_products');
+        $categories_ids_from_latest_products_session = session()->get('categories_ids_from_latest_products');
+
+        //This may contain duplicate values
+        $categories_ids_for_highlighting_categories = array(...$categories_ids_from_sale_off_products_session, ...$categories_ids_from_products_session, ...$categories_ids_from_latest_products_session);
+
+        //This will contain unique values
+        $unique_categories_ids_for_highlighting_categories = array_unique($categories_ids_for_highlighting_categories);
+
+        // start array element from 0 index
+        $unique_categories_ids_for_highlighting_categories = array(...$unique_categories_ids_for_highlighting_categories);
+
+        session()->put('unique_categories_ids_for_highlighting_categories', $unique_categories_ids_for_highlighting_categories);
+
+        return $unique_categories_ids_for_highlighting_categories;
+
+    }
+
+    public static function get_sale_off_products_or_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type = "''")
+    {
+
+        //this may contain duplicate values
+        $categories_ids_for_highlighting_categories = [];
+
+        $product_price = floatval($product_price);
+
+        if ($product_price == 0.0) {
+            $product_price = Product::max('minimum_quantity_selling_price');
+        }
+
+        if (Product::count() > 0) {
+
+            $current_route_name = Route::currentRouteName();
+
+            $products = Product::where('id', '!=', null);
+
+            if ($product_category != "''") {
+                $products = $products->whereRelation('productInformation', function ($query) use ($product_category) {
+                    $query->whereRelation('category', 'name', $product_category);
+                });
+            }
+
+            if ($product_size != "''") {
+                $products = $products->whereRelation('productSize', 'name', $product_size);
+            }
+
+            if ($product_name != "''") {
+                $products = $products->whereRelation('productInformation', 'name', 'like', '%' . $product_name . '%');
+            }
+
+            if ($product_color != "''") {
+                $products = $products->whereRelation('productColor', 'name', $product_color);
+            }
+
+            if ($product_price != "''") {
+                $products = $products->where('minimum_quantity_selling_price', '<=', $product_price);
+            }
+
+            if ($current_route_name == 'user.sale.off.products') {
+
+                $products = $products->where('discount_in_percent', '>', 0);
+
+                $products = $products->inRandomOrder();
+
+            } elseif ($current_route_name == 'user.products') {
+
+                $products = $products->where('discount_in_percent', 0);
+
+                if ($sort_type == "''") {
+
+                    $products = $products->orderBy('id', 'DESC');
+                } else {
+                    $products = $products->orderBy('id', $sort_type);
+                }
+
+            }
+
+            $products_ = $products->get();
+
+            foreach ($products_ as $product) {
+                array_push($categories_ids_for_highlighting_categories, $product->productInformation->category->id);
+            }
+
+            if ($current_route_name == 'user.sale.off.products') {
+
+                $products = $products_;
+
+            } elseif ($current_route_name == 'user.products') {
+
+                $products = $products->paginate(12);
+
+            }
+
+            $unique_categories_ids_for_highlighting_categories = self::get_unique_categories_ids_for_highlighting_categories($categories_ids_for_highlighting_categories);
+
+            $products = ProductResource::collection($products);
+
+            if ($current_route_name == 'user.products') {
+
+                $products->additional([
+                    'all_ok' => 'yes',
+                    'unique_categories_ids_for_highlighting_categories' => $unique_categories_ids_for_highlighting_categories,
+                ]);
+
+                return $products;
+
+            } elseif ($current_route_name == 'user.sale.off.products') {
+
+                return response([
+                    'all_ok' => 'yes',
+                    'products' => $products,
+                    'unique_categories_ids_for_highlighting_categories' => $unique_categories_ids_for_highlighting_categories,
+
+                ], 200);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Record!',
+            ], 404);
+
+        }
+
     }
 
 }

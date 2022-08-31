@@ -52,7 +52,7 @@ class ProductResource extends JsonResource
 
             return ProductImgResource::collection($this->productImgs);
 
-        } elseif ($current_route_name == 'product.detail') {
+        } elseif ($current_route_name == 'both.product.detail') {
 
             return ProductImgResource::collection($this->productImgs()->limit(4)->get());
 
@@ -71,7 +71,7 @@ class ProductResource extends JsonResource
 
             return ReviewResource::collection($this->reviews()->orderBy('id', 'DESC')->get());
 
-        } elseif ($current_route_name == 'product.detail') {
+        } elseif ($current_route_name == 'both.product.detail') {
 
             return ReviewResource::collection($this->reviews()->orderBy('id', 'DESC')->limit(Service1::$last_n_records_of_reviews_table)->get());
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2022 at 07:52 PM
+-- Generation Time: Aug 31, 2022 at 11:16 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -324,7 +324,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\Admin', 1, 'deffertz@example.org', '0921789ad1b74dfe4779e1d03884a5a4a908f0dfc1bf5d554040f6f6fc6d42fb', '[\"*\"]', '2022-08-27 11:49:54', '2022-08-27 11:35:59', '2022-08-27 11:49:54');
+(2, 'App\\Models\\Admin', 1, 'deffertz@example.org', '52399e4333899906bff288419946887da2c285daeba67696d81687ce3d4722e7', '[\"*\"]', '2022-08-27 21:29:07', '2022-08-27 21:00:46', '2022-08-27 21:29:07');
 
 -- --------------------------------------------------------
 
@@ -355,13 +355,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_information_id`, `minimum_quantity`, `minimum_quantity_buying_price`, `minimum_quantity_selling_price`, `unit_id`, `discount_in_percent`, `stock`, `is_shipping_free`, `shipping_id`, `product_size_id`, `product_color_id`, `admin_id`, `created_at`, `updated_at`) VALUES
-(1, 9, 921, 35.00, 235.00, 3, 11, 99, 0, 6, 8, 7, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
-(2, 6, 977, 325.00, 525.00, 7, 37, 117, 1, 1, 3, 2, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
-(3, 9, 814, 334.00, 534.00, 1, 4, 404, 0, 9, 1, 9, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(1, 9, 921, 35.00, 235.00, 3, 0, 99, 0, 6, 8, 7, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(2, 10, 977, 325.00, 525.00, 7, 0, 117, 1, 1, 8, 7, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
+(3, 10, 814, 334.00, 534.00, 1, 0, 404, 0, 9, 1, 9, 1, '2022-08-27 02:55:10', '2022-08-27 02:55:10'),
 (4, 7, 138, 577.00, 777.00, 10, 17, 101, 0, 3, 4, 2, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
 (5, 8, 372, 825.00, 1025.00, 3, 32, 405, 1, 7, 7, 1, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
-(6, 10, 431, 232.00, 432.00, 4, 35, 371, 1, 8, 10, 8, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
-(7, 7, 771, 222.00, 422.00, 9, 20, 51, 0, 7, 9, 9, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(6, 10, 431, 232.00, 432.00, 4, 0, 371, 1, 8, 10, 8, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
+(7, 10, 771, 222.00, 422.00, 9, 0, 51, 0, 7, 9, 9, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
 (8, 1, 687, 435.00, 635.00, 1, 28, 10, 0, 10, 5, 9, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
 (9, 7, 870, 990.00, 1190.00, 7, 47, 191, 1, 9, 1, 2, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11'),
 (10, 1, 370, 510.00, 710.00, 3, 44, 379, 1, 7, 3, 7, 1, '2022-08-27 02:55:11', '2022-08-27 02:55:11');
@@ -447,12 +447,12 @@ CREATE TABLE `product_informations` (
 --
 
 INSERT INTO `product_informations` (`id`, `name`, `detail`, `information`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'Product 134', 'Accusantium sint esse enim facilis pariatur fugiat modi. Itaque deserunt hic iusto et quo quia eum.', 'Non distinctio error aperiam autem non. Minus ut iste sequi nemo doloribus aut omnis.', 2, '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
+(1, 'Product 134', 'Accusantium sint esse enim facilis pariatur fugiat modi. Itaque deserunt hic iusto et quo quia eum.', 'Non distinctio error aperiam autem non. Minus ut iste sequi nemo doloribus aut omnis.', 1, '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
 (2, 'Product 8', 'Eaque consequatur voluptatem ut quidem ea ullam ut. Consequatur sunt qui rem voluptates ipsum.', 'Veniam dolor nam aliquam. Ea provident nulla culpa laborum. Repellat eius vero aut ullam repellat.', 4, '2022-08-27 02:55:08', '2022-08-27 02:55:08'),
 (3, 'Product 18', 'Nobis eaque placeat ut veniam repellendus. Velit eveniet esse praesentium aspernatur.', 'Dolor est molestiae aut sunt repudiandae veritatis. Magni aut itaque est expedita soluta.', 8, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
 (4, 'Product 88', 'Sint pariatur itaque assumenda et maiores in quo excepturi. Soluta quo temporibus veritatis ut in.', 'Et minus mollitia consectetur inventore. Rerum aliquid quo dolorem maiores voluptatem et corporis.', 1, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
 (5, 'Product 5', 'Nihil quis tenetur fuga vel ut. Ipsa quaerat necessitatibus culpa libero sed.', 'Ea minus et numquam voluptatem rerum perspiciatis. Qui omnis ipsum aut odio beatae eum molestiae.', 2, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
-(6, 'Product 74', 'Minima dolorum facere optio. Aut excepturi assumenda est aut maiores.', 'Quo praesentium fugit rerum quia occaecati reprehenderit. Distinctio nihil vitae sed consequatur.', 7, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
+(6, 'Product 74', 'Minima dolorum facere optio. Aut excepturi assumenda est aut maiores.', 'Quo praesentium fugit rerum quia occaecati reprehenderit. Distinctio nihil vitae sed consequatur.', 3, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
 (7, 'Product 30', 'Fuga fuga aut in dolorum. Quos culpa suscipit et et voluptatem. Facere est quo doloremque quia et.', 'Et qui eligendi mollitia autem adipisci ratione. Pariatur nisi quibusdam itaque.', 1, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
 (8, 'Product 50', 'Sint autem hic placeat alias repellat odit. Eligendi asperiores voluptas quia enim autem.', 'Officia illum et doloribus ducimus architecto fuga molestiae. Doloremque suscipit et error ullam.', 7, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
 (9, 'Product 2', 'Consequuntur et unde porro quisquam. Corrupti ipsa omnis incidunt.', 'Eum aut sit aut. Tempore velit aut velit. Optio corporis est sit.', 3, '2022-08-27 02:55:09', '2022-08-27 02:55:09'),
@@ -955,7 +955,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`

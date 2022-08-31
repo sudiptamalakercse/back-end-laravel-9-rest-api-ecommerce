@@ -392,4 +392,14 @@ class UserController extends Controller
 
     }
 
+    public function get_sale_off_products($product_name, $product_category, $product_price, $product_color, $product_size)
+    {
+        return UserControllerService::get_sale_off_products_or_products($product_name, $product_category, $product_price, $product_color, $product_size);
+    }
+
+    public function get_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type)
+    {
+        return UserControllerService::get_sale_off_products_or_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type);
+    }
+
 }

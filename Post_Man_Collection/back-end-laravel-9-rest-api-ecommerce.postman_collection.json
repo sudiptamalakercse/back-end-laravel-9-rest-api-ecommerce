@@ -468,7 +468,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "1|QmL3ePbzSvpwIJQEdVmwZL8qkXfktAad246eaQ8O",
+											"value": "2|Ps8Zi3ZnBhKvxMNBCMCGbLyKBrKsh5T3fOm6XhVb",
 											"type": "string"
 										}
 									]
@@ -496,7 +496,7 @@
 										},
 										{
 											"key": "main_text",
-											"value": "Our All Products are Now With 50 % Discount. Please Check Our Ecommerce App. \n\nThank You!",
+											"value": "Our All Products are Now With 50 % Discount. Please Check Our Ecommerce App.",
 											"type": "default"
 										}
 									]
@@ -814,427 +814,6 @@
 							"name": "Routes With & Without Email Verification",
 							"item": [
 								{
-									"name": "Banner Section",
-									"item": [
-										{
-											"name": "Get Category in Which Has Maximum Discount for Product for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/category/with/maximum/discount",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"category",
-														"with",
-														"maximum",
-														"discount"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
-									"name": "Popular Products Section",
-									"item": [
-										{
-											"name": "Get Catagories of Popular Products for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/catagories/of/popular/products",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"catagories",
-														"of",
-														"popular",
-														"products"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get Popular Products of All Categories for User",
-											"request": {
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"url": {
-													"raw": "{{url}}/user/popular/products/of/all/categories",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"popular",
-														"products",
-														"of",
-														"all",
-														"categories"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get Popular Products of Specific Category for User",
-											"request": {
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"url": {
-													"raw": "{{url}}/user/popular/products/of/specific/category/Category 80",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"popular",
-														"products",
-														"of",
-														"specific",
-														"category",
-														"Category 80"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
-									"name": "Two Categories Section",
-									"item": [
-										{
-											"name": "Get Random Category for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/random/category",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"random",
-														"category"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get Category in Which Has Second Maximum Discount for Product for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/category/with/second/maximum/discount",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"category",
-														"with",
-														"second",
-														"maximum",
-														"discount"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
-									"name": "Latest and Top Rated and Review Products Section",
-									"item": [
-										{
-											"name": "Get Latest Products for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/latest/products",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"latest",
-														"products"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get Top Rated Products for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/top/rated/products",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"top",
-														"rated",
-														"products"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "Get Review Products for User",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"auth": {
-													"type": "bearer",
-													"bearer": [
-														{
-															"key": "token",
-															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
-															"type": "string"
-														}
-													]
-												},
-												"method": "GET",
-												"header": [
-													{
-														"key": "Accept",
-														"value": "application/json",
-														"type": "default"
-													}
-												],
-												"body": {
-													"mode": "urlencoded",
-													"urlencoded": [
-														{
-															"key": "email",
-															"value": "malakersudipta@gmail.com",
-															"type": "default"
-														}
-													]
-												},
-												"url": {
-													"raw": "{{url}}/user/review/products",
-													"host": [
-														"{{url}}"
-													],
-													"path": [
-														"user",
-														"review",
-														"products"
-													]
-												}
-											},
-											"response": []
-										}
-									]
-								},
-								{
 									"name": "Newsletter",
 									"item": [
 										{
@@ -1273,6 +852,554 @@
 												}
 											},
 											"response": []
+										}
+									]
+								},
+								{
+									"name": "Home Page",
+									"item": [
+										{
+											"name": "Banner Section",
+											"item": [
+												{
+													"name": "Get Category in Which Has Maximum Discount for Product for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/category/with/maximum/discount",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"category",
+																"with",
+																"maximum",
+																"discount"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Popular Products Section",
+											"item": [
+												{
+													"name": "Get Catagories of Popular Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/catagories/of/popular/products",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"catagories",
+																"of",
+																"popular",
+																"products"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Popular Products of All Categories for User",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"url": {
+															"raw": "{{url}}/user/popular/products/of/all/categories",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"popular",
+																"products",
+																"of",
+																"all",
+																"categories"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Popular Products of Specific Category for User",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"url": {
+															"raw": "{{url}}/user/popular/products/of/specific/category/Category 80",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"popular",
+																"products",
+																"of",
+																"specific",
+																"category",
+																"Category 80"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Two Categories Section",
+											"item": [
+												{
+													"name": "Get Random Category for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/random/category",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"random",
+																"category"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Category in Which Has Second Maximum Discount for Product for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/category/with/second/maximum/discount",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"category",
+																"with",
+																"second",
+																"maximum",
+																"discount"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Latest and Top Rated and Review Products Section",
+											"item": [
+												{
+													"name": "Get Latest Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/latest/products",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"latest",
+																"products"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Top Rated Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/top/rated/products",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"top",
+																"rated",
+																"products"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Review Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/review/products",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"review",
+																"products"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Shop Page",
+									"item": [
+										{
+											"name": "Sale Off Products Section",
+											"item": [
+												{
+													"name": "Get Sale Off Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/sale/off/products/''/''/''/''/''",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"sale",
+																"off",
+																"products",
+																"''",
+																"''",
+																"''",
+																"''",
+																"''"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Products Section",
+											"item": [
+												{
+													"name": "Get Products for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/products/''/''/''/''/''/''",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"products",
+																"''",
+																"''",
+																"''",
+																"''",
+																"''",
+																"''"
+															]
+														}
+													},
+													"response": []
+												}
+											]
 										}
 									]
 								}
