@@ -181,7 +181,7 @@ class UserControllerService
 
             session()->put('categories_ids_from_products', $categories_ids);
 
-        } elseif ($current_route_name == 'user.latest.products') {
+        } elseif ($current_route_name == 'user.latest.products2') {
 
             session()->put('categories_ids_from_latest_products', $categories_ids);
 
@@ -206,7 +206,7 @@ class UserControllerService
 
     }
 
-    public static function get_sale_off_products_or_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type = "''")
+    public static function get_sale_off_products_or_products_or_latest_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type = "''")
     {
 
         //this may contain duplicate values
@@ -246,22 +246,30 @@ class UserControllerService
                 $products = $products->where('minimum_quantity_selling_price', '<=', $product_price);
             }
 
-            if ($current_route_name == 'user.sale.off.products') {
+            if ($current_route_name != 'user.latest.products2') {
 
-                $products = $products->where('discount_in_percent', '>', 0);
+                if ($current_route_name == 'user.sale.off.products') {
 
-                $products = $products->inRandomOrder();
+                    $products = $products->where('discount_in_percent', '>', 0);
 
-            } elseif ($current_route_name == 'user.products') {
+                    $products = $products->inRandomOrder();
 
-                $products = $products->where('discount_in_percent', 0);
+                } elseif ($current_route_name == 'user.products') {
 
-                if ($sort_type == "''") {
+                    $products = $products->where('discount_in_percent', 0);
 
-                    $products = $products->orderBy('id', 'DESC');
-                } else {
-                    $products = $products->orderBy('id', $sort_type);
+                    if ($sort_type == "''") {
+
+                        $products = $products->orderBy('id', 'DESC');
+                    } else {
+                        $products = $products->orderBy('id', $sort_type);
+                    }
+
                 }
+
+            } elseif ($current_route_name == 'user.latest.products2') {
+
+                $products = $products->orderBy('id', 'DESC')->limit(6);
 
             }
 
@@ -271,7 +279,7 @@ class UserControllerService
                 array_push($categories_ids_for_highlighting_categories, $product->productInformation->category->id);
             }
 
-            if ($current_route_name == 'user.sale.off.products') {
+            if ($current_route_name == 'user.sale.off.products' || $current_route_name == 'user.latest.products2') {
 
                 $products = $products_;
 
@@ -294,7 +302,7 @@ class UserControllerService
 
                 return $products;
 
-            } elseif ($current_route_name == 'user.sale.off.products') {
+            } elseif ($current_route_name == 'user.sale.off.products' || $current_route_name == 'user.latest.products2') {
 
                 return response([
                     'all_ok' => 'yes',

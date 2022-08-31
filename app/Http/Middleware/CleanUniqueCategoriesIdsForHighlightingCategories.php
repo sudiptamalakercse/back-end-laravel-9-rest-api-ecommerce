@@ -26,7 +26,7 @@ class CleanUniqueCategoriesIdsForHighlightingCategories
 
         $current_route_name = Route::currentRouteName();
 
-        if ($current_route_name != 'user.products' && $current_route_name != 'user.sale.off.products' && $current_route_name != 'user.latest.products') {
+        if ($current_route_name != 'user.products' && $current_route_name != 'user.sale.off.products' && $current_route_name != 'user.latest.products2') {
 
             Session::forget('categories_ids_from_sale_off_products');
             Session::forget('categories_ids_from_products');

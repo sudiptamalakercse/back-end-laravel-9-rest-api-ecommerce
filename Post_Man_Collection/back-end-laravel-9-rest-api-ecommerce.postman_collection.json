@@ -1400,6 +1400,64 @@
 													"response": []
 												}
 											]
+										},
+										{
+											"name": "Latest Products Section",
+											"item": [
+												{
+													"name": "Get Latest Products 2 for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/latest/products2/''/''/''/''/''",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"latest",
+																"products2",
+																"''",
+																"''",
+																"''",
+																"''",
+																"''"
+															]
+														}
+													},
+													"response": []
+												}
+											]
 										}
 									]
 								}
