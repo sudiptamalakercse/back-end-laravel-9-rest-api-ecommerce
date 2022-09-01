@@ -407,4 +407,70 @@ class UserController extends Controller
         return UserControllerService::get_sale_off_products_or_products_or_latest_products(product_name:$product_name, product_category:$product_category, product_price:$product_price, product_color:$product_color, product_size:$product_size);
     }
 
+    public function get_minimum_and_maximum_prices_from_session_unique_categories_ids_array()
+    {
+        $no_minimum_and_maximum_prices = false;
+
+        $unique_categories_ids_for_highlighting_categories_session = session()->get('unique_categories_ids_for_highlighting_categories');
+
+        if ($unique_categories_ids_for_highlighting_categories_session != null && count($unique_categories_ids_for_highlighting_categories_session) > 0) {
+
+            $products = Product::whereRelation('productInformation', function ($query) use ($unique_categories_ids_for_highlighting_categories_session) {
+                $query->whereRelation('category', function ($query) use ($unique_categories_ids_for_highlighting_categories_session) {
+
+                    return $query->whereIn('id', $unique_categories_ids_for_highlighting_categories_session);
+
+                });
+
+            })->get();
+
+            //  $products = ProductResource::collection($products);
+
+            $price_list = [];
+
+            foreach ($products as $product) {
+
+                $minimum_quantity_selling_price = $product->minimum_quantity_selling_price;
+
+                $discount_in_percent = $product->discount_in_percent;
+
+                $amount_reduced = ($discount_in_percent / 100) * $minimum_quantity_selling_price;
+
+                $minimum_quantity_selling_price_after_discount = ceil($minimum_quantity_selling_price - $amount_reduced);
+
+                array_push($price_list, $minimum_quantity_selling_price_after_discount);
+            }
+
+            if (count($price_list) > 0) {
+
+                $minimum_product_price = min($price_list);
+                $maximum_product_price = max($price_list);
+
+            } else {
+                $no_minimum_and_maximum_prices = true;
+            }
+
+        } else {
+            $no_minimum_and_maximum_prices = true;
+
+        }
+
+        if ($no_minimum_and_maximum_prices == false) {
+
+            return response([
+                'all_ok' => 'yes',
+                'minimum_product_price' => $minimum_product_price,
+                'maximum_product_price' => $maximum_product_price,
+            ], 200);
+
+        } elseif ($no_minimum_and_maximum_prices == true) {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'No Minimum and Maximum Prices!',
+            ], 404);
+
+        }
+    }
+
 }

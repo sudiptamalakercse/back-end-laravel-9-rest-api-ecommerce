@@ -1458,6 +1458,67 @@
 													"response": []
 												}
 											]
+										},
+										{
+											"name": "Product Price Section",
+											"item": [
+												{
+													"name": "Get Minimum and Maximum Prices from Session Unique Categories Ids Array for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/minimum/and/maximum/prices/from/session/unique/categories/ids/array",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"minimum",
+																"and",
+																"maximum",
+																"prices",
+																"from",
+																"session",
+																"unique",
+																"categories",
+																"ids",
+																"array"
+															]
+														}
+													},
+													"response": []
+												}
+											]
 										}
 									]
 								}

@@ -75,6 +75,7 @@ Route::controller(UserController::class)->group(function () {
         Route::get('sale/off/products/{product_name}/{product_category}/{product_price}/{product_color}/{product_size}', 'get_sale_off_products')->name('user.sale.off.products');
         Route::get('products/{product_name}/{product_category}/{product_price}/{product_color}/{product_size}/{sort_type}', 'get_products')->name('user.products');
         Route::get('latest/products2/{product_name}/{product_category}/{product_price}/{product_color}/{product_size}', 'get_latest_products2')->name('user.latest.products2');
+        Route::get('minimum/and/maximum/prices/from/session/unique/categories/ids/array', 'get_minimum_and_maximum_prices_from_session_unique_categories_ids_array');
     });
 });
 
