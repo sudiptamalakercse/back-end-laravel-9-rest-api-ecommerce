@@ -1322,7 +1322,7 @@
 															]
 														},
 														"url": {
-															"raw": "{{url}}/user/sale/off/products/''/''/''/''/''",
+															"raw": "{{url}}/user/sale/off/products/''/''/''/''/''/''",
 															"host": [
 																"{{url}}"
 															],
@@ -1331,6 +1331,7 @@
 																"sale",
 																"off",
 																"products",
+																"''",
 																"''",
 																"''",
 																"''",
@@ -1381,13 +1382,14 @@
 															]
 														},
 														"url": {
-															"raw": "{{url}}/user/products/''/''/''/''/''/''",
+															"raw": "{{url}}/user/products/''/''/''/''/''/''/''",
 															"host": [
 																"{{url}}"
 															],
 															"path": [
 																"user",
 																"products",
+																"''",
 																"''",
 																"''",
 																"''",
@@ -1439,7 +1441,7 @@
 															]
 														},
 														"url": {
-															"raw": "{{url}}/user/latest/products2/''/''/''/''/''",
+															"raw": "{{url}}/user/latest/products2/''/''/''/''/''/''",
 															"host": [
 																"{{url}}"
 															],
@@ -1447,6 +1449,7 @@
 																"user",
 																"latest",
 																"products2",
+																"''",
 																"''",
 																"''",
 																"''",

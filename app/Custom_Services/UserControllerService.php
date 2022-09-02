@@ -206,16 +206,23 @@ class UserControllerService
 
     }
 
-    public static function get_sale_off_products_or_products_or_latest_products($product_name, $product_category, $product_price, $product_color, $product_size, $sort_type = "''")
+    public static function get_sale_off_products_or_products_or_latest_products($product_name, $product_category, $product_price_minimum, $product_price_maximum, $product_color, $product_size, $sort_type = "''")
     {
+        $product_ids_list = [];
 
         //this may contain duplicate values
         $categories_ids_for_highlighting_categories = [];
 
-        $product_price = floatval($product_price);
+        if ($product_price_minimum == "''") {
+            $product_price_minimum = 0.0;
+        } else {
+            $product_price_minimum = floatval($product_price_minimum);
+        }
 
-        if ($product_price == 0.0) {
-            $product_price = Product::max('minimum_quantity_selling_price');
+        if ($product_price_maximum == "''") {
+            $product_price_maximum = Product::max('minimum_quantity_selling_price');
+        } else {
+            $product_price_maximum = floatval($product_price_maximum);
         }
 
         if (Product::count() > 0) {
@@ -242,9 +249,27 @@ class UserControllerService
                 $products = $products->whereRelation('productColor', 'name', $product_color);
             }
 
-            if ($product_price != "''") {
-                $products = $products->where('minimum_quantity_selling_price', '<=', $product_price);
+            $products = $products->get();
+
+            foreach ($products as $product) {
+
+                $minimum_quantity_selling_price = $product->minimum_quantity_selling_price;
+
+                $discount_in_percent = $product->discount_in_percent;
+
+                $amount_reduced = ($discount_in_percent / 100) * $minimum_quantity_selling_price;
+
+                $minimum_quantity_selling_price_after_discount = ceil($minimum_quantity_selling_price - $amount_reduced);
+
+                if (($minimum_quantity_selling_price_after_discount >= $product_price_minimum) && ($minimum_quantity_selling_price_after_discount <= $product_price_maximum)) {
+
+                    array_push($product_ids_list, $product->id);
+
+                }
+
             }
+
+            $products = Product::whereIn('id', $product_ids_list);
 
             if ($current_route_name != 'user.latest.products2') {
 
