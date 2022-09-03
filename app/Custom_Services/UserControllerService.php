@@ -349,4 +349,63 @@ class UserControllerService
 
     }
 
+    public static function get_unique_product_colors_or_unique_product_sizes_from_session_unique_categories_ids_array($type, $product_color_or_product_size_model_class)
+    {
+
+        ${'no_unique_' . $type} = false;
+
+        ${'unique_' . $type . '_ids'} = [];
+
+        $upper_type = ucfirst($type);
+
+        $unique_categories_ids_for_highlighting_categories_session = session()->get('unique_categories_ids_for_highlighting_categories');
+
+        if ($unique_categories_ids_for_highlighting_categories_session != null && count($unique_categories_ids_for_highlighting_categories_session) > 0) {
+
+            $products = Product::whereRelation('productInformation', function ($query) use ($unique_categories_ids_for_highlighting_categories_session) {
+                $query->whereRelation('category', function ($query) use ($unique_categories_ids_for_highlighting_categories_session) {
+
+                    return $query->whereIn('id', $unique_categories_ids_for_highlighting_categories_session);
+
+                });
+
+            })
+                ->select('product_' . $type . '_id')->distinct()
+                ->get();
+
+            foreach ($products as $product) {
+                array_push(${'unique_' . $type . '_ids'}, $product->{'product_' . $type . '_id'});
+            }
+
+            ${'product_' . $type . 's'} = $product_color_or_product_size_model_class::whereIn('id', ${'unique_' . $type . '_ids'})
+                ->orderByRaw('LENGTH(name), name')
+                ->get();
+
+            if (count(${'product_' . $type . 's'}) > 0) {
+
+            } else {
+                ${'no_unique_' . $type} = true;
+            }
+        } else {
+            ${'no_unique_' . $type} = true;
+        }
+
+        if (${'no_unique_' . $type} == false) {
+
+            return response([
+                'all_ok' => 'yes',
+                'product_' . $type . 's' => ${'product_' . $type . 's'},
+
+            ], 200);
+
+        } elseif (${'no_unique_' . $type} == true) {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'No Unique' . $upper_type . '!',
+            ], 404);
+
+        }
+    }
+
 }

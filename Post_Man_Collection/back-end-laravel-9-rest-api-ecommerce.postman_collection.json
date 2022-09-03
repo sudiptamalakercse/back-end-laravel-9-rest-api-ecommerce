@@ -1463,7 +1463,7 @@
 											]
 										},
 										{
-											"name": "Product Price Section",
+											"name": "Product Prices Section",
 											"item": [
 												{
 													"name": "Get Minimum and Maximum Prices from Session Unique Categories Ids Array for User",
@@ -1510,6 +1510,126 @@
 																"and",
 																"maximum",
 																"prices",
+																"from",
+																"session",
+																"unique",
+																"categories",
+																"ids",
+																"array"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Product Colors Secion",
+											"item": [
+												{
+													"name": "Get Unique Product Colors from Session Unique Categories Ids Array for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/unique/product/colors/from/session/unique/categories/ids/array",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"unique",
+																"product",
+																"colors",
+																"from",
+																"session",
+																"unique",
+																"categories",
+																"ids",
+																"array"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "Product Sizes Section",
+											"item": [
+												{
+													"name": "Get Unique Product Sizes from Session Unique Categories Ids Array for User",
+													"protocolProfileBehavior": {
+														"disableBodyPruning": true
+													},
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/unique/product/sizes/from/session/unique/categories/ids/array",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"unique",
+																"product",
+																"sizes",
 																"from",
 																"session",
 																"unique",

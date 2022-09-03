@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
+use App\Models\ProductColor;
+use App\Models\ProductSize;
 use App\Models\User;
 use App\Models\UserVerify;
 use Carbon\Carbon;
@@ -471,6 +473,16 @@ class UserController extends Controller
             ], 404);
 
         }
+    }
+
+    public function get_unique_product_colors_from_session_unique_categories_ids_array()
+    {
+        return UserControllerService::get_unique_product_colors_or_unique_product_sizes_from_session_unique_categories_ids_array(type:'color', product_color_or_product_size_model_class:ProductColor::class);
+    }
+
+    public function get_unique_product_sizes_from_session_unique_categories_ids_array()
+    {
+        return UserControllerService::get_unique_product_colors_or_unique_product_sizes_from_session_unique_categories_ids_array(type:'size', product_color_or_product_size_model_class:ProductSize::class);
     }
 
 }
