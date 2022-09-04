@@ -42,4 +42,14 @@ class Service1
             return false;
         }
     }
+
+    public static function get_minimum_quantity_selling_price_after_discount($minimum_quantity_selling_price, $discount_in_percent)
+    {
+
+        $amount_reduced = ($discount_in_percent / 100) * $minimum_quantity_selling_price;
+
+        $minimum_quantity_selling_price_after_discount = ceil($minimum_quantity_selling_price - $amount_reduced);
+
+        return $minimum_quantity_selling_price_after_discount;
+    }
 }

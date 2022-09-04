@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Custom_Services\AuthenticationService;
+use App\Custom_Services\Service1;
 use App\Custom_Services\UserControllerService;
 use App\Http\Resources\Both\CategoryResource;
+use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
 use App\Models\NewsLetter;
@@ -426,8 +428,6 @@ class UserController extends Controller
 
             })->get();
 
-            //  $products = ProductResource::collection($products);
-
             $price_list = [];
 
             foreach ($products as $product) {
@@ -483,6 +483,65 @@ class UserController extends Controller
     public function get_unique_product_sizes_from_session_unique_categories_ids_array()
     {
         return UserControllerService::get_unique_product_colors_or_unique_product_sizes_from_session_unique_categories_ids_array(type:'size', product_color_or_product_size_model_class:ProductSize::class);
+    }
+
+    public function add_product_to_cart($product_id, $product_quantity_want_to_order, $is_product_available_in_chart)
+    {
+        $product_id = intval($product_id);
+        $product_quantity_want_to_order = intval($product_quantity_want_to_order);
+
+        $product = Product::find($product_id);
+
+        if (isset($product)) {
+
+            $stock = $product->stock;
+
+            $result = $stock - $product_quantity_want_to_order;
+
+            $minimum_quantity_selling_price_after_discount = Service1::get_minimum_quantity_selling_price_after_discount(minimum_quantity_selling_price:$product->minimum_quantity_selling_price, discount_in_percent:$product->discount_in_percent);
+
+            $product = new ProductResource($product);
+
+            if ($result < 0) {
+
+                $set_product_quantity_want_to_order = $stock;
+
+                $set_total_product_price_want_to_order = UserControllerService::get_total_product_price_want_to_order(set_product_quantity_want_to_order:$set_product_quantity_want_to_order, minimum_quantity_selling_price_after_discount:$minimum_quantity_selling_price_after_discount);
+
+                return response([
+                    'all_ok' => 'no',
+                    'product' => $product,
+                    'set_product_quantity_want_to_order' => $set_product_quantity_want_to_order,
+                    'set_total_product_price_want_to_order' => $set_total_product_price_want_to_order,
+                    'is_product_available_in_chart' => $is_product_available_in_chart,
+                    'messes' => 'Product is Limited or Stock Out!',
+                ], 422);
+
+            } else {
+
+                $set_product_quantity_want_to_order = $product_quantity_want_to_order;
+
+                $set_total_product_price_want_to_order = UserControllerService::get_total_product_price_want_to_order(set_product_quantity_want_to_order:$set_product_quantity_want_to_order, minimum_quantity_selling_price_after_discount:$minimum_quantity_selling_price_after_discount);
+
+                return response([
+                    'all_ok' => 'yes',
+                    'product' => $product,
+                    'set_product_quantity_want_to_order' => $set_product_quantity_want_to_order,
+                    'set_total_product_price_want_to_order' => $set_total_product_price_want_to_order,
+                    'is_product_available_in_chart' => $is_product_available_in_chart,
+                    'messes' => 'Product will be Added to Cart!',
+                ], 200);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Product is Not Found!',
+            ], 404);
+
+        }
     }
 
 }

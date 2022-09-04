@@ -408,4 +408,10 @@ class UserControllerService
         }
     }
 
+    public static function get_total_product_price_want_to_order($set_product_quantity_want_to_order, $minimum_quantity_selling_price_after_discount)
+    {
+        $set_total_product_price_want_to_order = $set_product_quantity_want_to_order * $minimum_quantity_selling_price_after_discount;
+        return $set_total_product_price_want_to_order;
+    }
+
 }
