@@ -1702,6 +1702,63 @@
 											"response": []
 										}
 									]
+								},
+								{
+									"name": "Add Product to Favorite",
+									"item": [
+										{
+											"name": "Add Product to Favorite for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/add/product/to/favorite/2/No",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"add",
+														"product",
+														"to",
+														"favorite",
+														"2",
+														"No"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								}
 							]
 						}

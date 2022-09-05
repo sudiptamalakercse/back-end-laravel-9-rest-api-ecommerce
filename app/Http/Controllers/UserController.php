@@ -532,6 +532,37 @@ class UserController extends Controller
 
             return response([
                 'all_ok' => 'no',
+                'product_id' => $product_id,
+                'is_product_available_in_chart' => $is_product_available_in_chart,
+                'messes' => 'Product is Not Found!',
+            ], 404);
+
+        }
+    }
+
+    public function add_product_to_favorite($product_id, $is_product_available_in_favorite)
+    {
+        $product_id = intval($product_id);
+
+        $product = Product::find($product_id);
+
+        if (isset($product)) {
+
+            $product = new ProductResource($product);
+
+            return response([
+                'all_ok' => 'yes',
+                'product' => $product,
+                'is_product_available_in_favorite' => $is_product_available_in_favorite,
+                'messes' => 'Product will be Added to Favorite!',
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'product_id' => $product_id,
+                'is_product_available_in_favorite' => $is_product_available_in_favorite,
                 'messes' => 'Product is Not Found!',
             ], 404);
 

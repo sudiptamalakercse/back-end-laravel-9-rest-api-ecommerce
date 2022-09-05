@@ -79,6 +79,7 @@ Route::controller(UserController::class)->group(function () {
         Route::get('unique/product/colors/from/session/unique/categories/ids/array', 'get_unique_product_colors_from_session_unique_categories_ids_array');
         Route::get('unique/product/sizes/from/session/unique/categories/ids/array', 'get_unique_product_sizes_from_session_unique_categories_ids_array');
         Route::get('add/product/to/cart/{product_id}/{product_quantity_want_to_order}/{is_product_available_in_chart}', 'add_product_to_cart');
+        Route::get('add/product/to/favorite/{product_id}/{is_product_available_in_favorite}', 'add_product_to_favorite');
     });
 });
 
