@@ -432,13 +432,7 @@ class UserController extends Controller
 
             foreach ($products as $product) {
 
-                $minimum_quantity_selling_price = $product->minimum_quantity_selling_price;
-
-                $discount_in_percent = $product->discount_in_percent;
-
-                $amount_reduced = ($discount_in_percent / 100) * $minimum_quantity_selling_price;
-
-                $minimum_quantity_selling_price_after_discount = ceil($minimum_quantity_selling_price - $amount_reduced);
+                $minimum_quantity_selling_price_after_discount = Service1::get_minimum_quantity_selling_price_after_discount(minimum_quantity_selling_price:$product->minimum_quantity_selling_price, discount_in_percent:$product->discount_in_percent);
 
                 array_push($price_list, $minimum_quantity_selling_price_after_discount);
             }

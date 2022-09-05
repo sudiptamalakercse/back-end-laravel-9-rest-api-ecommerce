@@ -22,19 +22,6 @@ class ProductResource extends JsonResource
      *
      */
 
-    private function minimum_quantity_selling_price_after_discount()
-    {
-        $minimum_quantity_selling_price = $this->minimum_quantity_selling_price;
-
-        $discount_in_percent = $this->discount_in_percent;
-
-        $amount_reduced = ($discount_in_percent / 100) * $minimum_quantity_selling_price;
-
-        $minimum_quantity_selling_price_after_discount = ceil($minimum_quantity_selling_price - $amount_reduced);
-
-        return $minimum_quantity_selling_price_after_discount;
-    }
-
     private function is_stock_available()
     {
         if ($this->stock > 0) {
@@ -111,7 +98,7 @@ class ProductResource extends JsonResource
             'minimum_quantity_buying_price' => $this->when(Auth::guard('admin')->check(), $this->minimum_quantity_buying_price),
             'minimum_quantity_selling_price' => $this->minimum_quantity_selling_price,
             'discount_in_percent' => $this->discount_in_percent,
-            'minimum_quantity_selling_price_after_discount' => $this->minimum_quantity_selling_price_after_discount(),
+            'minimum_quantity_selling_price_after_discount' => $minimum_quantity_selling_price_after_discount = Service1::get_minimum_quantity_selling_price_after_discount(minimum_quantity_selling_price:$this->minimum_quantity_selling_price, discount_in_percent:$this->discount_in_percent),
             'stock' => $this->when(Auth::guard('admin')->check(), $this->stock),
             'is_stock_available' => $this->is_stock_available(),
             'is_shipping_free' => Service1::yes_or_no($this->is_shipping_free),
