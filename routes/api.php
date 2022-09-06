@@ -56,6 +56,7 @@ Route::controller(BothController::class)->group(function () {
     Route::prefix('both')->group(function () {
         Route::get('contact/us', 'get_contact_us_single_record');
         Route::get('categories', 'get_categories_records');
+        Route::get('products/{product_id}', 'get_single_record_of_products_table_by_id')->name('both.product.detail');
     });
 });
 
@@ -80,6 +81,8 @@ Route::controller(UserController::class)->group(function () {
         Route::get('unique/product/sizes/from/session/unique/categories/ids/array', 'get_unique_product_sizes_from_session_unique_categories_ids_array');
         Route::get('add/product/to/cart/{product_id}/{product_quantity_want_to_order}/{is_product_available_in_chart}', 'add_product_to_cart');
         Route::get('add/product/to/favorite/{product_id}/{is_product_available_in_favorite}', 'add_product_to_favorite');
+        Route::get('related/products/{product_id}', 'get_related_products');
+        Route::get('apply/coupon/code/{coupon_code}', 'get_discount_on_products_for_coupon_code');
     });
 });
 

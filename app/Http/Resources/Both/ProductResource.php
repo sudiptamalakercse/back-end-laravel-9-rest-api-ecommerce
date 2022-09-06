@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
      *
      */
+    private $total_product_reviews = 0;
 
     private function is_stock_available()
     {
@@ -54,13 +55,17 @@ class ProductResource extends JsonResource
     {
         $current_route_name = Route::currentRouteName();
 
+        $review_collection = ReviewResource::collection($this->reviews()->where('review', '!=', null)->orderBy('id', 'DESC')->get());
+
+        $this->total_product_reviews = $review_collection->count();
+
         if (Auth::guard('admin')->check()) {
 
-            return ReviewResource::collection($this->reviews()->orderBy('id', 'DESC')->get());
+            return $review_collection;
 
         } elseif ($current_route_name == 'both.product.detail') {
 
-            return ReviewResource::collection($this->reviews()->orderBy('id', 'DESC')->limit(Service1::$last_n_records_of_reviews_table)->get());
+            return ReviewResource::collection($this->reviews()->where('review', '!=', null)->orderBy('id', 'DESC')->limit(Service1::$last_n_records_of_reviews_table)->get());
 
         } else {
 
@@ -108,6 +113,7 @@ class ProductResource extends JsonResource
             'admin' => $this->when(Auth::guard('admin')->check(), $this->admin),
             'product_imgs' => $this->when(Service1::show_collection_or_not($product_imgs_collection), $product_imgs_collection),
             'product_reviews' => $this->when(Service1::show_collection_or_not($product_reviews_collection), $product_reviews_collection),
+            'total_product_reviews' => $this->total_product_reviews,
             'product_average_stars' => $product_average_stars,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

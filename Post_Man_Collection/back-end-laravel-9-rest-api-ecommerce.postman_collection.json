@@ -802,6 +802,59 @@
 											"response": []
 										}
 									]
+								},
+								{
+									"name": "Products Table",
+									"item": [
+										{
+											"name": "Get Single Record of Products Table for Both",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/both/products/1",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"both",
+														"products",
+														"1"
+													]
+												}
+											},
+											"response": []
+										}
+									]
 								}
 							]
 						}
@@ -1753,6 +1806,115 @@
 														"favorite",
 														"2",
 														"No"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Shop Details Page",
+									"item": [
+										{
+											"name": "Get Related Products for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/related/products/1",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"related",
+														"products",
+														"1"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Shopping Cart Page",
+									"item": [
+										{
+											"name": "Get Discount on Products for Coupon Code for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": [
+														{
+															"key": "email",
+															"value": "malakersudipta@gmail.com",
+															"type": "default"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{url}}/user/apply/coupon/code/cb142",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"apply",
+														"coupon",
+														"code",
+														"cb142"
 													]
 												}
 											},

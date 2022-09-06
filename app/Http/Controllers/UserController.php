@@ -9,6 +9,7 @@ use App\Http\Resources\Both\CategoryResource;
 use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
@@ -567,6 +568,72 @@ class UserController extends Controller
             ], 404);
 
         }
+    }
+
+    public function get_related_products($product_id)
+    {
+        $product = Product::find($product_id);
+
+        if (isset($product)) {
+
+            $category_id = $product->productInformation->category->id;
+
+            $products = Product::whereRelation('productInformation', function ($query) use ($category_id) {
+                $query->whereRelation('category', function ($query) use ($category_id) {
+
+                    return $query->where('id', $category_id);
+
+                });
+
+            })->where('id', '!=', $product_id)
+                ->inRandomOrder()
+                ->limit(4)
+                ->get();
+        }
+
+        if (isset($products) && count($products) > 0) {
+
+            $products = ProductResource::collection($products);
+
+            return response([
+                'all_ok' => 'yes',
+                'products' => $products,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Products Not Found!',
+            ], 404);
+
+        }
+
+    }
+
+    public function get_discount_on_products_for_coupon_code($coupon_code)
+    {
+        $discount = Discount::where('code', $coupon_code)->first();
+
+        if (isset($discount)) {
+
+            $discount_in_percent = $discount->amount_in_percent;
+
+            return response([
+                'all_ok' => 'yes',
+                'coupon_code' => $coupon_code,
+                'discount_in_percent' => $discount_in_percent,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Coupon Code Not Found!',
+            ], 404);
+
+        }
+
     }
 
 }
