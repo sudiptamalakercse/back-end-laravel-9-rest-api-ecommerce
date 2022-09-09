@@ -9,7 +9,6 @@ use App\Http\Resources\Both\CategoryResource;
 use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
-use App\Models\Discount;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
@@ -633,6 +632,31 @@ class UserController extends Controller
             ], 404);
 
         }
+
+    }
+
+    public function place_order(Request $request)
+    {
+        $order_detail_in_json_string = $request->order_detail;
+
+        $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
+
+        $all_correct = UserControllerService::cart_validation($order_detail_in_associative_array);
+
+        if ($all_correct == false) {
+
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Clear Cart!',
+            ], 422);
+
+        } else {
+
+            dd($all_correct);
+
+        }
+
+        // $order_detail_in_json_string = json_encode($order_detail_in_associative_array);
 
     }
 

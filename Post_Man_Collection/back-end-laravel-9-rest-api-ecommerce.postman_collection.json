@@ -208,7 +208,7 @@
 											"urlencoded": [
 												{
 													"key": "email",
-													"value": "malakersudipta@gmail.com",
+													"value": "emelia.yost@example.org",
 													"type": "default"
 												},
 												{
@@ -685,7 +685,53 @@
 				},
 				{
 					"name": "Routes With Email Verification",
-					"item": []
+					"item": [
+						{
+							"name": "Place Order for User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "3|YzkIq2Bkl4HVlLdGCxedbdC1iD20GQgj3V5CKXk7",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "order_detail",
+											"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 94\", \n\"product_name\":\"Product 114\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":431,\n\"product_unit\":\"Unit 72\",\n\"product_minimum_quantity_selling_price\": 432,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":432,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":864\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 87\", \n\"product_name\":\"Product 114\", \n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":771,\n\"product_unit\":\"Unit 121\",\n\"product_minimum_quantity_selling_price\": 422,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":422,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":1266\n}\n],\n\"subtotal_product_price\" : 2130,\n\"coupon_code\":\"cb142\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":2,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":43,\n\"subtotal_product_price_after_coupon_code_discount\":2087,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":2287,\n\"total_product_selling_price\":2087\n}",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/user/place/order",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"user",
+										"place",
+										"order"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1736,7 +1782,7 @@
 													]
 												},
 												"url": {
-													"raw": "{{url}}/user/add/product/to/cart/1/5/No",
+													"raw": "{{url}}/user/add/product/to/cart/7/3/No",
 													"host": [
 														"{{url}}"
 													],
@@ -1746,8 +1792,8 @@
 														"product",
 														"to",
 														"cart",
-														"1",
-														"5",
+														"7",
+														"3",
 														"No"
 													]
 												}

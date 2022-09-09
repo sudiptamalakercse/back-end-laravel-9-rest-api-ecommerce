@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2022 at 06:18 PM
+-- Generation Time: Sep 09, 2022 at 06:14 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -155,7 +155,7 @@ CREATE TABLE `discounts` (
 --
 
 INSERT INTO `discounts` (`id`, `code`, `amount_in_percent`, `created_at`, `updated_at`) VALUES
-(1, 'cb142', 19, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
+(1, 'cb142', 2, '2022-08-27 02:55:04', '2022-08-27 02:55:04'),
 (2, '01a183', 153, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
 (3, '522168', 80, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
 (4, '3c4155', 126, '2022-08-27 02:55:05', '2022-08-27 02:55:05'),
@@ -324,7 +324,9 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(2, 'App\\Models\\Admin', 1, 'deffertz@example.org', '52399e4333899906bff288419946887da2c285daeba67696d81687ce3d4722e7', '[\"*\"]', '2022-08-27 21:29:07', '2022-08-27 21:00:46', '2022-08-27 21:29:07');
+(2, 'App\\Models\\Admin', 1, 'deffertz@example.org', '52399e4333899906bff288419946887da2c285daeba67696d81687ce3d4722e7', '[\"*\"]', '2022-08-27 21:29:07', '2022-08-27 21:00:46', '2022-08-27 21:29:07'),
+(3, 'App\\Models\\User', 1, 'emelia.yost@example.org', '422c908130b26c7b23278530b93cd2853ce6d3b09c47d8870cdf80c01543e915', '[\"*\"]', '2022-09-09 10:12:06', '2022-09-07 08:21:23', '2022-09-09 10:12:06'),
+(4, 'App\\Models\\Admin', 1, 'deffertz@example.org', '24b9d1549e4184cb13d88c04953197ca8a67c9539ff73d78b5fdc34394b119f4', '[\"*\"]', NULL, '2022-09-09 09:45:22', '2022-09-09 09:45:22');
 
 -- --------------------------------------------------------
 
@@ -955,7 +957,7 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`

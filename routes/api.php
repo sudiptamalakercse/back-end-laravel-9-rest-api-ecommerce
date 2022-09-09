@@ -28,13 +28,13 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // Protected Routes for user with email verification
-// Route::middleware(['auth:user', 'is_verify_user_email'])->group(function () {
-//     Route::controller(UserController::class)->group(function () {
-//         Route::prefix('user')->group(function () {
-
-//         });
-//     });
-// });
+Route::middleware(['auth:user', 'is_verify_user_email'])->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::post('place/order', 'place_order');
+        });
+    });
+});
 
 // Protected Routes for user without email verification
 Route::middleware(['auth:user'])->group(function () {
