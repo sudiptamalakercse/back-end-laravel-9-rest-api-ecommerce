@@ -440,6 +440,27 @@ class UserControllerService
                 break;
             }
 
+            $product_img = $product->productImgs()->first();
+
+            if (isset($product_img)) {
+
+                $product_img = $product_img->img;
+                $product_img = url('') . $product_img;
+
+            }
+
+            if ($product_img != $product_want_to_order['product_img']) {
+                $all_correct = false;
+                break;
+            }
+
+            $product_name = $product->productInformation->name;
+
+            if ($product_name != $product_want_to_order['product_name']) {
+                $all_correct = false;
+                break;
+            }
+
             $is_shipping_free = Service1::yes_or_no($product->is_shipping_free);
 
             if ($is_shipping_free != $product_want_to_order['is_product_shipping_free']) {
@@ -578,6 +599,86 @@ class UserControllerService
         }
 
         return $all_correct;
+    }
+
+    public static function product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array)
+    {
+
+        $product_list_want_to_order = $order_detail_in_associative_array['product_list'];
+
+        $new_order_detail_in_associative_array = $order_detail_in_associative_array;
+
+        $subtotal_product_price = 0;
+
+        $price_reduced_from_subtotal_product_price_for_coupon_code = 0;
+
+        $subtotal_product_price_after_coupon_code_discount = 0;
+
+        $product_delivery_charge = 0;
+
+        $total_price_will_be_charged_from_card = 0;
+
+        $total_product_selling_price = 0;
+
+        foreach ($product_list_want_to_order as $key => $product_want_to_order) {
+
+            $product = Product::find($product_want_to_order['product_id']);
+
+            $stock = $product->stock;
+            $product_quantity_want_to_order = $product_want_to_order['product_quantity_want_to_order'];
+
+            $result = $stock - $product_quantity_want_to_order;
+
+            if ($result < 0) {
+
+                $product_quantity_want_to_order = $stock;
+
+            }
+
+            if ($product_quantity_want_to_order == 0) {
+                unset($new_order_detail_in_associative_array['product_list'][$key]);
+            } else {
+                $new_order_detail_in_associative_array['product_list'][$key]['product_quantity_want_to_order'] = $product_quantity_want_to_order;
+                $total_product_price_want_to_order = $product_quantity_want_to_order * $new_order_detail_in_associative_array['product_list'][$key]['product_minimum_quantity_selling_price_after_discount'];
+                $new_order_detail_in_associative_array['product_list'][$key]['total_product_price_want_to_order'] = $total_product_price_want_to_order;
+                $subtotal_product_price = $subtotal_product_price + $total_product_price_want_to_order;
+
+                $delivery_charge_per_product_item = self::$delivery_charge_per_product_item;
+
+                if ($product_want_to_order['is_product_shipping_free'] == 'No') {
+                    $product_delivery_charge = $product_delivery_charge + $delivery_charge_per_product_item;
+                }
+
+            }
+
+        }
+
+        $new_order_detail_in_associative_array['subtotal_product_price'] = $subtotal_product_price;
+
+        $price_reduced_from_subtotal_product_price_for_coupon_code = ceil(($new_order_detail_in_associative_array['discount_in_percent_on_subtotal_product_price_for_coupon_code'] / 100) * $subtotal_product_price);
+
+        $new_order_detail_in_associative_array['price_reduced_from_subtotal_product_price_for_coupon_code'] = $price_reduced_from_subtotal_product_price_for_coupon_code;
+
+        $subtotal_product_price_after_coupon_code_discount = $subtotal_product_price - $price_reduced_from_subtotal_product_price_for_coupon_code;
+
+        $new_order_detail_in_associative_array['subtotal_product_price_after_coupon_code_discount'] = $subtotal_product_price_after_coupon_code_discount;
+
+        $new_order_detail_in_associative_array['product_delivery_charge'] = $product_delivery_charge;
+
+        $total_price_will_be_charged_from_card = $subtotal_product_price_after_coupon_code_discount + $product_delivery_charge;
+
+        $new_order_detail_in_associative_array['total_price_will_be_charged_from_card'] = $total_price_will_be_charged_from_card;
+
+        $total_product_selling_price = $subtotal_product_price_after_coupon_code_discount;
+
+        $new_order_detail_in_associative_array['total_product_selling_price'] = $total_product_selling_price;
+
+        $all_correct = $order_detail_in_associative_array == $new_order_detail_in_associative_array;
+
+        return [
+            'all_correct' => $all_correct,
+            'new_order_detail_in_associative_array' => $new_order_detail_in_associative_array,
+        ];
     }
 
 }

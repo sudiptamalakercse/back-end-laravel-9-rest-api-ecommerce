@@ -652,7 +652,26 @@ class UserController extends Controller
 
         } else {
 
-            dd($all_correct);
+            //start
+
+            $result_in_associative_array = UserControllerService::product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array);
+
+            $all_correct = $result_in_associative_array['all_correct'];
+
+            if ($all_correct == false) {
+
+                $new_order_detail_in_associative_array = $result_in_associative_array['new_order_detail_in_associative_array'];
+
+                return response([
+                    'all_ok' => 'no',
+                    'cart' => $new_order_detail_in_associative_array,
+                    'messes' => 'Cart is Reseted Because Product Stock is Limited or Stock Out!',
+                ], 422);
+
+            } else {
+
+                dd('ok');
+            }
 
         }
 
