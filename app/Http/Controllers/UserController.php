@@ -641,38 +641,54 @@ class UserController extends Controller
 
         $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
 
-        $all_correct = UserControllerService::cart_validation($order_detail_in_associative_array);
+        if ($order_detail_in_associative_array != null && gettype($order_detail_in_associative_array) == 'array') {
 
-        if ($all_correct == false) {
-
-            return response([
-                'all_ok' => 'no',
-                'messes' => 'Clear Cart!',
-            ], 422);
-
-        } else {
-
-            //start
-
-            $result_in_associative_array = UserControllerService::product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array);
-
-            $all_correct = $result_in_associative_array['all_correct'];
-
-            if ($all_correct == false) {
-
-                $new_order_detail_in_associative_array = $result_in_associative_array['new_order_detail_in_associative_array'];
+            if ($order_detail_in_associative_array['total_product_selling_price'] == 0) {
 
                 return response([
                     'all_ok' => 'no',
-                    'cart' => $new_order_detail_in_associative_array,
-                    'messes' => 'Cart is Reseted Because Product Stock is Limited or Stock Out!',
+                    'messes' => 'Add Product Item to Cart with Minimum Quantity 1!',
+                ], 422);
+            }
+
+            $all_correct = UserControllerService::cart_validation($order_detail_in_associative_array);
+
+            if ($all_correct == false) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'messes' => 'Clear Cart!',
                 ], 422);
 
             } else {
 
-                dd('ok');
-            }
+                //start
 
+                $result_in_associative_array = UserControllerService::product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array);
+
+                $all_correct = $result_in_associative_array['all_correct'];
+
+                if ($all_correct == false) {
+
+                    $new_order_detail_in_associative_array = $result_in_associative_array['new_order_detail_in_associative_array'];
+
+                    return response([
+                        'all_ok' => 'no',
+                        'cart' => $new_order_detail_in_associative_array,
+                        'messes' => 'Cart is Reseted Because Product Stock is Limited or Stock Out!',
+                    ], 422);
+
+                } else {
+
+                    return 'Ok';
+                }
+
+            }
+        } else {
+            return response([
+                'all_ok' => 'no',
+                'messes' => 'Order Detail is Required!',
+            ], 422);
         }
 
         // $order_detail_in_json_string = json_encode($order_detail_in_associative_array);
