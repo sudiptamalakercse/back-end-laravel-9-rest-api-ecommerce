@@ -21,6 +21,13 @@ return new class extends Migration
             $table->boolean('is_email_verified')->default(0);
             $table->string('password');
             $table->rememberToken();
+            $table->string('phone')->nullable();
+            $table->mediumText('apartment')->nullable();
+            $table->mediumText('street')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
         });
     }

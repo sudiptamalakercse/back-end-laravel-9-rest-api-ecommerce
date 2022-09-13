@@ -19,13 +19,47 @@ class AuthenticationService
             'password' => ['required', 'confirmed', $password_class::defaults()],
         ]);
 
+        if ($user_type_ == 'user') {
+
+            $request->validate([
+                'phone' => ['string', 'max:255'],
+                'apartment' => ['string', 'max:255'],
+                'street' => ['string', 'max:255'],
+                'zip' => ['string', 'max:255'],
+                'city' => ['string', 'max:255'],
+                'state' => ['string', 'max:255'],
+                'country' => ['string', 'max:255'],
+            ]);
+
+        }
+
         $upper_user_type_ = self::get_upper_user_type_($user_type_);
 
-        $user = $user_type_model_class::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $hash_class::make($request->password),
-        ]);
+        if ($user_type_ == 'user') {
+
+            $user = $user_type_model_class::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $hash_class::make($request->password),
+                'phone' => $request->phone,
+                'apartment' => $request->apartment,
+                'street' => $request->street,
+                'zip' => $request->zip,
+                'city' => $request->city,
+                'state' => $request->state,
+                'country' => $request->country,
+
+            ]);
+
+        } else {
+
+            $user = $user_type_model_class::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $hash_class::make($request->password),
+            ]);
+
+        }
 
         $last_id = $user->id;
         $token = $last_id . random_int(100000, 999999);

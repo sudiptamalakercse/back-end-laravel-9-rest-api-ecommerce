@@ -15,11 +15,12 @@ class ProductOrder extends Model
         'payment_type',
         'payment_status',
         'transaction_id',
+        'payment_intent_id_for_refund',
         'product_coming',
         'product_receiving',
         'product_received',
-        'admin_id',
         'is_canceled',
+        'admin_id',
     ];
 
     public function billingDetail()

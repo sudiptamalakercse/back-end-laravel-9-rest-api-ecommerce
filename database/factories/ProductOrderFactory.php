@@ -22,9 +22,11 @@ class ProductOrderFactory extends Factory
 
         if ($payment_type == 'Card') {
             $transaction_id = fake()->md5();
+            $payment_intent_id_for_refund = fake()->md5();
             $payment_status = 1;
         } else {
             $transaction_id = '';
+            $payment_intent_id_for_refund = '';
             $payment_status = 0;
         }
 
@@ -48,6 +50,7 @@ class ProductOrderFactory extends Factory
             'payment_type' => $payment_type,
             'payment_status' => $payment_status,
             'transaction_id' => $transaction_id,
+            'payment_intent_id_for_refund' => $payment_intent_id_for_refund,
             'product_coming' => $product_coming,
             'product_receiving' => $product_receiving,
             'product_received' => $product_received,

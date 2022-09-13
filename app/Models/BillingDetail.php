@@ -10,11 +10,13 @@ class BillingDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'country',
-        'address',
-        'city',
-        'postcode_or_zip',
         'phone',
+        'apartment',
+        'street',
+        'zip',
+        'city',
+        'state',
+        'country',
         'order_note',
         'user_id',
     ];

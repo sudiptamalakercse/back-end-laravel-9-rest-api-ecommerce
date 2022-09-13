@@ -34,12 +34,12 @@
 											"urlencoded": [
 												{
 													"key": "email",
-													"value": "deffertz@example.org",
+													"value": "malakersudipta@gmail.com",
 													"type": "default"
 												},
 												{
 													"key": "password",
-													"value": "password",
+													"value": "12345678",
 													"type": "default"
 												}
 											]
@@ -208,12 +208,12 @@
 											"urlencoded": [
 												{
 													"key": "email",
-													"value": "emelia.yost@example.org",
+													"value": "malakersudipta@gmail.com",
 													"type": "default"
 												},
 												{
 													"key": "password",
-													"value": "password",
+													"value": "12345678",
 													"type": "default"
 												}
 											]
@@ -263,6 +263,41 @@
 												{
 													"key": "password_confirmation",
 													"value": "12345678",
+													"type": "default"
+												},
+												{
+													"key": "phone",
+													"value": "123456789",
+													"type": "default"
+												},
+												{
+													"key": "apartment",
+													"value": "Apartment",
+													"type": "default"
+												},
+												{
+													"key": "street",
+													"value": "Street",
+													"type": "default"
+												},
+												{
+													"key": "zip",
+													"value": "Zip",
+													"type": "default"
+												},
+												{
+													"key": "city",
+													"value": "City",
+													"type": "default"
+												},
+												{
+													"key": "state",
+													"value": "State",
+													"type": "default"
+												},
+												{
+													"key": "country",
+													"value": "Country",
 													"type": "default"
 												}
 											]
@@ -636,7 +671,7 @@
 											"bearer": [
 												{
 													"key": "token",
-													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+													"value": "1|NgoI2YPHuL7FgTqz5bO78FE3HWEl49M8wctAeuSO",
 													"type": "string"
 												}
 											]
@@ -654,7 +689,7 @@
 											"urlencoded": [
 												{
 													"key": "verificaion_code",
-													"value": "1503660",
+													"value": "12879865",
 													"type": "default"
 												},
 												{
@@ -712,7 +747,7 @@
 									"urlencoded": [
 										{
 											"key": "order_detail",
-											"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 94\", \n\"product_name\":\"Product 114\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":431,\n\"product_unit\":\"Unit 72\",\n\"product_minimum_quantity_selling_price\": 432,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":432,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":864\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 87\", \n\"product_name\":\"Product 114\", \n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":771,\n\"product_unit\":\"Unit 121\",\n\"product_minimum_quantity_selling_price\": 422,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":422,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":1266\n}\n],\n\"subtotal_product_price\" : 2130,\n\"coupon_code\":\"cb142\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":2,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":43,\n\"subtotal_product_price_after_coupon_code_discount\":2087,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":2287,\n\"total_product_selling_price\":2087\n}",
+											"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 94\", \n\"product_name\":\"Product 114\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":431,\n\"product_unit\":\"Unit 72\",\n\"product_minimum_quantity_selling_price\": 432,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":432,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":864\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 87\", \n\"product_name\":\"Product 114\", \n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":771,\n\"product_unit\":\"Unit 121\",\n\"product_minimum_quantity_selling_price\": 422,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":422,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":1266\n}\n],\n\"subtotal_product_price\" : 2130,\n\"coupon_code\":\"cb142\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":2,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":43,\n\"subtotal_product_price_after_coupon_code_discount\":2087,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":2287,\n\"total_product_selling_price\":2087 \n}",
 											"type": "default"
 										}
 									]

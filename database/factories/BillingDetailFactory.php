@@ -17,14 +17,18 @@ class BillingDetailFactory extends Factory
      */
     public function definition()
     {
+        $user = User::inRandomOrder()->first();
+
         return [
-            'country' => fake()->country(),
-            'address' => fake()->address(),
-            'city' => fake()->city(),
-            'postcode_or_zip' => fake()->postcode(),
-            'phone' => fake()->e164PhoneNumber(),
-            'order_note' => fake()->text(100),
-            'user_id' => User::inRandomOrder()->first()->id,
+            'phone' => $user->phone,
+            'apartment' => $user->apartment,
+            'street' => $user->street,
+            'zip' => $user->zip,
+            'city' => $user->city,
+            'state' => $user->state,
+            'country' => $user->country,
+            'order_note' => fake()->text(50),
+            'user_id' => $user->id,
         ];
     }
 }

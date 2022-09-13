@@ -78,18 +78,9 @@ product_colors = id, name, img, timestamps
 
 discounts = id, code, amount_in_percent, timestamps
 
-billing_details = id, country, address, city, postcode_or_zip, phone, order_note, user_id, timestamps
+billing_details = id, phone, apartment, street, zip, city, state, country, order_note, user_id, timestamps
 
-product_orders = id, order_detail, billing_detail_id, payment_type, payment_status, transaction_id, product_coming, product_receiving, product_received, admin_id, is_canceled, timestamps 
-
-
-
-
-
-
-
-
-
+product_orders = id, order_detail, billing_detail_id, payment_type, payment_status, transaction_id, payment_intent_id_for_refund, product_coming, product_receiving, product_received, is_canceled, admin_id, timestamps
 
 
 

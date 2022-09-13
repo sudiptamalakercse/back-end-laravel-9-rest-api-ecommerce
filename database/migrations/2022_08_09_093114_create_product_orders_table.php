@@ -20,7 +20,8 @@ return new class extends Migration
             $table->foreign('billing_detail_id')->references('id')->on('billing_details');
             $table->string('payment_type');
             $table->boolean('payment_status')->default(0);
-            $table->text('transaction_id');
+            $table->text('transaction_id')->nullable();
+            $table->text('payment_intent_id_for_refund')->nullable();
             $table->boolean('product_coming')->default(0);
             $table->boolean('product_receiving')->default(0);
             $table->boolean('product_received')->default(0);

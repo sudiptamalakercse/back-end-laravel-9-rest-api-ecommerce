@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('billing_details', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
-            $table->mediumText('address');
-            $table->string('city');
-            $table->string('postcode_or_zip');
             $table->string('phone');
-            $table->mediumText('order_note');
+            $table->mediumText('apartment');
+            $table->mediumText('street');
+            $table->string('zip');
+            $table->string('city');
+            $table->string('state');
+            $table->string('country');
+            $table->mediumText('order_note')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
