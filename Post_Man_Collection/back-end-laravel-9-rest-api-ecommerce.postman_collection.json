@@ -625,7 +625,7 @@
 											"bearer": [
 												{
 													"key": "token",
-													"value": "2|FgtsG1E0Jw5sNexrR13te3jjpAaQFMW6X43FUW4k",
+													"value": "1|CSo7DVS3IG2OEVpbLo3AQfgzdzDSLPpdR7t7GFAr",
 													"type": "string"
 												}
 											]
@@ -671,7 +671,7 @@
 											"bearer": [
 												{
 													"key": "token",
-													"value": "1|NgoI2YPHuL7FgTqz5bO78FE3HWEl49M8wctAeuSO",
+													"value": "1|CSo7DVS3IG2OEVpbLo3AQfgzdzDSLPpdR7t7GFAr",
 													"type": "string"
 												}
 											]
@@ -689,7 +689,7 @@
 											"urlencoded": [
 												{
 													"key": "verificaion_code",
-													"value": "12879865",
+													"value": "11689997",
 													"type": "default"
 												},
 												{
@@ -722,49 +722,54 @@
 					"name": "Routes With Email Verification",
 					"item": [
 						{
-							"name": "Place Order for User",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "3|YzkIq2Bkl4HVlLdGCxedbdC1iD20GQgj3V5CKXk7",
-											"type": "string"
+							"name": "Checkout Page",
+							"item": [
+								{
+									"name": "Place Order for User",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "1|CSo7DVS3IG2OEVpbLo3AQfgzdzDSLPpdR7t7GFAr",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "order_detail",
+													"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 168\", \n\"product_name\":\"Product 154\",\n\"product_size\":\"Size 86\",\n\"product_color\": \"Color 156\",\n\"product_color_img\": \"http://127.0.0.1:8000Img of Color 156\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":457,\n\"product_unit\":\"Unit 83\",\n\"product_minimum_quantity_selling_price\": 1002.00,\n\"product_discount_in_percent\": 37,\n\"product_minimum_quantity_selling_price_after_discount\":632,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":1264\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 163\", \n\"product_name\":\"Product 154\",\n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":61,\n\"product_unit\":\"Unit 139\",\n\"product_minimum_quantity_selling_price\": 1042,\n\"product_discount_in_percent\": 15,\n\"product_minimum_quantity_selling_price_after_discount\":886,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":2658\n}\n],\n\"subtotal_product_price\" : 3922,\n\"coupon_code\":\"06a24\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":1,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":40,\n\"subtotal_product_price_after_coupon_code_discount\":3882,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":4082,\n\"total_product_selling_price\":3882 \n}",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/user/place/order",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"user",
+												"place",
+												"order"
+											]
 										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "Accept",
-										"value": "application/json",
-										"type": "default"
-									}
-								],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "order_detail",
-											"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 94\", \n\"product_name\":\"Product 114\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":431,\n\"product_unit\":\"Unit 72\",\n\"product_minimum_quantity_selling_price\": 432,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":432,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":864\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 87\", \n\"product_name\":\"Product 114\", \n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":771,\n\"product_unit\":\"Unit 121\",\n\"product_minimum_quantity_selling_price\": 422,\n\"product_discount_in_percent\": 0,\n\"product_minimum_quantity_selling_price_after_discount\":422,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":1266\n}\n],\n\"subtotal_product_price\" : 2130,\n\"coupon_code\":\"cb142\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":2,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":43,\n\"subtotal_product_price_after_coupon_code_discount\":2087,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":2287,\n\"total_product_selling_price\":2087 \n}",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{url}}/user/place/order",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"user",
-										"place",
-										"order"
-									]
+									},
+									"response": []
 								}
-							},
-							"response": []
+							]
 						}
 					]
 				}

@@ -461,6 +461,71 @@ class UserControllerService
                 break;
             }
 
+            if ($product->productSize != null) {
+                $product_size = $product->productSize->name;
+            } else {
+                $product_size = null;
+            }
+
+            $is_product_size_exist = array_key_exists('product_size', $product_want_to_order);
+
+            if ($is_product_size_exist == true) {
+
+                $product_size_in_product_want_to_order = $product_want_to_order['product_size'];
+
+            } elseif ($is_product_size_exist == false) {
+
+                $product_size_in_product_want_to_order = null;
+
+            }
+
+            if ($product_size != $product_size_in_product_want_to_order) {
+                $all_correct = false;
+                break;
+            }
+
+            if ($product->productColor != null) {
+                $product_color = $product->productColor->name;
+                $product_color_img = url('') . $product->productColor->img;
+            } else {
+                $product_color = null;
+                $product_color_img = null;
+            }
+
+            $is_product_color_exist = array_key_exists('product_color', $product_want_to_order);
+
+            if ($is_product_color_exist == true) {
+
+                $product_color_in_product_want_to_order = $product_want_to_order['product_color'];
+
+            } elseif ($is_product_color_exist == false) {
+
+                $product_color_in_product_want_to_order = null;
+
+            }
+
+            $is_product_color_img_exist = array_key_exists('product_color_img', $product_want_to_order);
+
+            if ($is_product_color_img_exist == true) {
+
+                $product_color_img_in_product_want_to_order = $product_want_to_order['product_color_img'];
+
+            } elseif ($is_product_color_img_exist == false) {
+
+                $product_color_img_in_product_want_to_order = null;
+
+            }
+
+            if ($product_color != $product_color_in_product_want_to_order) {
+                $all_correct = false;
+                break;
+            }
+
+            if ($product_color_img != $product_color_img_in_product_want_to_order) {
+                $all_correct = false;
+                break;
+            }
+
             $is_shipping_free = Service1::yes_or_no($product->is_shipping_free);
 
             if ($is_shipping_free != $product_want_to_order['is_product_shipping_free']) {

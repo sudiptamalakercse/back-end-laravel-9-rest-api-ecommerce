@@ -1,0 +1,108 @@
+
+//order detail that will come from forntend to backend for charge//
+
+{
+"product_list":[
+{
+"product_id":6,
+"product_img":"http://127.0.0.1:8000Product Img 168", 
+"product_name":"Product 154",
+"product_size":"Size 86",
+"product_color": "Color 156",
+"product_color_img": "http://127.0.0.1:8000Img of Color 156",
+"is_product_shipping_free":"Yes", 
+"product_minimum_quantity":457,
+"product_unit":"Unit 83",
+"product_minimum_quantity_selling_price": 1002.00,
+"product_discount_in_percent": 37,
+"product_minimum_quantity_selling_price_after_discount":632,
+"product_quantity_want_to_order":2,
+"total_product_price_want_to_order":1264
+},
+{
+"product_id":7,
+"product_img":"http://127.0.0.1:8000Product Img 163", 
+"product_name":"Product 154",
+"is_product_shipping_free":"No",
+"product_minimum_quantity":61,
+"product_unit":"Unit 139",
+"product_minimum_quantity_selling_price": 1042,
+"product_discount_in_percent": 15,
+"product_minimum_quantity_selling_price_after_discount":886,
+"product_quantity_want_to_order":3,
+"total_product_price_want_to_order":2658
+}
+],
+"subtotal_product_price" : 3922,
+"coupon_code":"06a24",
+"discount_in_percent_on_subtotal_product_price_for_coupon_code":1,
+"price_reduced_from_subtotal_product_price_for_coupon_code":40,
+"subtotal_product_price_after_coupon_code_discount":3882,
+"product_delivery_charge":200,
+"total_price_will_be_charged_from_card":4082,
+"total_product_selling_price":3882 (as same as subtotal_product_price_after_coupon_code_discount)
+}
+
+ 
+
+
+================================================================================================================================================================
+//order detail that will be saved in database//
+
+{
+"product_list":[
+{
+"product_id":6,
+"product_img":"http://127.0.0.1:8000Product Img 168", 
+"product_name":"Product 154",
+"product_size":"Size 86",
+"product_color": "Color 156",
+"product_color_img": "http://127.0.0.1:8000Img of Color 156",
+"is_product_shipping_free":"Yes", 
+"product_minimum_quantity":457,
+"product_unit":"Unit 83",
+"product_minimum_quantity_buying_price":802,
+"product_minimum_quantity_selling_price": 1002.00,
+"product_discount_in_percent": 37,
+"product_minimum_quantity_selling_price_after_discount":632,
+"product_quantity_want_to_order":2,
+"total_product_buying_price_want_to_order":1604,
+"total_product_price_want_to_order":1264
+},
+{
+"product_id":7,
+"product_img":"http://127.0.0.1:8000Product Img 163", 
+"product_name":"Product 154", 
+"is_product_shipping_free":"No",
+"product_minimum_quantity":61,
+"product_unit":"Unit 139",
+"product_minimum_quantity_buying_price":842,
+"product_minimum_quantity_selling_price": 1042,
+"product_discount_in_percent": 15,
+"product_minimum_quantity_selling_price_after_discount":886,
+"product_quantity_want_to_order":3,
+"total_product_buying_price_want_to_order":2526,
+"total_product_price_want_to_order":2658
+}
+],
+"subtotal_product_price" : 3922,
+"coupon_code":"06a24",
+"discount_in_percent_on_subtotal_product_price_for_coupon_code":1,
+"price_reduced_from_subtotal_product_price_for_coupon_code":40,
+"subtotal_product_price_after_coupon_code_discount":3882,
+"product_delivery_charge":200,
+"actual_product_delivery_charge":200,
+"total_price_will_be_charged_from_card":4082,
+"total_product_buying_price":4130,
+"total_product_selling_price":3882 (as same as subtotal_product_price_after_coupon_code_discount)
+"total_profit_without_profit_from_delivery_charge":-248,
+"profit_from_delivery_charge":0,
+"finally_total_profit_with_profit_from_delivery_charge":-248
+}
+
+======================================================================================
+
+
+
+
+
