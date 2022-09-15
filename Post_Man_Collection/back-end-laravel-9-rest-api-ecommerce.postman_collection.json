@@ -749,8 +749,58 @@
 											"mode": "urlencoded",
 											"urlencoded": [
 												{
+													"key": "payment_type",
+													"value": "cash",
+													"type": "default"
+												},
+												{
+													"key": "phone",
+													"value": "123456789",
+													"type": "default"
+												},
+												{
+													"key": "apartment",
+													"value": "Apartment",
+													"type": "default"
+												},
+												{
+													"key": "street",
+													"value": "Street",
+													"type": "default"
+												},
+												{
+													"key": "zip",
+													"value": "Zip",
+													"type": "default"
+												},
+												{
+													"key": "city",
+													"value": "City",
+													"type": "default"
+												},
+												{
+													"key": "state",
+													"value": "State",
+													"type": "default"
+												},
+												{
+													"key": "country",
+													"value": "Country",
+													"type": "default"
+												},
+												{
+													"key": "order_note",
+													"value": "Order Note",
+													"type": "default"
+												},
+												{
 													"key": "order_detail",
 													"value": "{\n\"product_list\":[\n{\n\"product_id\":6,\n\"product_img\":\"http://127.0.0.1:8000Product Img 168\", \n\"product_name\":\"Product 154\",\n\"product_size\":\"Size 86\",\n\"product_color\": \"Color 156\",\n\"product_color_img\": \"http://127.0.0.1:8000Img of Color 156\",\n\"is_product_shipping_free\":\"Yes\", \n\"product_minimum_quantity\":457,\n\"product_unit\":\"Unit 83\",\n\"product_minimum_quantity_selling_price\": 1002.00,\n\"product_discount_in_percent\": 37,\n\"product_minimum_quantity_selling_price_after_discount\":632,\n\"product_quantity_want_to_order\":2,\n\"total_product_price_want_to_order\":1264\n},\n{\n\"product_id\":7,\n\"product_img\":\"http://127.0.0.1:8000Product Img 163\", \n\"product_name\":\"Product 154\",\n\"is_product_shipping_free\":\"No\",\n\"product_minimum_quantity\":61,\n\"product_unit\":\"Unit 139\",\n\"product_minimum_quantity_selling_price\": 1042,\n\"product_discount_in_percent\": 15,\n\"product_minimum_quantity_selling_price_after_discount\":886,\n\"product_quantity_want_to_order\":3,\n\"total_product_price_want_to_order\":2658\n}\n],\n\"subtotal_product_price\" : 3922,\n\"coupon_code\":\"06a24\",\n\"discount_in_percent_on_subtotal_product_price_for_coupon_code\":1,\n\"price_reduced_from_subtotal_product_price_for_coupon_code\":40,\n\"subtotal_product_price_after_coupon_code_discount\":3882,\n\"product_delivery_charge\":200,\n\"total_price_will_be_charged_from_card\":4082,\n\"total_product_selling_price\":3882 \n}",
+													"type": "default"
+												},
+												{
+													"key": "payment_method_id",
+													"value": "card_1LiLFkAkSjuvMYOzqfKgKQlD",
 													"type": "default"
 												}
 											]

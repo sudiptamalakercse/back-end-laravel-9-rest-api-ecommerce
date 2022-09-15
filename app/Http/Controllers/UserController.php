@@ -17,6 +17,7 @@ use App\Models\ProductSize;
 use App\Models\User;
 use App\Models\UserVerify;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -382,14 +383,14 @@ class UserController extends Controller
 
             return response([
                 'all_ok' => 'yes',
-                'messes' => 'Your Subscription is Done!',
+                'message' => 'Your Subscription is Done!',
             ], 201);
 
         } else {
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'Not Possible to Subscribe!',
+                'message' => 'Not Possible to Subscribe!',
             ], 403);
 
         }
@@ -463,7 +464,7 @@ class UserController extends Controller
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'No Minimum and Maximum Prices!',
+                'message' => 'No Minimum and Maximum Prices!',
             ], 404);
 
         }
@@ -508,7 +509,7 @@ class UserController extends Controller
                     'set_product_quantity_want_to_order' => $set_product_quantity_want_to_order,
                     'set_total_product_price_want_to_order' => $set_total_product_price_want_to_order,
                     'is_product_available_in_chart' => $is_product_available_in_chart,
-                    'messes' => 'Product is Limited or Stock Out!',
+                    'message' => 'Product is Limited or Stock Out!',
                 ], 422);
 
             } else {
@@ -523,7 +524,7 @@ class UserController extends Controller
                     'set_product_quantity_want_to_order' => $set_product_quantity_want_to_order,
                     'set_total_product_price_want_to_order' => $set_total_product_price_want_to_order,
                     'is_product_available_in_chart' => $is_product_available_in_chart,
-                    'messes' => 'Product will be Added to Cart!',
+                    'message' => 'Product will be Added to Cart!',
                 ], 200);
 
             }
@@ -534,7 +535,7 @@ class UserController extends Controller
                 'all_ok' => 'no',
                 'product_id' => $product_id,
                 'is_product_available_in_chart' => $is_product_available_in_chart,
-                'messes' => 'Product is Not Found!',
+                'message' => 'Product is Not Found!',
             ], 404);
 
         }
@@ -554,7 +555,7 @@ class UserController extends Controller
                 'all_ok' => 'yes',
                 'product' => $product,
                 'is_product_available_in_favorite' => $is_product_available_in_favorite,
-                'messes' => 'Product will be Added to Favorite!',
+                'message' => 'Product will be Added to Favorite!',
             ], 200);
 
         } else {
@@ -563,7 +564,7 @@ class UserController extends Controller
                 'all_ok' => 'no',
                 'product_id' => $product_id,
                 'is_product_available_in_favorite' => $is_product_available_in_favorite,
-                'messes' => 'Product is Not Found!',
+                'message' => 'Product is Not Found!',
             ], 404);
 
         }
@@ -603,7 +604,7 @@ class UserController extends Controller
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'Products Not Found!',
+                'message' => 'Products Not Found!',
             ], 404);
 
         }
@@ -628,7 +629,7 @@ class UserController extends Controller
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'Coupon Code Not Found!',
+                'message' => 'Coupon Code Not Found!',
             ], 404);
 
         }
@@ -637,61 +638,187 @@ class UserController extends Controller
 
     public function place_order(Request $request)
     {
-        $order_detail_in_json_string = $request->order_detail;
+        try {
+            $request->validate([
+                'payment_type' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:255'],
+                'apartment' => ['required', 'string', 'max:255'],
+                'street' => ['required', 'string', 'max:255'],
+                'zip' => ['required', 'string', 'max:255'],
+                'city' => ['required', 'string', 'max:255'],
+                'state' => ['required', 'string', 'max:255'],
+                'country' => ['required', 'string', 'max:255'],
+                'order_note' => ['string', 'max:255'],
+            ]);
 
-        $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
+            $order_detail_in_json_string = $request->input('order_detail');
 
-        if ($order_detail_in_associative_array != null && gettype($order_detail_in_associative_array) == 'array') {
+            $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
 
-            if ($order_detail_in_associative_array['total_product_selling_price'] == 0) {
+            if ($order_detail_in_associative_array != null && gettype($order_detail_in_associative_array) == 'array') {
 
-                return response([
-                    'all_ok' => 'no',
-                    'messes' => 'Add Product Item to Cart with Minimum Quantity 1!',
-                ], 422);
-            }
-
-            $all_correct = UserControllerService::cart_validation($order_detail_in_associative_array);
-
-            if ($all_correct == false) {
-
-                return response([
-                    'all_ok' => 'no',
-                    'messes' => 'Clear Cart!',
-                ], 422);
-
-            } else {
-
-                //start
-
-                $result_in_associative_array = UserControllerService::product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array);
-
-                $all_correct = $result_in_associative_array['all_correct'];
-
-                if ($all_correct == false) {
-
-                    $new_order_detail_in_associative_array = $result_in_associative_array['new_order_detail_in_associative_array'];
+                if ($order_detail_in_associative_array['total_product_selling_price'] == 0) {
 
                     return response([
                         'all_ok' => 'no',
-                        'cart' => $new_order_detail_in_associative_array,
-                        'messes' => 'Cart is Reseted Because Product Stock is Limited or Stock Out!',
+                        'message' => 'Add Product Item to Cart with Minimum Quantity 1!',
+                    ], 422);
+                }
+
+                $all_correct = UserControllerService::cart_validation($order_detail_in_associative_array);
+
+                if ($all_correct == false) {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Clear Cart!',
                     ], 422);
 
                 } else {
 
-                    return 'Ok';
-                }
+                    //start
 
+                    $result_in_associative_array = UserControllerService::product_quantity_want_to_order_stock_availability_check($order_detail_in_associative_array);
+
+                    $all_correct = $result_in_associative_array['all_correct'];
+
+                    if ($all_correct == false) {
+
+                        $new_order_detail_in_associative_array = $result_in_associative_array['new_order_detail_in_associative_array'];
+
+                        return response([
+                            'all_ok' => 'no',
+                            'cart' => $new_order_detail_in_associative_array,
+                            'message' => 'Cart is Reseted Because Product Stock is Limited or Stock Out!',
+                        ], 422);
+
+                    } else {
+
+                        $user = auth('user')->user();
+                        $is_payment_complete = null;
+
+                        $payment_type = $request->input('payment_type');
+                        $payment_method_id = $request->input('payment_method_id');
+
+                        if ($payment_type == 'card') {
+
+                            $request->validate([
+                                'payment_method_id' => ['required', 'string', 'max:255'],
+                            ]);
+
+                            $result = UserControllerService::payment_by_card($is_payment_complete, $user, $order_detail_in_associative_array, $payment_method_id);
+
+                            if (gettype($result) == 'array') {
+
+                                $total_payment_from_cart = $result['total_payment_from_cart'];
+                                $is_payment_complete = $result['is_payment_complete'];
+                                $transaction_id = $result['transaction_id'];
+                                $payment_intent_id = $result['payment_intent_id'];
+                                $last_4_card_digits = $result['last_4_card_digits'];
+
+                            } else {
+
+                                $exception_message = $result;
+
+                                return response([
+                                    'all_ok' => 'no',
+                                    'message' => $exception_message,
+                                ], 500);
+                            }
+
+                        } elseif ($payment_type == 'cash') {
+
+                            $is_payment_complete = false;
+
+                        }
+
+                        if ($payment_type == 'card' && $is_payment_complete == true) {
+
+                            //Store Order in Database
+
+                            $order_id = 'Order Id Will Be Here';
+                            $amount_is_paid_from_your_card = $total_payment_from_cart / 100;
+                            $message = 'Your Payment is Successfully Paid & Your Order is Successful!';
+                            $email_receiver_name = $user->name;
+
+                            $subject_of_email = $message;
+                            $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
+                            $line2_text_of_email = 'Amount is Paid from Your Card(**** **** **** ' . $last_4_card_digits . ') is ' . $amount_is_paid_from_your_card . '. Transaction Id is ' . $transaction_id . '. Your Order Id is ' . $order_id . '.';
+
+                            $email_datas = [
+                                'subject_of_email' => $subject_of_email,
+                                'line1_text_of_email' => $line1_text_of_email,
+                                'line2_text_of_email' => $line2_text_of_email,
+                            ];
+
+                            Mail::to($user->email)->send(new EmailSend($email_datas));
+
+                            return response([
+                                'all_ok' => 'yes',
+                                'last_4_card_digits' => $last_4_card_digits,
+                                'amount_is_paid_from_your_card' => $amount_is_paid_from_your_card,
+                                'transaction_id' => $transaction_id,
+                                'order_id' => $order_id,
+                                'message' => $message,
+                            ], 200);
+
+                        } elseif ($payment_type == 'cash' && $is_payment_complete == false) {
+
+                            //Store Order in Database
+
+                            $order_id = 'Order Id Will Be Here';
+                            $due_amount = $order_detail_in_associative_array['total_price_will_be_charged_from_card'];
+                            $message = 'Your Payment is Due & Your Order is Successful!';
+                            $email_receiver_name = $user->name;
+
+                            $subject_of_email = $message;
+                            $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
+                            $line2_text_of_email = 'Due Amount is ' . $due_amount . '. Your Order Id is ' . $order_id . '.';
+
+                            $email_datas = [
+                                'subject_of_email' => $subject_of_email,
+                                'line1_text_of_email' => $line1_text_of_email,
+                                'line2_text_of_email' => $line2_text_of_email,
+                            ];
+
+                            Mail::to($user->email)->send(new EmailSend($email_datas));
+
+                            return response([
+                                'all_ok' => 'yes',
+                                'due_amount' => $due_amount,
+                                'order_id' => $order_id,
+                                'message' => $message,
+                            ], 200);
+
+                        } else {
+
+                            return response([
+                                'all_ok' => 'no',
+                                'message' => 'Something Went Wrong & Your Order is Not Successful!',
+                            ], 422);
+
+                        }
+
+                    }
+
+                }
+            } else {
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Order Detail is Required!',
+                ], 422);
             }
-        } else {
+
+            // $order_detail_in_json_string = json_encode($order_detail_in_associative_array);
+
+        } catch (Exception $e) {
+
             return response([
                 'all_ok' => 'no',
-                'messes' => 'Order Detail is Required!',
-            ], 422);
-        }
+                'message' => $e->getMessage(),
+            ], 500);
 
-        // $order_detail_in_json_string = json_encode($order_detail_in_associative_array);
+        }
 
     }
 

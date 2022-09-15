@@ -75,7 +75,7 @@ class BothController extends Controller
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'Product is Not Found!',
+                'message' => 'Product is Not Found!',
             ], 404);
 
         }

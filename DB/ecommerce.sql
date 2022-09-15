@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2022 at 08:41 AM
+-- Generation Time: Sep 15, 2022 at 07:39 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -327,7 +327,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', 11, 'malakersudipta@gmail.com', '2bbab93c01c7348aa4241d5365b56df26f28309a4eaafb070c7f47a0b1625214', '[\"*\"]', '2022-09-14 00:41:00', '2022-09-13 10:46:33', '2022-09-14 00:41:00');
+(1, 'App\\Models\\User', 11, 'malakersudipta@gmail.com', '2bbab93c01c7348aa4241d5365b56df26f28309a4eaafb070c7f47a0b1625214', '[\"*\"]', '2022-09-15 10:53:36', '2022-09-13 10:46:33', '2022-09-15 10:53:36');
 
 -- --------------------------------------------------------
 
@@ -743,7 +743,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `is_email_verif
 (8, 'Patience Stoltenberg', 'roxanne.harris@example.net', '2022-09-13 01:08:31', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ZDPeL3vhAo', '+17022930165', 'Aut ex ex qui qui.', 'Suscipit voluptatem voluptas dolor illo illo.', '04818', 'South Zoey', 'Minnesota', 'Brunei Darussalam', '2022-09-13 01:08:32', '2022-09-13 01:08:32', NULL, NULL, NULL, NULL),
 (9, 'Mr. Raphael Wiza', 'jarrett.abshire@example.com', '2022-09-13 01:08:31', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'C8V1INxWkJ', '+19134324088', 'Ratione et voluptas facere.', 'Aut incidunt ullam et eum deserunt.', '53834-2648', 'South Melanyview', 'Nebraska', 'Bosnia and Herzegovina', '2022-09-13 01:08:32', '2022-09-13 01:08:32', NULL, NULL, NULL, NULL),
 (10, 'Dr. Lindsay Bernier', 'weissnat.sherwood@example.net', '2022-09-13 01:08:31', 1, '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'LKAKoVQcUE', '+18609905033', 'Et nesciunt rerum voluptatem.', 'Animi omnis incidunt dignissimos sit animi magni.', '02051', 'Cadenfurt', 'Kansas', 'Sweden', '2022-09-13 01:08:32', '2022-09-13 01:08:32', NULL, NULL, NULL, NULL),
-(11, 'Sudipta  Malaker', 'malakersudipta@gmail.com', NULL, 1, '$2y$10$e4JLsbhVO7zJvkyCYXT5kegwR9jSQpa1D9MAVhLVEjPaAE5NrhGBm', NULL, '123456789', 'Apartment', 'Street', 'Zip', 'City', 'State', 'Country', '2022-09-13 10:46:18', '2022-09-13 10:54:10', NULL, NULL, NULL, NULL);
+(11, 'Sudipta  Malaker', 'malakersudipta@gmail.com', NULL, 1, '$2y$10$e4JLsbhVO7zJvkyCYXT5kegwR9jSQpa1D9MAVhLVEjPaAE5NrhGBm', NULL, '123456789', 'Apartment', 'Street', 'Zip', 'City', 'State', 'Country', '2022-09-13 10:46:18', '2022-09-14 11:34:40', 'cus_MQrCCMX4vnttlT', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

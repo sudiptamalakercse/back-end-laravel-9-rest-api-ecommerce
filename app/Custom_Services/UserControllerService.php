@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Resources\Both\ProductResource;
 use App\Models\Discount;
 use App\Models\Product;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -400,7 +401,7 @@ class UserControllerService
 
             return response([
                 'all_ok' => 'no',
-                'messes' => 'No Unique' . $upper_type . '!',
+                'message' => 'No Unique' . $upper_type . '!',
             ], 404);
 
         }
@@ -743,6 +744,50 @@ class UserControllerService
         return [
             'all_correct' => $all_correct,
             'new_order_detail_in_associative_array' => $new_order_detail_in_associative_array,
+        ];
+    }
+
+    public static function payment_by_card($is_payment_complete, $user, $order_detail_in_associative_array, $payment_method_id)
+    {
+        try {
+            $total_price_will_be_charged_from_card = $order_detail_in_associative_array['total_price_will_be_charged_from_card'] * 100;
+
+            $customer = $user->createOrGetStripeCustomer();
+
+            $payment = $user->charge(
+                $total_price_will_be_charged_from_card,
+                $payment_method_id
+            );
+
+            $payment_intent = $payment->asStripePaymentIntent();
+
+            $payment_intent_id = $payment_intent->id;
+
+            $transaction_id = $payment_intent->charges->data[0]->id;
+
+            $total_payment_from_cart = $payment_intent->charges->data[0]->amount;
+
+            $last_4_card_digits = $payment_intent->charges->data[0]->payment_method_details->card->last4;
+
+            if ($total_payment_from_cart == $total_price_will_be_charged_from_card) {
+
+                $is_payment_complete = true;
+                $user->deletePaymentMethods();
+
+            }
+
+        } catch (Exception $e) {
+
+            return $exception_message = $e->getMessage();
+
+        }
+
+        return [
+            'total_payment_from_cart' => $total_payment_from_cart,
+            'is_payment_complete' => $is_payment_complete,
+            'transaction_id' => $transaction_id,
+            'payment_intent_id' => $payment_intent_id,
+            'last_4_card_digits' => $last_4_card_digits,
         ];
     }
 

@@ -72,7 +72,7 @@ class AdminController extends Controller
 
         return response([
             'all_ok' => 'yes',
-            'messes' => 'NewsLetter is Successfully Sent!',
+            'message' => 'NewsLetter is Successfully Sent!',
         ], 200);
 
     }
