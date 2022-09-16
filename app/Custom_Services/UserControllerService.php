@@ -5,8 +5,10 @@ namespace App\Custom_Services;
 use App\Custom_Services\Service1;
 use App\Http\Controllers\UserController;
 use App\Http\Resources\Both\ProductResource;
+use App\Models\BillingDetail;
 use App\Models\Discount;
 use App\Models\Product;
+use App\Models\ProductOrder;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -789,6 +791,71 @@ class UserControllerService
             'payment_intent_id' => $payment_intent_id,
             'last_4_card_digits' => $last_4_card_digits,
         ];
+    }
+
+    public static function get_order_detail_in_json_string_for_storting_in_order_table($order_detail_in_associative_array)
+    {
+        $product_list_want_to_order = $order_detail_in_associative_array['product_list'];
+
+        $new_order_detail_in_associative_array = $order_detail_in_associative_array;
+
+        $total_product_buying_price = 0;
+
+        foreach ($product_list_want_to_order as $key => $product_want_to_order) {
+
+            $product = Product::find($product_want_to_order['product_id']);
+
+            $minimum_quantity_buying_price = $product->minimum_quantity_buying_price;
+
+            $new_order_detail_in_associative_array['product_list'][$key]['product_minimum_quantity_buying_price'] = $minimum_quantity_buying_price;
+
+            $new_order_detail_in_associative_array['product_list'][$key]['total_product_buying_price_want_to_order'] = $new_order_detail_in_associative_array['product_list'][$key]['product_minimum_quantity_buying_price'] * $new_order_detail_in_associative_array['product_list'][$key]['product_quantity_want_to_order'];
+
+            $total_product_buying_price = $total_product_buying_price + $new_order_detail_in_associative_array['product_list'][$key]['total_product_buying_price_want_to_order'];
+
+        }
+
+        $new_order_detail_in_associative_array['total_product_buying_price'] = $total_product_buying_price;
+
+        $new_order_detail_in_associative_array['total_profit_without_profit_from_delivery_charge'] = $new_order_detail_in_associative_array['total_product_selling_price'] - $new_order_detail_in_associative_array['total_product_buying_price'];
+
+        $new_order_detail_in_associative_array['actual_product_delivery_charge'] = $new_order_detail_in_associative_array['product_delivery_charge'];
+
+        $new_order_detail_in_associative_array['profit_from_delivery_charge'] = $new_order_detail_in_associative_array['product_delivery_charge'] - $new_order_detail_in_associative_array['actual_product_delivery_charge'];
+
+        $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] = $new_order_detail_in_associative_array['total_profit_without_profit_from_delivery_charge'] + $new_order_detail_in_associative_array['profit_from_delivery_charge'];
+
+        $new_order_detail_in_associative_array['total_expense'] = $new_order_detail_in_associative_array['total_product_buying_price'] + $new_order_detail_in_associative_array['actual_product_delivery_charge'];
+
+        $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge_in_percentage'] = floor(($new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] / $new_order_detail_in_associative_array['total_expense']) * 100);
+
+        $order_detail_in_json_string_for_storting_in_order_table = json_encode($new_order_detail_in_associative_array);
+
+        return $order_detail_in_json_string_for_storting_in_order_table;
+
+    }
+
+    public static function store_data_in_billing_detail_and_order_table($user, $billing_details, $order_detail_in_associative_array, $payment_type, $payment_status, $transaction_id, $payment_intent_id_for_refund)
+    {
+
+        $billing_detail = new BillingDetail($billing_details);
+
+        $user->billingDetails()->save($billing_detail);
+
+        $order_detail_in_json_string_for_storting_in_order_table = self::get_order_detail_in_json_string_for_storting_in_order_table($order_detail_in_associative_array);
+
+        $product_order = new ProductOrder([
+            'order_detail' => $order_detail_in_json_string_for_storting_in_order_table,
+            'payment_type' => $payment_type,
+            'payment_status' => $payment_status,
+            'transaction_id' => $transaction_id,
+            'payment_intent_id_for_refund' => $payment_intent_id_for_refund,
+        ]);
+
+        $billing_detail->productOrder()->save($product_order);
+
+        return $product_order;
+
     }
 
 }

@@ -694,11 +694,24 @@ class UserController extends Controller
 
                     } else {
 
+                        $transaction_id = null;
+
                         $user = auth('user')->user();
+
                         $is_payment_complete = null;
+                        $payment_intent_id = null;
 
                         $payment_type = $request->input('payment_type');
                         $payment_method_id = $request->input('payment_method_id');
+
+                        $phone = $request->input('phone');
+                        $apartment = $request->input('apartment');
+                        $street = $request->input('street');
+                        $zip = $request->input('zip');
+                        $city = $request->input('city');
+                        $state = $request->input('state');
+                        $country = $request->input('country');
+                        $order_note = $request->input('order_note');
 
                         if ($payment_type == 'card') {
 
@@ -732,63 +745,92 @@ class UserController extends Controller
 
                         }
 
+                        $billing_details = [
+                            'phone' => $phone,
+                            'apartment' => $apartment,
+                            'street' => $street,
+                            'zip' => $zip,
+                            'city' => $city,
+                            'state' => $state,
+                            'country' => $country,
+                            'order_note' => $order_note,
+                        ];
+
                         if ($payment_type == 'card' && $is_payment_complete == true) {
 
-                            //Store Order in Database
+                            $product_order = UserControllerService::store_data_in_billing_detail_and_order_table(user:$user, billing_details:$billing_details, order_detail_in_associative_array:$order_detail_in_associative_array, payment_type:$payment_type, payment_status:$is_payment_complete, transaction_id:$transaction_id, payment_intent_id_for_refund:$payment_intent_id);
 
-                            $order_id = 'Order Id Will Be Here';
-                            $amount_is_paid_from_your_card = $total_payment_from_cart / 100;
-                            $message = 'Your Payment is Successfully Paid & Your Order is Successful!';
-                            $email_receiver_name = $user->name;
+                            if (isset($product_order)) {
 
-                            $subject_of_email = $message;
-                            $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
-                            $line2_text_of_email = 'Amount is Paid from Your Card(**** **** **** ' . $last_4_card_digits . ') is ' . $amount_is_paid_from_your_card . '. Transaction Id is ' . $transaction_id . '. Your Order Id is ' . $order_id . '.';
+                                $order_id = $product_order->id;
+                                $amount_is_paid_from_your_card = $total_payment_from_cart / 100;
+                                $message = 'Your Payment is Successfully Paid & Your Order is Successful!';
+                                $email_receiver_name = $user->name;
 
-                            $email_datas = [
-                                'subject_of_email' => $subject_of_email,
-                                'line1_text_of_email' => $line1_text_of_email,
-                                'line2_text_of_email' => $line2_text_of_email,
-                            ];
+                                $subject_of_email = $message;
+                                $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
+                                $line2_text_of_email = 'Amount is Paid from Your Card(**** **** **** ' . $last_4_card_digits . ') is ' . $amount_is_paid_from_your_card . '. Transaction Id is ' . $transaction_id . '. Your Order Id is ' . $order_id . '.';
 
-                            Mail::to($user->email)->send(new EmailSend($email_datas));
+                                $email_datas = [
+                                    'subject_of_email' => $subject_of_email,
+                                    'line1_text_of_email' => $line1_text_of_email,
+                                    'line2_text_of_email' => $line2_text_of_email,
+                                ];
 
-                            return response([
-                                'all_ok' => 'yes',
-                                'last_4_card_digits' => $last_4_card_digits,
-                                'amount_is_paid_from_your_card' => $amount_is_paid_from_your_card,
-                                'transaction_id' => $transaction_id,
-                                'order_id' => $order_id,
-                                'message' => $message,
-                            ], 200);
+                                Mail::to($user->email)->send(new EmailSend($email_datas));
+
+                                return response([
+                                    'all_ok' => 'yes',
+                                    'last_4_card_digits' => $last_4_card_digits,
+                                    'amount_is_paid_from_your_card' => $amount_is_paid_from_your_card,
+                                    'transaction_id' => $transaction_id,
+                                    'order_id' => $order_id,
+                                    'message' => $message,
+                                ], 200);
+
+                            } else {
+                                return response([
+                                    'all_ok' => 'no',
+                                    'message' => 'Sorry Something Went Wrong & Your Order is Not Successful!',
+                                ], 422);
+                            }
 
                         } elseif ($payment_type == 'cash' && $is_payment_complete == false) {
 
-                            //Store Order in Database
+                            $product_order = UserControllerService::store_data_in_billing_detail_and_order_table(user:$user, billing_details:$billing_details, order_detail_in_associative_array:$order_detail_in_associative_array, payment_type:$payment_type, payment_status:$is_payment_complete, transaction_id:$transaction_id, payment_intent_id_for_refund:$payment_intent_id);
 
-                            $order_id = 'Order Id Will Be Here';
-                            $due_amount = $order_detail_in_associative_array['total_price_will_be_charged_from_card'];
-                            $message = 'Your Payment is Due & Your Order is Successful!';
-                            $email_receiver_name = $user->name;
+                            if (isset($product_order)) {
 
-                            $subject_of_email = $message;
-                            $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
-                            $line2_text_of_email = 'Due Amount is ' . $due_amount . '. Your Order Id is ' . $order_id . '.';
+                                $order_id = $product_order->id;
+                                $due_amount = $order_detail_in_associative_array['total_price_will_be_charged_from_card'];
+                                $message = 'Your Payment is Due & Your Order is Successful!';
+                                $email_receiver_name = $user->name;
 
-                            $email_datas = [
-                                'subject_of_email' => $subject_of_email,
-                                'line1_text_of_email' => $line1_text_of_email,
-                                'line2_text_of_email' => $line2_text_of_email,
-                            ];
+                                $subject_of_email = $message;
+                                $line1_text_of_email = 'Hi, ' . $email_receiver_name . '(User) ' . $message;
+                                $line2_text_of_email = 'Due Amount is ' . $due_amount . '. Your Order Id is ' . $order_id . '.';
 
-                            Mail::to($user->email)->send(new EmailSend($email_datas));
+                                $email_datas = [
+                                    'subject_of_email' => $subject_of_email,
+                                    'line1_text_of_email' => $line1_text_of_email,
+                                    'line2_text_of_email' => $line2_text_of_email,
+                                ];
 
-                            return response([
-                                'all_ok' => 'yes',
-                                'due_amount' => $due_amount,
-                                'order_id' => $order_id,
-                                'message' => $message,
-                            ], 200);
+                                Mail::to($user->email)->send(new EmailSend($email_datas));
+
+                                return response([
+                                    'all_ok' => 'yes',
+                                    'due_amount' => $due_amount,
+                                    'order_id' => $order_id,
+                                    'message' => $message,
+                                ], 200);
+
+                            } else {
+                                return response([
+                                    'all_ok' => 'no',
+                                    'message' => 'Sorry Something Went Wrong & Your Order is Not Successful!',
+                                ], 422);
+                            }
 
                         } else {
 

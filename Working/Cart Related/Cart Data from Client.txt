@@ -94,13 +94,18 @@
 "actual_product_delivery_charge":200,
 "total_price_will_be_charged_from_card":4082,
 "total_product_buying_price":4130,
-"total_product_selling_price":3882 (as same as subtotal_product_price_after_coupon_code_discount)
+"total_product_selling_price":3882, (as same as subtotal_product_price_after_coupon_code_discount)
 "total_profit_without_profit_from_delivery_charge":-248,
 "profit_from_delivery_charge":0,
-"finally_total_profit_with_profit_from_delivery_charge":-248
+"finally_total_profit_with_profit_from_delivery_charge":-248,
+"total_expense": 4330, (total_product_buying_price + actual_product_delivery_charge)
+"finally_total_profit_with_profit_from_delivery_charge_in_percentage": -6  ((finally_total_profit_with_profit_from_delivery_charge/total_expense)*100)
 }
 
 ======================================================================================
+
+
+
 
 
 

@@ -750,7 +750,7 @@
 											"urlencoded": [
 												{
 													"key": "payment_type",
-													"value": "cash",
+													"value": "card",
 													"type": "default"
 												},
 												{
@@ -800,7 +800,7 @@
 												},
 												{
 													"key": "payment_method_id",
-													"value": "card_1LiLFkAkSjuvMYOzqfKgKQlD",
+													"value": "card_1LiiKHAkSjuvMYOzGhWrgzoJ",
 													"type": "default"
 												}
 											]
