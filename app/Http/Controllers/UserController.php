@@ -9,6 +9,7 @@ use App\Http\Resources\Both\CategoryResource;
 use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
@@ -651,7 +652,7 @@ class UserController extends Controller
                 'order_note' => ['string', 'max:255'],
             ]);
 
-            $order_detail_in_json_string = $request->input('order_detail');
+            $order_detail_in_json_string = $request->order_detail;
 
             $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
 
@@ -701,17 +702,17 @@ class UserController extends Controller
                         $is_payment_complete = null;
                         $payment_intent_id = null;
 
-                        $payment_type = $request->input('payment_type');
-                        $payment_method_id = $request->input('payment_method_id');
+                        $payment_type = $request->payment_type;
+                        $payment_method_id = $request->payment_method_id;
 
-                        $phone = $request->input('phone');
-                        $apartment = $request->input('apartment');
-                        $street = $request->input('street');
-                        $zip = $request->input('zip');
-                        $city = $request->input('city');
-                        $state = $request->input('state');
-                        $country = $request->input('country');
-                        $order_note = $request->input('order_note');
+                        $phone = $request->phone;
+                        $apartment = $request->apartment;
+                        $street = $request->street;
+                        $zip = $request->zip;
+                        $city = $request->city;
+                        $state = $request->state;
+                        $country = $request->country;
+                        $order_note = $request->order_note;
 
                         if ($payment_type == 'card') {
 
@@ -859,6 +860,38 @@ class UserController extends Controller
                 'all_ok' => 'no',
                 'message' => $e->getMessage(),
             ], 500);
+
+        }
+
+    }
+
+    public function send_message_to_admin(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'message' => ['required', 'string', 'max:255'],
+        ]);
+
+        $message = Message::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
+
+        if ($message) {
+
+            return response([
+                'all_ok' => 'yes',
+                'message' => 'Your Message is Successfully Sent!',
+            ], 201);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Not Possible to Send Message!',
+            ], 403);
 
         }
 

@@ -83,6 +83,8 @@ Route::controller(UserController::class)->group(function () {
         Route::get('add/product/to/favorite/{product_id}/{is_product_available_in_favorite}', 'add_product_to_favorite');
         Route::get('related/products/{product_id}', 'get_related_products');
         Route::get('apply/coupon/code/{coupon_code}', 'get_discount_on_products_for_coupon_code');
+        Route::post('send/message/to/admin', 'send_message_to_admin');
+
     });
 });
 

@@ -2057,6 +2057,73 @@
 											"response": []
 										}
 									]
+								},
+								{
+									"name": "Contact Us Page",
+									"item": [
+										{
+											"name": "Leave Message Section",
+											"item": [
+												{
+													"name": "Send Message to Admin for User",
+													"request": {
+														"auth": {
+															"type": "bearer",
+															"bearer": [
+																{
+																	"key": "token",
+																	"value": "2|Ps8Zi3ZnBhKvxMNBCMCGbLyKBrKsh5T3fOm6XhVb",
+																	"type": "string"
+																}
+															]
+														},
+														"method": "POST",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "default"
+															}
+														],
+														"body": {
+															"mode": "urlencoded",
+															"urlencoded": [
+																{
+																	"key": "name",
+																	"value": "Sudipta Malaker",
+																	"type": "default"
+																},
+																{
+																	"key": "email",
+																	"value": "malakersudipta@gmail.com",
+																	"type": "default"
+																},
+																{
+																	"key": "message",
+																	"value": "Some messages will be here...",
+																	"type": "default"
+																}
+															]
+														},
+														"url": {
+															"raw": "{{url}}/user/send/message/to/admin",
+															"host": [
+																"{{url}}"
+															],
+															"path": [
+																"user",
+																"send",
+																"message",
+																"to",
+																"admin"
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										}
+									]
 								}
 							]
 						}
