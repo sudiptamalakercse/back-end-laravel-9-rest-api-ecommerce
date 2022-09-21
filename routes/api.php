@@ -32,6 +32,7 @@ Route::middleware(['auth:user', 'is_verify_user_email'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::post('place/order', 'place_order');
+            Route::get('product/order/list/{order_id}/{apartment}/{street}/{zip}/{city}/{state}/{country}/{phone_billing}/{payment_status}/{payment_type}/{transaction_id}/{product_coming}/{product_receiving}/{product_received}/{sort_type}', 'get_product_order_list');
         });
     });
 });

@@ -897,4 +897,18 @@ class UserController extends Controller
 
     }
 
+    public function get_product_order_list($order_id, $apartment, $street, $zip, $city, $state, $country, $phone_billing, $payment_status, $payment_type, $transaction_id, $product_coming, $product_receiving, $product_received, $sort_type = "''")
+    {
+        $user = auth('user')->user();
+
+        $name = $user->name;
+        $email = $user->email;
+        $phone_user = $user->phone;
+
+        $payment_intent_id_for_refund = "''";
+
+        return Service1::get_product_order_list_for_user_or_admin($order_id, $apartment, $street, $zip, $city, $state, $country, $name, $email, $phone_user, $phone_billing, $payment_status, $payment_type, $transaction_id, $payment_intent_id_for_refund, $product_coming, $product_receiving, $product_received, $sort_type, $user);
+
+    }
+
 }

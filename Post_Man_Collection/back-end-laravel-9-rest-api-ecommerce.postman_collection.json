@@ -820,6 +820,74 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Product Order List Page",
+							"item": [
+								{
+									"name": "Product Order List Section",
+									"item": [
+										{
+											"name": "Get Product Order List for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": []
+												},
+												"url": {
+													"raw": "{{url}}/user/product/order/list/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"product",
+														"order",
+														"list",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''",
+														"''"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
 						}
 					]
 				}
