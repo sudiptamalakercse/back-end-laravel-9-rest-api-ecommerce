@@ -884,6 +884,183 @@
 												}
 											},
 											"response": []
+										},
+										{
+											"name": "Get Single Product Order Record by Id for User",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"type": "string"
+														}
+													]
+												},
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": []
+												},
+												"url": {
+													"raw": "{{url}}/user/view/product/order/3",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"view",
+														"product",
+														"order",
+														"3"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Cancel Product Order for User",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": []
+												},
+												"url": {
+													"raw": "{{url}}/user/cancel/product/order/11",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"cancel",
+														"product",
+														"order",
+														"11"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Product Order Detail Page",
+							"item": [
+								{
+									"name": "Product Order Detail Section",
+									"item": [
+										{
+											"name": "Cancel Product Order for User",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": []
+												},
+												"url": {
+													"raw": "{{url}}/user/cancel/product/order/11",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"cancel",
+														"product",
+														"order",
+														"11"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Receive Product Order for User",
+											"request": {
+												"auth": {
+													"type": "bearer",
+													"bearer": [
+														{
+															"key": "token",
+															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"type": "string"
+														}
+													]
+												},
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "default"
+													}
+												],
+												"body": {
+													"mode": "urlencoded",
+													"urlencoded": []
+												},
+												"url": {
+													"raw": "{{url}}/user/receive/product/order/11",
+													"host": [
+														"{{url}}"
+													],
+													"path": [
+														"user",
+														"receive",
+														"product",
+														"order",
+														"11"
+													]
+												}
+											},
+											"response": []
 										}
 									]
 								}

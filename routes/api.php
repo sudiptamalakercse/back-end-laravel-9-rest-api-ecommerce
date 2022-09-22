@@ -33,6 +33,9 @@ Route::middleware(['auth:user', 'is_verify_user_email'])->group(function () {
         Route::prefix('user')->group(function () {
             Route::post('place/order', 'place_order');
             Route::get('product/order/list/{order_id}/{apartment}/{street}/{zip}/{city}/{state}/{country}/{phone_billing}/{payment_status}/{payment_type}/{transaction_id}/{product_coming}/{product_receiving}/{product_received}/{sort_type}', 'get_product_order_list');
+            Route::get('view/product/order/{product_order_id}', 'get_single_product_order_record_by_id');
+            Route::put('cancel/product/order/{product_order_id}', 'cancel_product_order');
+            Route::put('receive/product/order/{product_order_id}', 'receive_product_order');
         });
     });
 });

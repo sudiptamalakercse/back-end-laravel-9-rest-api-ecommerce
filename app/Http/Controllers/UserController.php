@@ -14,6 +14,7 @@ use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\Product;
 use App\Models\ProductColor;
+use App\Models\ProductOrder;
 use App\Models\ProductSize;
 use App\Models\User;
 use App\Models\UserVerify;
@@ -911,4 +912,167 @@ class UserController extends Controller
 
     }
 
+    public function get_single_product_order_record_by_id($product_order_id)
+    {
+
+        $user_id = UserControllerService::get_authenticate_user_id();
+
+        return Service1::get_single_product_order_record_by_id_for_user_or_admin($product_order_id, $user_id);
+
+    }
+
+    public function cancel_product_order($product_order_id)
+    {
+
+        try {
+
+            $user = auth('user')->user();
+            $user_id = $user->id;
+
+            $product_order = ProductOrder::where('id', $product_order_id)
+                ->where('is_canceled', 0)
+                ->first();
+
+            if (isset($product_order)) {
+
+                $user_id_from_billing_detail = $product_order->billingDetail->user->id;
+
+                if ($user_id != $user_id_from_billing_detail) {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Unauthorized!',
+                    ], 401);
+
+                }
+
+                $product_coming = $product_order->product_coming;
+
+                if ($product_coming == 0) {
+                    $payment_type = $product_order->payment_type;
+
+                    if ($payment_type == 'card') {
+                        $product_order->payment_status = 0;
+                        $payment_intent_id_for_refund = $product_order->payment_intent_id_for_refund;
+                        $user->refund($payment_intent_id_for_refund);
+                    }
+
+                    $product_order->is_canceled = 1;
+
+                    $product_order->save();
+
+                    return response([
+                        'all_ok' => 'yes',
+                        'message' => 'Your Product Order is Successfully Canceled!',
+                    ], 204);
+
+                } else {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Not Possible to Cancel Product Order Because Your Oder is Coming!',
+                    ], 403);
+
+                }
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'No Product Order Record!',
+                ], 404);
+
+            }
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
+
+    public function receive_product_order($product_order_id)
+    {
+
+        try {
+
+            $user = auth('user')->user();
+            $user_id = $user->id;
+
+            $product_order = ProductOrder::where('id', $product_order_id)
+                ->where('is_canceled', 0)
+                ->first();
+
+            if (isset($product_order)) {
+
+                $user_id_from_billing_detail = $product_order->billingDetail->user->id;
+
+                if ($user_id != $user_id_from_billing_detail) {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Unauthorized!',
+                    ], 401);
+
+                }
+
+                $product_receiving = $product_order->product_receiving;
+                $product_received = $product_order->product_received;
+
+                if ($product_receiving == 1 && $product_received == 0) {
+
+                    $product_order->product_received = 1;
+
+                    $product_order->save();
+
+                    return response([
+                        'all_ok' => 'yes',
+                        'message' => 'Product Order is Successfully Received!',
+                    ], 204);
+
+                } else {
+
+                    if ($product_received == 1) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Product Order is Already Received!',
+                        ], 403);
+
+                    }
+
+                    if ($product_receiving == 0) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Please Tell to Admin for Sending Product Order Receiving Request!',
+                        ], 403);
+
+                    }
+
+                }
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'No Product Order Record!',
+                ], 404);
+
+            }
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
 }

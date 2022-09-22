@@ -18,6 +18,12 @@ class UserControllerService
 
     public static $delivery_charge_per_product_item = 200;
 
+    public static function get_authenticate_user_id()
+    {
+        $user = auth('user')->user();
+        return $user_id = $user->id;
+    }
+
     public static function get_unique_product_ids_and_occurrences_by_maximum_occurrences_ordering_from_reviews_table($review_colum_null_check = false)
     {
 
@@ -857,5 +863,4 @@ class UserControllerService
         return $product_order;
 
     }
-
 }

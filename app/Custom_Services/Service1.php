@@ -213,4 +213,45 @@ class Service1
         }
 
     }
+
+    public static function get_single_product_order_record_by_id_for_user_or_admin($product_order_id, $user_id = null)
+    {
+
+        $product_order = ProductOrder::where('id', $product_order_id)
+            ->where('is_canceled', 0)
+            ->first();
+
+        if (isset($product_order)) {
+
+            $user_id_from_billing_detail = $product_order->billingDetail->user->id;
+
+            if ($user_id != null) {
+                if ($user_id != $user_id_from_billing_detail) {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'Unauthorized!',
+                    ], 401);
+
+                }
+            }
+
+            $product_order = new ProductOrderResource($product_order);
+
+            return response([
+                'all_ok' => 'yes',
+                'product_order' => $product_order,
+            ], 200);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Order Record!',
+            ], 404);
+
+        }
+
+    }
+
 }
