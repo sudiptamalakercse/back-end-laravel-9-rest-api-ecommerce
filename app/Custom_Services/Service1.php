@@ -170,7 +170,7 @@ class Service1
 
             if ($sort_type == "''") {
 
-                if ($user = null) {
+                if ($user == null) {
                     $product_orders = $product_orders->orderBy('id', 'ASC');
                 } else {
                     $product_orders = $product_orders->orderBy('id', 'DESC');
@@ -180,9 +180,28 @@ class Service1
                 $product_orders = $product_orders->orderBy('id', $sort_type);
             }
 
-            $product_orders = $product_orders->get();
+            $product_orders_ = $product_orders->get();
 
-            return ProductOrderResource::collection($product_orders);
+            if (count($product_orders_) > 0) {
+
+                $product_orders = $product_orders->paginate(2);
+
+                $product_orders = ProductOrderResource::collection($product_orders);
+
+                $product_orders->additional([
+                    'all_ok' => 'yes',
+                ]);
+
+                return $product_orders;
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'No Product Order Record!',
+                ], 404);
+
+            }
 
         } else {
 
