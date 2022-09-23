@@ -19,6 +19,11 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->appendOutputTo('result.log')
             ->timezone('Asia/Dhaka');
+
+        $schedule->command('clean:product_orders_table')
+            ->everyMinute()
+            ->appendOutputTo('result.log')
+            ->timezone('Asia/Dhaka');
     }
 
     /**
