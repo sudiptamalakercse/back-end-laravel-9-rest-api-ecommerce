@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Custom_Services\AuthenticationService;
+use App\Custom_Services\Service1;
 use App\Mail\EmailSend;
 use App\Models\Admin;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
+use App\Models\ProductOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -77,4 +79,179 @@ class AdminController extends Controller
 
     }
 
+    public function get_product_order_list($order_id, $apartment, $street, $zip, $city, $state, $country, $name, $email, $phone_user, $phone_billing, $payment_status, $payment_type, $transaction_id, $payment_intent_id_for_refund, $product_coming, $product_receiving, $product_received, $sort_type)
+    {
+
+        return Service1::get_product_order_list_for_user_or_admin($order_id, $apartment, $street, $zip, $city, $state, $country, $name, $email, $phone_user, $phone_billing, $payment_status, $payment_type, $transaction_id, $payment_intent_id_for_refund, $product_coming, $product_receiving, $product_received, $sort_type);
+
+    }
+
+    public function get_single_product_order_record_by_id($product_order_id)
+    {
+        return Service1::get_single_product_order_record_by_id_for_user_or_admin($product_order_id);
+    }
+
+    public function set_coming_status_as_true_for_product_orders_selected(Request $request)
+    {
+        $product_order_ids = $request->product_order_ids;
+
+        if (count($product_order_ids) > 1) {
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+
+                if (isset($product_order)) {
+
+                    $product_coming = $product_order->product_coming;
+
+                    if ($product_coming == 1) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Already Coming Status is Yes for Product Order Id ' . $product_order_id . '!',
+                        ], 422);
+
+                    }
+
+                } else {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+                    ], 404);
+                }
+            }
+
+            $all_ok = true;
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+                $product_coming = $product_order->product_coming;
+
+                if ($product_coming == 0) {
+
+                    $product_order->product_coming = 1;
+                    $product_order->save();
+
+                } else {
+                    $all_ok = false;
+                }
+            }
+
+            if ($all_ok == true) {
+
+                return response([
+                    'all_ok' => 'yes',
+                    'message' => 'The Coming Status of Selected Product Orders are Modified as Yes Successfully!',
+                ], 204);
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Something Went Wrong!',
+                ], 500);
+            }
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Please Select More Than 1 Product Order Record!',
+            ], 422);
+
+        }
+    }
+
+    public function set_receiving_status_as_true_for_product_orders_selected(Request $request)
+    {
+
+        $product_order_ids = $request->product_order_ids;
+
+        if (count($product_order_ids) > 1) {
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+
+                if (isset($product_order)) {
+
+                    $product_coming = $product_order->product_coming;
+                    $product_receiving = $product_order->product_receiving;
+
+                    if ($product_coming == 0) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Please First set Coming Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Product Reiving Status as Yes!',
+                        ], 422);
+
+                    }
+
+                    if ($product_receiving == 1) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Already Receiving Status is Yes for Product Order Id ' . $product_order_id . '!',
+                        ], 422);
+
+                    }
+
+                } else {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+                    ], 404);
+                }
+            }
+
+            $all_ok = true;
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+                $product_coming = $product_order->product_coming;
+                $product_receiving = $product_order->product_receiving;
+
+                if ($product_coming == 1 && $product_receiving == 0) {
+
+                    $product_order->product_receiving = 1;
+                    $product_order->save();
+
+                } else {
+                    $all_ok = false;
+                }
+            }
+
+            if ($all_ok == true) {
+
+                return response([
+                    'all_ok' => 'yes',
+                    'message' => 'The Receiving Status of Selected Product Orders are Modified as Yes Successfully!',
+                ], 204);
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Something Went Wrong!',
+                ], 500);
+            }
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Please Select More Than 1 Product Order Record!',
+            ], 422);
+
+        }
+    }
+
+    public function set_actual_delivery_cost_for_product_orders_selected(Request $request)
+    {
+        // dd($request->product_order_ids);
+        dd($request->actual_delivery_cost);
+    }
 }

@@ -34,12 +34,12 @@
 											"urlencoded": [
 												{
 													"key": "email",
-													"value": "malakersudipta@gmail.com",
+													"value": "lacy50@example.net",
 													"type": "default"
 												},
 												{
 													"key": "password",
-													"value": "12345678",
+													"value": "password",
 													"type": "default"
 												}
 											]
@@ -551,6 +551,312 @@
 								}
 							},
 							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Order List Page",
+					"item": [
+						{
+							"name": "Product Order List Section",
+							"item": [
+								{
+									"name": "Get Product Order List for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/product/order/list/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"product",
+												"order",
+												"list",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''",
+												"''"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Single Product Order Record by Id for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/view/product/order/3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"view",
+												"product",
+												"order",
+												"3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Coming Status as True for Product Orders Selected for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "product_order_ids[]",
+													"value": "1",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "2",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "3",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/coming/status/as/true/for/product/orders/selected",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"coming",
+												"status",
+												"as",
+												"true",
+												"for",
+												"product",
+												"orders",
+												"selected"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Receiving Status as True for Product Orders Selected for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "product_order_ids[]",
+													"value": "1",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "2",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "3",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/receiving/status/as/true/for/product/orders/selected",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"receiving",
+												"status",
+												"as",
+												"true",
+												"for",
+												"product",
+												"orders",
+												"selected"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Actual Delivery Cost for Product Orders Selected for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "product_order_ids[]",
+													"value": "1",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "2",
+													"type": "default"
+												},
+												{
+													"key": "product_order_ids[]",
+													"value": "3",
+													"type": "default"
+												},
+												{
+													"key": "actual_delivery_cost",
+													"value": "150",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/actual/delivery/cost/for/product/orders/selected",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"actual",
+												"delivery",
+												"cost",
+												"for",
+												"product",
+												"orders",
+												"selected"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}

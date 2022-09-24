@@ -108,6 +108,11 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::post('logout', 'logout');
             Route::post('send/newsletter/to/users', 'send_newsletter_to_users');
+            Route::get('product/order/list/{order_id}/{apartment}/{street}/{zip}/{city}/{state}/{country}/{name}/{email}/{phone_user}/{phone_billing}/{payment_status}/{payment_type}/{transaction_id}/{payment_intent_id_for_refund}/{product_coming}/{product_receiving}/{product_received}/{sort_type}', 'get_product_order_list');
+            Route::get('view/product/order/{product_order_id}', 'get_single_product_order_record_by_id');
+            Route::post('set/coming/status/as/true/for/product/orders/selected', 'set_coming_status_as_true_for_product_orders_selected');
+            Route::post('set/receiving/status/as/true/for/product/orders/selected', 'set_receiving_status_as_true_for_product_orders_selected');
+            Route::post('set/actual/delivery/cost/for/product/orders/selected', 'set_actual_delivery_cost_for_product_orders_selected');
         });
     });
 });
