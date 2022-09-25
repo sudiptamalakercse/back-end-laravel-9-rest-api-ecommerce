@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Custom_Services\AdminControllerService;
 use App\Custom_Services\AuthenticationService;
 use App\Custom_Services\Service1;
 use App\Mail\EmailSend;
@@ -291,23 +292,7 @@ class AdminController extends Controller
 
                 if ($product_coming == 1) {
 
-                    $order_detail_in_json_string = $product_order->order_detail;
-
-                    $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
-
-                    $new_order_detail_in_associative_array = $order_detail_in_associative_array;
-
-                    $new_order_detail_in_associative_array['actual_product_delivery_charge'] = $actual_delivery_cost;
-
-                    $new_order_detail_in_associative_array['profit_from_delivery_charge'] = $new_order_detail_in_associative_array['product_delivery_charge'] - $new_order_detail_in_associative_array['actual_product_delivery_charge'];
-
-                    $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] = $new_order_detail_in_associative_array['total_profit_without_profit_from_delivery_charge'] + $new_order_detail_in_associative_array['profit_from_delivery_charge'];
-
-                    $new_order_detail_in_associative_array['total_expense'] = $new_order_detail_in_associative_array['total_product_buying_price'] + $new_order_detail_in_associative_array['actual_product_delivery_charge'];
-
-                    $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge_in_percentage'] = floor(($new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] / $new_order_detail_in_associative_array['total_expense']) * 100);
-
-                    $order_detail_in_json_string_for_updating_in_order_table = json_encode($new_order_detail_in_associative_array);
+                    $order_detail_in_json_string_for_updating_in_order_table = AdminControllerService::get_order_detail_in_json_string_for_updating_in_order_table($product_order, $actual_delivery_cost);
 
                     $product_order->order_detail = $order_detail_in_json_string_for_updating_in_order_table;
 
@@ -342,4 +327,204 @@ class AdminController extends Controller
         }
 
     }
+
+    public function set_coming_status_as_true_for_product_order_by_id($product_order_id)
+    {
+
+        $product_order = ProductOrder::find($product_order_id);
+
+        if (isset($product_order)) {
+
+            $product_coming = $product_order->product_coming;
+
+            if ($product_coming == 1) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Already Coming Status is Yes for Product Order Id ' . $product_order_id . '!',
+                ], 422);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+            ], 404);
+        }
+
+        if ($product_coming == 0) {
+
+            $product_order->product_coming = 1;
+            $product_order->save();
+
+            return response([
+                'all_ok' => 'yes',
+                'message' => 'The Coming Status of Product Order Id ' . $product_order_id . ' is Modified as Yes Successfully!',
+            ], 204);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Something Went Wrong!',
+            ], 500);
+        }
+
+    }
+
+    public function set_receiving_status_as_true_for_product_order_by_id($product_order_id)
+    {
+
+        $product_order = ProductOrder::find($product_order_id);
+
+        if (isset($product_order)) {
+
+            $product_coming = $product_order->product_coming;
+            $product_receiving = $product_order->product_receiving;
+
+            if ($product_coming == 0) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Please First set Coming Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Product Reiving Status as Yes!',
+                ], 422);
+
+            }
+
+            if ($product_receiving == 1) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Already Receiving Status is Yes for Product Order Id ' . $product_order_id . '!',
+                ], 422);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+            ], 404);
+        }
+
+        if ($product_coming == 1 && $product_receiving == 0) {
+
+            $product_order->product_receiving = 1;
+            $product_order->save();
+
+            return response([
+                'all_ok' => 'yes',
+                'message' => 'The Receiving Status of Product Order Id ' . $product_order_id . ' is Modified as Yes Successfully!',
+            ], 204);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Something Went Wrong!',
+            ], 500);
+
+        }
+    }
+
+    public function set_actual_delivery_cost_for_product_order_by_id(Request $request, $product_order_id)
+    {
+
+        $actual_delivery_cost = $request->actual_delivery_cost;
+
+        $product_order = ProductOrder::find($product_order_id);
+
+        if (isset($product_order)) {
+
+            $product_coming = $product_order->product_coming;
+
+            if ($product_coming == 0) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Please First set Coming Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Actual Product Delivery Cost!',
+                ], 422);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+            ], 404);
+        }
+
+        if ($product_coming == 1) {
+
+            $order_detail_in_json_string_for_updating_in_order_table = AdminControllerService::get_order_detail_in_json_string_for_updating_in_order_table($product_order, $actual_delivery_cost);
+
+            $product_order->order_detail = $order_detail_in_json_string_for_updating_in_order_table;
+
+            $product_order->save();
+
+            return response([
+                'all_ok' => 'yes',
+                'message' => 'Actual Product Delivery Cost of Product Order With Product Order Id ' . $product_order_id . ' is Modified Successfully!',
+            ], 204);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Something Went Wrong!',
+            ], 500);
+
+        }
+    }
+
+    public function set_payment_status_as_true_for_product_order_by_id($product_order_id)
+    {
+
+        $product_order = ProductOrder::find($product_order_id);
+
+        if (isset($product_order)) {
+
+            $payment_status = $product_order->payment_status;
+
+            if ($payment_status == 1) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Already Payment Status is Yes for Product Order Id ' . $product_order_id . '!',
+                ], 422);
+
+            }
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+            ], 404);
+        }
+
+        if ($payment_status == 0) {
+
+            $product_order->payment_status = 1;
+            $product_order->save();
+
+            return response([
+                'all_ok' => 'yes',
+                'message' => 'The Payment Status of Product Order Id ' . $product_order_id . ' is Modified as Yes Successfully!',
+            ], 204);
+
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Something Went Wrong!',
+            ], 500);
+        }
+
+    }
+
 }

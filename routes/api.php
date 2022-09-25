@@ -113,6 +113,10 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::post('set/coming/status/as/true/for/product/orders/selected', 'set_coming_status_as_true_for_product_orders_selected');
             Route::post('set/receiving/status/as/true/for/product/orders/selected', 'set_receiving_status_as_true_for_product_orders_selected');
             Route::post('set/actual/delivery/cost/for/product/orders/selected', 'set_actual_delivery_cost_for_product_orders_selected');
+            Route::put('set/coming/status/as/true/for/product/order/{product_order_id}', 'set_coming_status_as_true_for_product_order_by_id');
+            Route::put('set/receiving/status/as/true/for/product/order/{product_order_id}', 'set_receiving_status_as_true_for_product_order_by_id');
+            Route::post('set/actual/delivery/cost/for/product/order/{product_order_id}', 'set_actual_delivery_cost_for_product_order_by_id');
+            Route::put('set/payment/status/as/true/for/product/order/{product_order_id}', 'set_payment_status_as_true_for_product_order_by_id');
         });
     });
 });

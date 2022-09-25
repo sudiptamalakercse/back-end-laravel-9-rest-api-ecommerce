@@ -859,6 +859,205 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Product Order Detail Page",
+					"item": [
+						{
+							"name": "Product Order Detail Section",
+							"item": [
+								{
+									"name": "Set Coming Status as True for Product Order by Id for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/coming/status/as/true/for/product/order/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"coming",
+												"status",
+												"as",
+												"true",
+												"for",
+												"product",
+												"order",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Receiving Status as True for Product Order by Id for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/receiving/status/as/true/for/product/order/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"receiving",
+												"status",
+												"as",
+												"true",
+												"for",
+												"product",
+												"order",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Actual Delivery Cost for Product Order by Id for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "actual_delivery_cost",
+													"value": "150",
+													"type": "default"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/actual/delivery/cost/for/product/order/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"actual",
+												"delivery",
+												"cost",
+												"for",
+												"product",
+												"order",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Payment Status as True for Product Order by Id for Admin",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/set/payment/status/as/true/for/product/order/1",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"set",
+												"payment",
+												"status",
+												"as",
+												"true",
+												"for",
+												"product",
+												"order",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		},
