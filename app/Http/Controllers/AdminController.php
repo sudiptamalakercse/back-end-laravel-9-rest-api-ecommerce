@@ -251,7 +251,95 @@ class AdminController extends Controller
 
     public function set_actual_delivery_cost_for_product_orders_selected(Request $request)
     {
-        // dd($request->product_order_ids);
-        dd($request->actual_delivery_cost);
+        $product_order_ids = $request->product_order_ids;
+        $actual_delivery_cost = $request->actual_delivery_cost;
+
+        if (count($product_order_ids) > 1) {
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+
+                if (isset($product_order)) {
+
+                    $product_coming = $product_order->product_coming;
+
+                    if ($product_coming == 0) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Please First set Coming Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Actual Product Delivery Costs!',
+                        ], 422);
+
+                    }
+
+                } else {
+
+                    return response([
+                        'all_ok' => 'no',
+                        'message' => 'No Product Order Record With Product Order Id ' . $product_order_id . '!',
+                    ], 404);
+                }
+            }
+
+            $all_ok = true;
+
+            foreach ($product_order_ids as $product_order_id) {
+
+                $product_order = ProductOrder::find($product_order_id);
+                $product_coming = $product_order->product_coming;
+
+                if ($product_coming == 1) {
+
+                    $order_detail_in_json_string = $product_order->order_detail;
+
+                    $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
+
+                    $new_order_detail_in_associative_array = $order_detail_in_associative_array;
+
+                    $new_order_detail_in_associative_array['actual_product_delivery_charge'] = $actual_delivery_cost;
+
+                    $new_order_detail_in_associative_array['profit_from_delivery_charge'] = $new_order_detail_in_associative_array['product_delivery_charge'] - $new_order_detail_in_associative_array['actual_product_delivery_charge'];
+
+                    $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] = $new_order_detail_in_associative_array['total_profit_without_profit_from_delivery_charge'] + $new_order_detail_in_associative_array['profit_from_delivery_charge'];
+
+                    $new_order_detail_in_associative_array['total_expense'] = $new_order_detail_in_associative_array['total_product_buying_price'] + $new_order_detail_in_associative_array['actual_product_delivery_charge'];
+
+                    $new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge_in_percentage'] = floor(($new_order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'] / $new_order_detail_in_associative_array['total_expense']) * 100);
+
+                    $order_detail_in_json_string_for_updating_in_order_table = json_encode($new_order_detail_in_associative_array);
+
+                    $product_order->order_detail = $order_detail_in_json_string_for_updating_in_order_table;
+
+                    $product_order->save();
+
+                } else {
+                    $all_ok = false;
+                }
+            }
+
+            if ($all_ok == true) {
+
+                return response([
+                    'all_ok' => 'yes',
+                    'message' => 'Actual Product Delivery Costs of Selected Product Orders are Modified Successfully!',
+                ], 204);
+
+            } else {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Something Went Wrong!',
+                ], 500);
+            }
+        } else {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => 'Please Select More Than 1 Product Order Record!',
+            ], 422);
+
+        }
+
     }
 }
