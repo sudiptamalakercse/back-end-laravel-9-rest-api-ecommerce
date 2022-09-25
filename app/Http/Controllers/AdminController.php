@@ -178,8 +178,18 @@ class AdminController extends Controller
 
                 if (isset($product_order)) {
 
+                    $payment_status = $product_order->payment_status;
                     $product_coming = $product_order->product_coming;
                     $product_receiving = $product_order->product_receiving;
+
+                    if ($payment_status == 0) {
+
+                        return response([
+                            'all_ok' => 'no',
+                            'message' => 'Please First set Payment Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Product Reiving Status as Yes!',
+                        ], 422);
+
+                    }
 
                     if ($product_coming == 0) {
 
@@ -213,10 +223,12 @@ class AdminController extends Controller
             foreach ($product_order_ids as $product_order_id) {
 
                 $product_order = ProductOrder::find($product_order_id);
+
+                $payment_status = $product_order->payment_status;
                 $product_coming = $product_order->product_coming;
                 $product_receiving = $product_order->product_receiving;
 
-                if ($product_coming == 1 && $product_receiving == 0) {
+                if ($payment_status == 1 && $product_coming == 1 && $product_receiving == 0) {
 
                     $product_order->product_receiving = 1;
                     $product_order->save();
@@ -381,8 +393,18 @@ class AdminController extends Controller
 
         if (isset($product_order)) {
 
+            $payment_status = $product_order->payment_status;
             $product_coming = $product_order->product_coming;
             $product_receiving = $product_order->product_receiving;
+
+            if ($payment_status == 0) {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Please First set Payment Status as Yes for Product Order Id ' . $product_order_id . ' Then Try to Set Product Reiving Status as Yes!',
+                ], 422);
+
+            }
 
             if ($product_coming == 0) {
 
@@ -410,7 +432,7 @@ class AdminController extends Controller
             ], 404);
         }
 
-        if ($product_coming == 1 && $product_receiving == 0) {
+        if ($payment_status == 1 && $product_coming == 1 && $product_receiving == 0) {
 
             $product_order->product_receiving = 1;
             $product_order->save();
