@@ -1058,6 +1058,217 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Admin Dashboard Page",
+					"item": [
+						{
+							"name": "General Report Section",
+							"item": [
+								{
+									"name": "Get Total Number of Product Order Which are Not Coming for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/number/of/product/order/which/are/not/coming/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"number",
+												"of",
+												"product",
+												"order",
+												"which",
+												"are",
+												"not",
+												"coming",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Number of Product Order Which are Coming for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/number/of/product/order/which/are/coming/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"number",
+												"of",
+												"product",
+												"order",
+												"which",
+												"are",
+												"coming",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Number of Product Order Which are Receiving for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/number/of/product/order/which/are/receiving/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"number",
+												"of",
+												"product",
+												"order",
+												"which",
+												"are",
+												"receiving",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Number of Product Order Which are Received for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/number/of/product/order/which/are/received/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"number",
+												"of",
+												"product",
+												"order",
+												"which",
+												"are",
+												"received",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				}
 			]
 		},

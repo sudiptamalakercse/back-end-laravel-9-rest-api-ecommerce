@@ -549,4 +549,23 @@ class AdminController extends Controller
 
     }
 
+    public function get_total_number_of_product_order_which_are_not_coming($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'not_coming');
+    }
+
+    public function get_total_number_of_product_order_which_are_coming($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'coming');
+    }
+
+    public function get_total_number_of_product_order_which_are_receiving($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'receiving');
+    }
+
+    public function get_total_number_of_product_order_which_are_received($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'received');
+    }
 }

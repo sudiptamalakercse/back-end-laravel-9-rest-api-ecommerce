@@ -117,6 +117,11 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::put('set/receiving/status/as/true/for/product/order/{product_order_id}', 'set_receiving_status_as_true_for_product_order_by_id');
             Route::post('set/actual/delivery/cost/for/product/order/{product_order_id}', 'set_actual_delivery_cost_for_product_order_by_id');
             Route::put('set/payment/status/as/true/for/product/order/{product_order_id}', 'set_payment_status_as_true_for_product_order_by_id');
+            Route::get('total/number/of/product/order/which/are/not/coming/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_not_coming');
+            Route::get('total/number/of/product/order/which/are/coming/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_coming');
+            Route::get('total/number/of/product/order/which/are/receiving/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_receiving');
+            Route::get('total/number/of/product/order/which/are/received/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_received');
+
         });
     });
 });
