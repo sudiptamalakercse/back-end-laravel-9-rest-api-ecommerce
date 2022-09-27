@@ -10,7 +10,9 @@ use App\Models\Admin;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
 use App\Models\ProductOrder;
+use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -568,4 +570,70 @@ class AdminController extends Controller
     {
         return AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'received');
     }
+
+    public function get_product_orders_overview_report($starting_date, $ending_date)
+    {
+        try {
+
+            $datas = [];
+            $labels = [];
+
+            $total_number_of_product_order_which_are_not_coming = AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'not_coming', value:true);
+            $total_number_of_product_order_which_are_coming = AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'coming', value:true);
+            $total_number_of_product_order_which_are_receiving = AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'receiving', value:true);
+            $total_number_of_product_order_which_are_received = AdminControllerService::get_total_number_of_product_order_which_are_coming_or_not_coming_or_receiving_or_received(starting_date:$starting_date, ending_date:$ending_date, coming_or_not_coming_or_receiving_or_received:'received', value:true);
+
+            array_push($labels, 'Product Order Not Coming', 'Product Order Coming', 'Product Order Receiving', 'Product Order Received');
+
+            array_push($datas, $total_number_of_product_order_which_are_not_coming, $total_number_of_product_order_which_are_coming, $total_number_of_product_order_which_are_receiving, $total_number_of_product_order_which_are_received);
+
+            return response([
+                'all_ok' => 'yes',
+                'labels' => $labels,
+                'datas' => $datas,
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+    }
+
+    public function get_total_profit($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_profit_or_selling_price_with_delivery_cost(starting_date:$starting_date, ending_date:$ending_date, profit_or_selling_price_with_delivery_cost:'profit');
+    }
+
+    public function get_total_selling_price_with_delivery_cost($starting_date, $ending_date)
+    {
+        return AdminControllerService::get_total_profit_or_selling_price_with_delivery_cost(starting_date:$starting_date, ending_date:$ending_date, profit_or_selling_price_with_delivery_cost:'selling_price_with_delivery_cost');
+    }
+
+    public function get_total_users()
+    {
+        try {
+
+            $total_users = User::where('is_email_verified', 1)
+                ->count();
+
+            return response([
+                'all_ok' => 'yes',
+                'total_users' => $total_users,
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
+
 }

@@ -1265,6 +1265,186 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Get Product Orders Overview Report for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/product/orders/overview/report/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"product",
+												"orders",
+												"overview",
+												"report",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Profit for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/profit/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"profit",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Selling Price with Delivery Cost for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/selling/price/with/delivery/cost/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"selling",
+												"price",
+												"with",
+												"delivery",
+												"cost",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Total Users for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/total/users",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"total",
+												"users"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -1745,7 +1925,7 @@
 													"bearer": [
 														{
 															"key": "token",
-															"value": "2|sKTK3YhRW6BXYKM7dzJe6jPANUF4jV3MlHiFBpQj",
+															"value": "4|XLW1Irw4MrDuOre7XWsotJ9rQ5oPVIW3Bfuolvq3",
 															"type": "string"
 														}
 													]
@@ -1763,7 +1943,7 @@
 													"urlencoded": []
 												},
 												"url": {
-													"raw": "{{url}}/user/receive/product/order/11",
+													"raw": "{{url}}/user/receive/product/order/1",
 													"host": [
 														"{{url}}"
 													],
@@ -1772,7 +1952,7 @@
 														"receive",
 														"product",
 														"order",
-														"11"
+														"1"
 													]
 												}
 											},

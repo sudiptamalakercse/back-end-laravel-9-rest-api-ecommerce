@@ -121,7 +121,10 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('total/number/of/product/order/which/are/coming/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_coming');
             Route::get('total/number/of/product/order/which/are/receiving/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_receiving');
             Route::get('total/number/of/product/order/which/are/received/{starting_date}/{ending_date}', 'get_total_number_of_product_order_which_are_received');
-
+            Route::get('product/orders/overview/report/{starting_date}/{ending_date}', 'get_product_orders_overview_report');
+            Route::get('total/profit/{starting_date}/{ending_date}', 'get_total_profit');
+            Route::get('total/selling/price/with/delivery/cost/{starting_date}/{ending_date}', 'get_total_selling_price_with_delivery_cost');
+            Route::get('total/users', 'get_total_users');
         });
     });
 });
