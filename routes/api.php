@@ -125,6 +125,9 @@ Route::middleware(['auth:admin'])->group(function () {
             Route::get('total/profit/{starting_date}/{ending_date}', 'get_total_profit');
             Route::get('total/selling/price/with/delivery/cost/{starting_date}/{ending_date}', 'get_total_selling_price_with_delivery_cost');
             Route::get('total/users', 'get_total_users');
+            Route::get('received/product/orders/report/{starting_date}/{ending_date}/{filter_type}', 'get_received_product_orders_report');
+            Route::get('profit/report/{starting_date}/{ending_date}/{filter_type}', 'get_profit_report');
+            Route::get('profit/report/in/percentage/{starting_date}/{ending_date}', 'get_profit_report_in_percentage');
         });
     });
 });

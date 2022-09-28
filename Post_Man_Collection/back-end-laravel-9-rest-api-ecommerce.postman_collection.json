@@ -1447,6 +1447,159 @@
 									"response": []
 								}
 							]
+						},
+						{
+							"name": "Received Product Orders Report Section",
+							"item": [
+								{
+									"name": "Get Received Product Orders Report for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/received/product/orders/report/2022-01-13/2022-09-14/daily",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"received",
+												"product",
+												"orders",
+												"report",
+												"2022-01-13",
+												"2022-09-14",
+												"daily"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Profit Report Section",
+							"item": [
+								{
+									"name": "Get Profit Report for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/profit/report/2022-01-13/2022-09-14/daily",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"profit",
+												"report",
+												"2022-01-13",
+												"2022-09-14",
+												"daily"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Profit Report in Percentage Section",
+							"item": [
+								{
+									"name": "Get Profit Report in Percentage for Admin",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "3|Je2GxNurgAvmjGgWbkgNU2aTYcAo16X1mfccSsNk",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "default"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": []
+										},
+										"url": {
+											"raw": "{{url}}/admin/profit/report/in/percentage/2022-01-13/2022-09-14",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"admin",
+												"profit",
+												"report",
+												"in",
+												"percentage",
+												"2022-01-13",
+												"2022-09-14"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				}

@@ -636,4 +636,155 @@ class AdminController extends Controller
 
     }
 
+    public function get_received_product_orders_report($starting_date, $ending_date, $filter_type)
+    {
+        try {
+
+            if ($filter_type !== 'daily' && $filter_type !== 'monthly' && $filter_type !== 'yearly') {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Filter Type is Not Correct!',
+                ], 422);
+
+            }
+
+            $dates = AdminControllerService::some_code_1(starting_date:$starting_date, ending_date:$ending_date, filter_type:$filter_type);
+
+            $labels = $dates;
+            $datas = [];
+
+            foreach ($dates as $date) {
+
+                $count = ProductOrder::where('created_at', 'like', $date . '%')
+                    ->where('product_coming', 1)
+                    ->where('product_receiving', 1)
+                    ->where('product_received', 1)
+                    ->where('payment_status', 1)
+                    ->count();
+
+                array_push($datas, $count);
+            }
+
+            return response([
+                'all_ok' => 'yes',
+                'labels' => $labels,
+                'datas' => $datas,
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
+
+    public function get_profit_report($starting_date, $ending_date, $filter_type)
+    {
+        try {
+
+            if ($filter_type !== 'daily' && $filter_type !== 'monthly' && $filter_type !== 'yearly') {
+
+                return response([
+                    'all_ok' => 'no',
+                    'message' => 'Filter Type is Not Correct!',
+                ], 422);
+
+            }
+
+            $dates = AdminControllerService::some_code_1(starting_date:$starting_date, ending_date:$ending_date, filter_type:$filter_type);
+
+            $labels = $dates;
+            $datas = [];
+
+            foreach ($dates as $date) {
+
+                $product_orders_2 = ProductOrder::where('created_at', 'like', $date . '%')
+                    ->where('product_coming', 1)
+                    ->where('product_receiving', 1)
+                    ->where('product_received', 1)
+                    ->where('payment_status', 1)
+                    ->get();
+
+                $total = 0;
+
+                foreach ($product_orders_2 as $product_order_2) {
+
+                    $order_detail_2_in_json_string = $product_order_2->order_detail;
+                    $order_detail_2_in_associative_array = json_decode($order_detail_2_in_json_string, true);
+
+                    $total = $total + $order_detail_2_in_associative_array['finally_total_profit_with_profit_from_delivery_charge'];
+
+                }
+
+                array_push($datas, $total);
+            }
+
+            return response([
+                'all_ok' => 'yes',
+                'labels' => $labels,
+                'datas' => $datas,
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
+
+    public function get_profit_report_in_percentage($starting_date, $ending_date)
+    {
+        try {
+
+            $result_in_array = AdminControllerService::get_starting_and_ending_date_for_admin_dashboard_if_user_not_given($starting_date, $ending_date);
+
+            $starting_date = $result_in_array['starting_date'];
+            $ending_date = $result_in_array['ending_date'];
+
+            $product_orders = ProductOrder::whereBetween('created_at', [$starting_date, $ending_date])
+                ->where('product_coming', 1)
+                ->where('product_receiving', 1)
+                ->where('product_received', 1)
+                ->where('payment_status', 1)
+                ->get();
+
+            $labels = [];
+            $datas = [];
+
+            foreach ($product_orders as $product_order) {
+
+                $order_detail_in_json_string = $product_order->order_detail;
+                $order_detail_in_associative_array = json_decode($order_detail_in_json_string, true);
+
+                array_push($datas, $order_detail_in_associative_array['finally_total_profit_with_profit_from_delivery_charge_in_percentage']);
+                array_push($labels, $product_order->created_at->format('Y-m-d'));
+
+            }
+
+            return response([
+                'all_ok' => 'yes',
+                'labels' => $labels,
+                'datas' => $datas,
+            ], 200);
+
+        } catch (Exception $e) {
+
+            return response([
+                'all_ok' => 'no',
+                'message' => $e->getMessage(),
+            ], 500);
+
+        }
+
+    }
+
 }

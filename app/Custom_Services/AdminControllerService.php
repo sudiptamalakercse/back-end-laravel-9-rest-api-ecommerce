@@ -7,6 +7,35 @@ use Exception;
 
 class AdminControllerService
 {
+    public static function some_code_1($starting_date, $ending_date, $filter_type)
+    {
+        $result_in_array = self::get_starting_and_ending_date_for_admin_dashboard_if_user_not_given($starting_date, $ending_date);
+
+        $starting_date = $result_in_array['starting_date'];
+        $ending_date = $result_in_array['ending_date'];
+
+        $product_orders = ProductOrder::whereBetween('created_at', [$starting_date, $ending_date])->get();
+
+        $dates = [];
+
+        foreach ($product_orders as $product_order) {
+            $created_at = $product_order->created_at;
+
+            if ($filter_type == 'daily') {
+                $created_at = $created_at->format('Y-m-d');
+            } elseif ($filter_type == 'monthly') {
+                $created_at = $created_at->format('Y-m');
+            } elseif ($filter_type == 'yearly') {
+                $created_at = $created_at->format('Y');
+            }
+
+            if (!in_array($created_at, $dates)) {
+                array_push($dates, $created_at);
+            }
+        }
+
+        return $dates;
+    }
 
     public static function get_starting_and_ending_date_for_admin_dashboard_if_user_not_given($starting_date, $ending_date)
     {
