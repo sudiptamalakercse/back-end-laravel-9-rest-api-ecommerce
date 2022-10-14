@@ -9,6 +9,7 @@ use App\Http\Resources\Both\CategoryResource;
 use App\Http\Resources\Both\ProductResource;
 use App\Mail\EmailSend;
 use App\Models\Category;
+use App\Models\Discount;
 use App\Models\Message;
 use App\Models\NewsLetter;
 use App\Models\PasswordReset;
